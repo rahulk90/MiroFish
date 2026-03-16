@@ -1,9 +1,9 @@
 """
-OASIS Twitter模拟预设脚本
-此脚本读取配置文件中的参数来执行模拟，实现全程自动化
+OASIS TwitterSimulation预设脚本
+此脚本读取配置文件中的参数来执行Simulation，实现全程自动化
 
 功能特性:
-- 完成模拟后不立即关闭环境，进入等待命令模式
+- 完成Simulation后不立即关闭环境，进入等待命令模式
 - 支持通过IPC接收Interview命令
 - 支持单个Agent采访和批量采访
 - 支持远程关闭环境命令
@@ -71,7 +71,7 @@ class MaxTokensWarningFilter(logging.Filter):
     """过滤掉 camel-ai 关于 max_tokens 的警告（我们故意不设置 max_tokens，让模型自行决定）"""
     
     def filter(self, record):
-        # 过滤掉包含 max_tokens 警告的日志
+        # 过滤掉包含 max_tokens 警告的Log
         if "max_tokens" in record.getMessage() and "Invalid or missing" in record.getMessage():
             return False
         return True
@@ -82,10 +82,10 @@ logging.getLogger().addFilter(MaxTokensWarningFilter())
 
 
 def setup_oasis_logging(log_dir: str):
-    """配置 OASIS 的日志，使用固定名称的日志文件"""
+    """配置 OASIS 的Log，使用固定名称的Log文件"""
     os.makedirs(log_dir, exist_ok=True)
     
-    # 清理旧的日志文件
+    # 清理旧的Log文件
     for f in os.listdir(log_dir):
         old_log = os.path.join(log_dir, f)
         if os.path.isfile(old_log) and f.endswith('.log'):
@@ -160,7 +160,7 @@ class IPCHandler:
         os.makedirs(self.responses_dir, exist_ok=True)
     
     def update_status(self, status: str):
-        """更新环境状态"""
+        """Update环境状态"""
         with open(self.status_file, 'w', encoding='utf-8') as f:
             json.dump({
                 "status": status,
@@ -383,7 +383,7 @@ class IPCHandler:
 
 
 class TwitterSimulationRunner:
-    """Twitter模拟运行器"""
+    """TwitterSimulation运行器"""
     
     # Twitter可用动作（不包含INTERVIEW，INTERVIEW只能通过ManualAction手动触发）
     AVAILABLE_ACTIONS = [
@@ -397,11 +397,11 @@ class TwitterSimulationRunner:
     
     def __init__(self, config_path: str, wait_for_commands: bool = True):
         """
-        初始化模拟运行器
+        初始化Simulation运行器
         
         Args:
             config_path: 配置文件路径 (simulation_config.json)
-            wait_for_commands: 模拟完成后是否等待命令（默认True）
+            wait_for_commands: Simulation完成后是否等待命令（默认True）
         """
         self.config_path = config_path
         self.config = self._load_config()
@@ -470,7 +470,7 @@ class TwitterSimulationRunner:
         
         Args:
             env: OASIS环境
-            current_hour: 当前模拟小时（0-23）
+            current_hour: 当前Simulation小时（0-23）
             round_num: 当前轮数
             
         Returns:
@@ -529,15 +529,15 @@ class TwitterSimulationRunner:
         return active_agents
     
     async def run(self, max_rounds: int = None):
-        """运行Twitter模拟
+        """运行TwitterSimulation
         
         Args:
-            max_rounds: 最大模拟轮数（可选，用于截断过长的模拟）
+            max_rounds: 最大Simulation轮数（可选，用于截断过长的Simulation）
         """
         print("=" * 60)
-        print("OASIS Twitter模拟")
+        print("OASIS TwitterSimulation")
         print(f"配置文件: {self.config_path}")
-        print(f"模拟ID: {self.config.get('simulation_id', 'unknown')}")
+        print(f"SimulationID: {self.config.get('simulation_id', 'unknown')}")
         print(f"等待命令模式: {'启用' if self.wait_for_commands else '禁用'}")
         print("=" * 60)
         
@@ -556,8 +556,8 @@ class TwitterSimulationRunner:
             if total_rounds < original_rounds:
                 print(f"\n轮数已截断: {original_rounds} -> {total_rounds} (max_rounds={max_rounds})")
         
-        print(f"\n模拟参数:")
-        print(f"  - 总模拟时长: {total_hours}小时")
+        print(f"\nSimulation参数:")
+        print(f"  - 总Simulation时长: {total_hours}小时")
         print(f"  - 每轮时间: {minutes_per_round}分钟")
         print(f"  - 总轮数: {total_rounds}")
         if max_rounds:
@@ -626,12 +626,12 @@ class TwitterSimulationRunner:
                 await self.env.step(initial_actions)
                 print(f"  已发布 {len(initial_actions)} 条初始帖子")
         
-        # 主模拟循环
-        print("\n开始模拟循环...")
+        # 主Simulation循环
+        print("\n开始Simulation循环...")
         start_time = datetime.now()
         
         for round_num in range(total_rounds):
-            # 计算当前模拟时间
+            # 计算当前Simulation时间
             simulated_minutes = round_num * minutes_per_round
             simulated_hour = (simulated_minutes // 60) % 24
             simulated_day = simulated_minutes // (60 * 24) + 1
@@ -663,7 +663,7 @@ class TwitterSimulationRunner:
                       f"- elapsed: {elapsed:.1f}s")
         
         total_elapsed = (datetime.now() - start_time).total_seconds()
-        print(f"\n模拟循环完成!")
+        print(f"\nSimulation循环完成!")
         print(f"  - 总耗时: {total_elapsed:.1f}秒")
         print(f"  - 数据库: {db_path}")
         
@@ -690,7 +690,7 @@ class TwitterSimulationRunner:
             except KeyboardInterrupt:
                 print("\n收到中断信号")
             except asyncio.CancelledError:
-                print("\n任务被取消")
+                print("\nTask被取消")
             except Exception as e:
                 print(f"\n命令处理出错: {e}")
             
@@ -705,7 +705,7 @@ class TwitterSimulationRunner:
 
 
 async def main():
-    parser = argparse.ArgumentParser(description='OASIS Twitter模拟')
+    parser = argparse.ArgumentParser(description='OASIS TwitterSimulation')
     parser.add_argument(
         '--config', 
         type=str, 
@@ -716,13 +716,13 @@ async def main():
         '--max-rounds',
         type=int,
         default=None,
-        help='最大模拟轮数（可选，用于截断过长的模拟）'
+        help='最大Simulation轮数（可选，用于截断过长的Simulation）'
     )
     parser.add_argument(
         '--no-wait',
         action='store_true',
         default=False,
-        help='模拟完成后立即关闭环境，不进入等待命令模式'
+        help='Simulation完成后立即关闭环境，不进入等待命令模式'
     )
     
     args = parser.parse_args()
@@ -735,7 +735,7 @@ async def main():
         print(f"错误: 配置文件不存在: {args.config}")
         sys.exit(1)
     
-    # 初始化日志配置（使用固定文件名，清理旧日志）
+    # 初始化Log配置（使用固定文件名，清理旧Log）
     simulation_dir = os.path.dirname(args.config) or "."
     setup_oasis_logging(os.path.join(simulation_dir, "log"))
     
@@ -777,4 +777,4 @@ if __name__ == "__main__":
     except SystemExit:
         pass
     finally:
-        print("模拟进程已退出")
+        print("Simulation进程已退出")

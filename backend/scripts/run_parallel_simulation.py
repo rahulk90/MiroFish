@@ -1024,12 +1024,12 @@ def create_model(config: Dict[str, Any], use_boost: bool = False):
         os.environ["OPENAI_API_KEY"] = llm_api_key
     
     if not os.environ.get("OPENAI_API_KEY"):
-raise ValueError("Missing API Key configuration, please set LLM_API_KEY in .env file in project root")
-    
+        raise ValueError("Missing API Key configuration, please set LLM_API_KEY in .env file in project root")
+
     if llm_base_url:
         os.environ["OPENAI_API_BASE_URL"] = llm_base_url
-    
-print(f"{config_label} model={llm_model}, base_url={llm_base_url[:40] if llm_base_url else 'default'}...")
+
+    print(f"{config_label} model={llm_model}, base_url={llm_base_url[:40] if llm_base_url else 'default'}...")
     
     return ModelFactory.create(
         model_platform=ModelPlatformType.OPENAI,
@@ -1043,7 +1043,7 @@ def get_active_agents_for_round(
     current_hour: int,
     round_num: int
 ) -> List:
-"""Decide which Agents to activate this round based on time and configuration"""
+    """Decide which Agents to activate this round based on time and configuration"""
     time_config = config.get("time_config", {})
     agent_configs = config.get("agent_configs", [])
     
@@ -1091,7 +1091,7 @@ def get_active_agents_for_round(
 
 
 class PlatformSimulation:
-"""Platform simulation result container"""
+    """Platform simulation result container"""
     def __init__(self):
         self.env = None
         self.agent_graph = None
@@ -1099,21 +1099,21 @@ class PlatformSimulation:
 
 
 async def run_twitter_simulation(
-    config: Dict[str, Any], 
+    config: Dict[str, Any],
     simulation_dir: str,
     action_logger: Optional[PlatformActionLogger] = None,
     main_logger: Optional[SimulationLogManager] = None,
     max_rounds: Optional[int] = None
 ) -> PlatformSimulation:
-"""Run Twitter simulation
-    
+    """Run Twitter simulation
+
     Args:
         config: Simulation configuration
         simulation_dir: Simulation directory
         action_logger: Action logger
         main_logger: Main logger manager
         max_rounds: Maximum simulation rounds (optional, for truncating long simulations)
-        
+
     Returns:
         PlatformSimulation: Result object containing env and agent_graph
     """
@@ -1132,7 +1132,7 @@ async def run_twitter_simulation(
     # OASIS Twitter uses CSV format
     profile_path = os.path.join(simulation_dir, "twitter_profiles.csv")
     if not os.path.exists(profile_path):
-log_info(f"Error: Profile file not found: {profile_path}")
+        log_info(f"Error: Profile file not found: {profile_path}")
         return result
     
     result.agent_graph = await generate_twitter_agent_graph(
@@ -1204,7 +1204,7 @@ log_info(f"Error: Profile file not found: {profile_path}")
         
         if initial_actions:
             await result.env.step(initial_actions)
-log_info(f"Published {len(initial_actions)} initial posts")
+            log_info(f"Published {len(initial_actions)} initial posts")
     
     # Record round 0 end
     if action_logger:
@@ -1221,7 +1221,7 @@ log_info(f"Published {len(initial_actions)} initial posts")
         original_rounds = total_rounds
         total_rounds = min(total_rounds, max_rounds)
         if total_rounds < original_rounds:
-log_info(f"Rounds truncated: {original_rounds} -> {total_rounds} (max_rounds={max_rounds})")
+            log_info(f"Rounds truncated: {original_rounds} -> {total_rounds} (max_rounds={max_rounds})")
     
     start_time = datetime.now()
     
@@ -1229,7 +1229,7 @@ log_info(f"Rounds truncated: {original_rounds} -> {total_rounds} (max_rounds={ma
         # Check if exit signal received
         if _shutdown_event and _shutdown_event.is_set():
             if main_logger:
-main_logger.info(f"Received exit signal, stopping simulation at round {round_num + 1}")
+                main_logger.info(f"Received exit signal, stopping simulation at round {round_num + 1}")
             break
         
         simulated_minutes = round_num * minutes_per_round
@@ -1285,27 +1285,27 @@ main_logger.info(f"Received exit signal, stopping simulation at round {round_num
     
     result.total_actions = total_actions
     elapsed = (datetime.now() - start_time).total_seconds()
-log_info(f"Simulation loop complete! Time: {elapsed:.1f}s, Total actions: {total_actions}")
-    
+    log_info(f"Simulation loop complete! Time: {elapsed:.1f}s, Total actions: {total_actions}")
+
     return result
 
 
 async def run_reddit_simulation(
-    config: Dict[str, Any], 
+    config: Dict[str, Any],
     simulation_dir: str,
     action_logger: Optional[PlatformActionLogger] = None,
     main_logger: Optional[SimulationLogManager] = None,
     max_rounds: Optional[int] = None
 ) -> PlatformSimulation:
-"""Run Reddit simulation
-    
+    """Run Reddit simulation
+
     Args:
         config: Simulation configuration
         simulation_dir: Simulation directory
         action_logger: Action logger
         main_logger: Main logger manager
         max_rounds: Maximum simulation rounds (optional, for truncating long simulations)
-        
+
     Returns:
         PlatformSimulation: Result object containing env and agent_graph
     """
@@ -1323,7 +1323,7 @@ async def run_reddit_simulation(
     
     profile_path = os.path.join(simulation_dir, "reddit_profiles.json")
     if not os.path.exists(profile_path):
-log_info(f"Error: Profile file not found: {profile_path}")
+        log_info(f"Error: Profile file not found: {profile_path}")
         return result
     
     result.agent_graph = await generate_reddit_agent_graph(
@@ -1403,7 +1403,7 @@ log_info(f"Error: Profile file not found: {profile_path}")
         
         if initial_actions:
             await result.env.step(initial_actions)
-log_info(f"Published {len(initial_actions)} initial posts")
+            log_info(f"Published {len(initial_actions)} initial posts")
     
     # Record round 0 end
     if action_logger:
@@ -1420,7 +1420,7 @@ log_info(f"Published {len(initial_actions)} initial posts")
         original_rounds = total_rounds
         total_rounds = min(total_rounds, max_rounds)
         if total_rounds < original_rounds:
-log_info(f"Rounds truncated: {original_rounds} -> {total_rounds} (max_rounds={max_rounds})")
+            log_info(f"Rounds truncated: {original_rounds} -> {total_rounds} (max_rounds={max_rounds})")
     
     start_time = datetime.now()
     
@@ -1428,7 +1428,7 @@ log_info(f"Rounds truncated: {original_rounds} -> {total_rounds} (max_rounds={ma
         # Check if exit signal received
         if _shutdown_event and _shutdown_event.is_set():
             if main_logger:
-main_logger.info(f"Received exit signal, stopping simulation at round {round_num + 1}")
+                main_logger.info(f"Received exit signal, stopping simulation at round {round_num + 1}")
             break
         
         simulated_minutes = round_num * minutes_per_round
@@ -1484,8 +1484,8 @@ main_logger.info(f"Received exit signal, stopping simulation at round {round_num
     
     result.total_actions = total_actions
     elapsed = (datetime.now() - start_time).total_seconds()
-log_info(f"Simulation loop complete! Time: {elapsed:.1f}s, Total actions: {total_actions}")
-    
+    log_info(f"Simulation loop complete! Time: {elapsed:.1f}s, Total actions: {total_actions}")
+
     return result
 
 
@@ -1527,7 +1527,7 @@ async def main():
     _shutdown_event = asyncio.Event()
     
     if not os.path.exists(args.config):
-print(f"Error: Configuration file not found: {args.config}")
+        print(f"Error: Configuration file not found: {args.config}")
         sys.exit(1)
     
     config = load_config(args.config)
@@ -1543,8 +1543,8 @@ print(f"Error: Configuration file not found: {args.config}")
     reddit_logger = log_manager.get_reddit_logger()
     
     log_manager.info("=" * 60)
-log_manager.info("OASIS Dual-Platform Parallel Simulation")
-log_manager.info(f"Configuration file: {args.config}")
+    log_manager.info("OASIS Dual-Platform Parallel Simulation")
+    log_manager.info(f"Configuration file: {args.config}")
     log_manager.info(f"模拟ID: {config.get('simulation_id', 'unknown')}")
     log_manager.info(f"等待命令模式: {'启用' if wait_for_commands else '禁用'}")
     log_manager.info("=" * 60)
@@ -1554,20 +1554,20 @@ log_manager.info(f"Configuration file: {args.config}")
     minutes_per_round = time_config.get('minutes_per_round', 30)
     config_total_rounds = (total_hours * 60) // minutes_per_round
     
-log_manager.info(f"Simulation parameters:")
-log_manager.info(f"  - Total simulation duration: {total_hours} hours")
-log_manager.info(f"  - Time per round: {minutes_per_round} minutes")
-log_manager.info(f"  - Configured total rounds: {config_total_rounds}")
+    log_manager.info(f"Simulation parameters:")
+    log_manager.info(f"  - Total simulation duration: {total_hours} hours")
+    log_manager.info(f"  - Time per round: {minutes_per_round} minutes")
+    log_manager.info(f"  - Configured total rounds: {config_total_rounds}")
     if args.max_rounds:
-log_manager.info(f"  - Maximum rounds limit: {args.max_rounds}")
+        log_manager.info(f"  - Maximum rounds limit: {args.max_rounds}")
         if args.max_rounds < config_total_rounds:
-log_manager.info(f"  - Actual rounds to execute: {args.max_rounds} (truncated)")
+            log_manager.info(f"  - Actual rounds to execute: {args.max_rounds} (truncated)")
     log_manager.info(f"  - Agent数量: {len(config.get('agent_configs', []))}")
     
-log_manager.info("Log structure:")
-log_manager.info(f"  - Main log: simulation.log")
-log_manager.info(f"  - Twitter actions: twitter/actions.jsonl")
-log_manager.info(f"  - Reddit actions: reddit/actions.jsonl")
+    log_manager.info("Log structure:")
+    log_manager.info(f"  - Main log: simulation.log")
+    log_manager.info(f"  - Twitter actions: twitter/actions.jsonl")
+    log_manager.info(f"  - Reddit actions: reddit/actions.jsonl")
     log_manager.info("=" * 60)
     
     start_time = datetime.now()
@@ -1590,14 +1590,14 @@ log_manager.info(f"  - Reddit actions: reddit/actions.jsonl")
     
     total_elapsed = (datetime.now() - start_time).total_seconds()
     log_manager.info("=" * 60)
-log_manager.info(f"Simulation loop complete! Total time: {total_elapsed:.1f}s")
+    log_manager.info(f"Simulation loop complete! Total time: {total_elapsed:.1f}s")
     
     # Whether to enter command wait mode
     if wait_for_commands:
         log_manager.info("")
         log_manager.info("=" * 60)
-log_manager.info("Entering command wait mode - environment remains running")
-log_manager.info("Supported commands: interview, batch_interview, close_env")
+        log_manager.info("Entering command wait mode - environment remains running")
+        log_manager.info("Supported commands: interview, batch_interview, close_env")
         log_manager.info("=" * 60)
         
         # Create IPC handler
@@ -1623,27 +1623,27 @@ log_manager.info("Supported commands: interview, batch_interview, close_env")
                 except asyncio.TimeoutError:
                     pass  # 超时继续循环
         except KeyboardInterrupt:
-print("\nReceived interrupt signal")
+            print("\nReceived interrupt signal")
         except asyncio.CancelledError:
-print("\nTask cancelled")
+            print("\nTask cancelled")
         except Exception as e:
-print(f"\nError processing command: {e}")
-        
-log_manager.info("\nShutting down environment...")
+            print(f"\nError processing command: {e}")
+
+        log_manager.info("\nShutting down environment...")
         ipc_handler.update_status("stopped")
     
     # 关闭环境
     if twitter_result and twitter_result.env:
         await twitter_result.env.close()
-log_manager.info("[Twitter] Environment closed")
+    log_manager.info("[Twitter] Environment closed")
     
     if reddit_result and reddit_result.env:
         await reddit_result.env.close()
-log_manager.info("[Reddit] Environment closed")
+    log_manager.info("[Reddit] Environment closed")
     
     log_manager.info("=" * 60)
-log_manager.info(f"All done!")
-log_manager.info(f"Log files:")
+    log_manager.info(f"All done!")
+    log_manager.info(f"Log files:")
     log_manager.info(f"  - {os.path.join(simulation_dir, 'simulation.log')}")
     log_manager.info(f"  - {os.path.join(simulation_dir, 'twitter', 'actions.jsonl')}")
     log_manager.info(f"  - {os.path.join(simulation_dir, 'reddit', 'actions.jsonl')}")
@@ -1663,7 +1663,7 @@ def setup_signal_handlers(loop=None):
     def signal_handler(signum, frame):
         global _cleanup_done
         sig_name = "SIGTERM" if signum == signal.SIGTERM else "SIGINT"
-print(f"\nReceived {sig_name} signal, exiting...")
+        print(f"\nReceived {sig_name} signal, exiting...")
         
         if not _cleanup_done:
             _cleanup_done = True
@@ -1674,7 +1674,7 @@ print(f"\nReceived {sig_name} signal, exiting...")
         # Don't directly sys.exit(), let asyncio loop exit normally and clean up resources
         # If signal is received repeatedly, force exit
         else:
-print("Force exit...")
+            print("Force exit...")
             sys.exit(1)
     
     signal.signal(signal.SIGTERM, signal_handler)
@@ -1686,7 +1686,7 @@ if __name__ == "__main__":
     try:
         asyncio.run(main())
     except KeyboardInterrupt:
-print("\nProgram interrupted")
+        print("\nProgram interrupted")
     except SystemExit:
         pass
     finally:
@@ -1696,4 +1696,4 @@ print("\nProgram interrupted")
             resource_tracker._resource_tracker._stop()
         except Exception:
             pass
-print("Simulation process exited")
+        print("Simulation process exited")

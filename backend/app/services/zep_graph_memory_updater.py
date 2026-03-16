@@ -1,6 +1,6 @@
 """
-Zep图谱记忆更新服务
-将模拟中的Agent活动动态更新到Zep图谱中
+ZepGraph记忆Update服务
+将Simulation中的Agent活动动态Update到ZepGraph中
 """
 
 import os
@@ -22,7 +22,7 @@ logger = get_logger('mirofish.zep_graph_memory_updater')
 
 @dataclass
 class AgentActivity:
-    """Agent活动记录"""
+    """Agent Activity Record"""
     platform: str           # twitter / reddit
     agent_id: int
     agent_name: str
@@ -33,12 +33,12 @@ class AgentActivity:
     
     def to_episode_text(self) -> str:
         """
-        将活动转换为可以发送给Zep的文本描述
+        Convert activity to text description that can be sent to Zep
         
-        采用自然语言描述格式，让Zep能够从中提取实体和关系
-        不添加模拟相关的前缀，避免误导图谱更新
+        采用自然语言描述格式，让Zep能够从中提取Entity和关系
+        不添加Simulation相关的前缀，避免误导GraphUpdate
         """
-        # 根据不同的动作类型生成不同的描述
+        # Generate different descriptions based on different action types
         action_descriptions = {
             "CREATE_POST": self._describe_create_post,
             "LIKE_POST": self._describe_like_post,
@@ -57,7 +57,7 @@ class AgentActivity:
         describe_func = action_descriptions.get(self.action_type, self._describe_generic)
         description = describe_func()
         
-        # 直接返回 "agent名称: 活动描述" 格式，不添加模拟前缀
+        # 直接返回 "agent名称: 活动描述" 格式，不添加Simulation前缀
         return f"{self.agent_name}: {description}"
     
     def _describe_create_post(self) -> str:
@@ -200,12 +200,12 @@ class AgentActivity:
 
 class ZepGraphMemoryUpdater:
     """
-    Zep图谱记忆更新器
+    ZepGraph记忆Update器
     
-    监控模拟的actions日志文件，将新的agent活动实时更新到Zep图谱中。
+    监控Simulation的actionsLog文件，将新的agent活动实时Update到ZepGraph中。
     按平台分组，每累积BATCH_SIZE条活动后批量发送到Zep。
     
-    所有有意义的行为都会被更新到Zep，action_args中会包含完整的上下文信息：
+    所有有意义的行为都会被Update到Zep，action_args中会包含完整的上下文信息：
     - 点赞/踩的帖子原文
     - 转发/引用的帖子原文
     - 关注/屏蔽的用户名
@@ -230,10 +230,10 @@ class ZepGraphMemoryUpdater:
     
     def __init__(self, graph_id: str, api_key: Optional[str] = None):
         """
-        初始化更新器
+        初始化Update器
         
         Args:
-            graph_id: Zep图谱ID
+            graph_id: ZepGraphID
             api_key: Zep API Key（可选，默认从配置读取）
         """
         self.graph_id = graph_id
@@ -321,7 +321,7 @@ class ZepGraphMemoryUpdater:
         action_args中会包含完整的上下文信息（如帖子原文、用户名等）。
         
         Args:
-            activity: Agent活动记录
+            activity: Agent Activity Record
         """
         # 跳过DO_NOTHING类型的活动
         if activity.action_type == "DO_NOTHING":
@@ -389,7 +389,7 @@ class ZepGraphMemoryUpdater:
     
     def _send_batch_activities(self, activities: List[AgentActivity], platform: str):
         """
-        批量发送活动到Zep图谱（合并为一条文本）
+        批量发送活动到ZepGraph（合并为一条文本）
         
         Args:
             activities: Agent活动列表
@@ -414,7 +414,7 @@ class ZepGraphMemoryUpdater:
                 self._total_sent += 1
                 self._total_items_sent += len(activities)
                 display_name = self._get_platform_display_name(platform)
-                logger.info(f"成功批量发送 {len(activities)} 条{display_name}活动到图谱 {self.graph_id}")
+                logger.info(f"成功批量发送 {len(activities)} 条{display_name}活动到Graph {self.graph_id}")
                 logger.debug(f"批量内容预览: {combined_text[:200]}...")
                 return
                 
@@ -472,9 +472,9 @@ class ZepGraphMemoryUpdater:
 
 class ZepGraphMemoryManager:
     """
-    管理多个模拟的Zep图谱记忆更新器
+    管理多个Simulation的ZepGraph记忆Update器
     
-    每个模拟可以有自己的更新器实例
+    每个Simulation可以有自己的Update器实例
     """
     
     _updaters: Dict[str, ZepGraphMemoryUpdater] = {}
@@ -483,11 +483,11 @@ class ZepGraphMemoryManager:
     @classmethod
     def create_updater(cls, simulation_id: str, graph_id: str) -> ZepGraphMemoryUpdater:
         """
-        为模拟创建图谱记忆更新器
+        为Simulation创建Graph记忆Update器
         
         Args:
-            simulation_id: 模拟ID
-            graph_id: Zep图谱ID
+            simulation_id: SimulationID
+            graph_id: ZepGraphID
             
         Returns:
             ZepGraphMemoryUpdater实例
@@ -501,29 +501,29 @@ class ZepGraphMemoryManager:
             updater.start()
             cls._updaters[simulation_id] = updater
             
-            logger.info(f"创建图谱记忆更新器: simulation_id={simulation_id}, graph_id={graph_id}")
+            logger.info(f"创建Graph记忆Update器: simulation_id={simulation_id}, graph_id={graph_id}")
             return updater
     
     @classmethod
     def get_updater(cls, simulation_id: str) -> Optional[ZepGraphMemoryUpdater]:
-        """获取模拟的更新器"""
+        """获取Simulation的Update器"""
         return cls._updaters.get(simulation_id)
     
     @classmethod
     def stop_updater(cls, simulation_id: str):
-        """停止并移除模拟的更新器"""
+        """停止并移除Simulation的Update器"""
         with cls._lock:
             if simulation_id in cls._updaters:
                 cls._updaters[simulation_id].stop()
                 del cls._updaters[simulation_id]
-                logger.info(f"已停止图谱记忆更新器: simulation_id={simulation_id}")
+                logger.info(f"已停止Graph记忆Update器: simulation_id={simulation_id}")
     
     # 防止 stop_all 重复调用的标志
     _stop_all_done = False
     
     @classmethod
     def stop_all(cls):
-        """停止所有更新器"""
+        """停止所有Update器"""
         # 防止重复调用
         if cls._stop_all_done:
             return
@@ -535,13 +535,13 @@ class ZepGraphMemoryManager:
                     try:
                         updater.stop()
                     except Exception as e:
-                        logger.error(f"停止更新器失败: simulation_id={simulation_id}, error={e}")
+                        logger.error(f"停止Update器失败: simulation_id={simulation_id}, error={e}")
                 cls._updaters.clear()
-            logger.info("已停止所有图谱记忆更新器")
+            logger.info("已停止所有Graph记忆Update器")
     
     @classmethod
     def get_all_stats(cls) -> Dict[str, Dict[str, Any]]:
-        """获取所有更新器的统计信息"""
+        """获取所有Update器的统计信息"""
         return {
             sim_id: updater.get_stats() 
             for sim_id, updater in cls._updaters.items()

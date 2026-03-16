@@ -1,10 +1,10 @@
 """
-模拟IPC通信模块
-用于Flask后端和模拟脚本之间的进程间通信
+SimulationIPC通信模块
+用于Flask后端和Simulation脚本之间的进程间通信
 
 通过文件系统实现简单的命令/响应模式：
 1. Flask写入命令到 commands/ 目录
-2. 模拟脚本轮询命令目录，执行命令并写入响应到 responses/ 目录
+2. Simulation脚本轮询命令目录，执行命令并写入响应到 responses/ 目录
 3. Flask轮询响应目录获取结果
 """
 
@@ -94,9 +94,9 @@ class IPCResponse:
 
 class SimulationIPCClient:
     """
-    模拟IPC客户端（Flask端使用）
+    SimulationIPC客户端（Flask端使用）
     
-    用于向模拟进程发送命令并等待响应
+    用于向Simulation进程发送命令并等待响应
     """
     
     def __init__(self, simulation_dir: str):
@@ -104,7 +104,7 @@ class SimulationIPCClient:
         初始化IPC客户端
         
         Args:
-            simulation_dir: 模拟数据目录
+            simulation_dir: Simulation数据目录
         """
         self.simulation_dir = simulation_dir
         self.commands_dir = os.path.join(simulation_dir, "ipc_commands")
@@ -202,7 +202,7 @@ class SimulationIPCClient:
             platform: 指定平台（可选）
                 - "twitter": 只采访Twitter平台
                 - "reddit": 只采访Reddit平台  
-                - None: 双平台模拟时同时采访两个平台，单平台模拟时采访该平台
+                - None: 双平台Simulation时同时采访两个平台，单平台Simulation时采访该平台
             timeout: 超时时间
             
         Returns:
@@ -235,7 +235,7 @@ class SimulationIPCClient:
             platform: 默认平台（可选，会被每个采访项的platform覆盖）
                 - "twitter": 默认只采访Twitter平台
                 - "reddit": 默认只采访Reddit平台
-                - None: 双平台模拟时每个Agent同时采访两个平台
+                - None: 双平台Simulation时每个Agent同时采访两个平台
             timeout: 超时时间
             
         Returns:
@@ -269,7 +269,7 @@ class SimulationIPCClient:
     
     def check_env_alive(self) -> bool:
         """
-        检查模拟环境是否存活
+        检查Simulation环境是否存活
         
         通过检查 env_status.json 文件来判断
         """
@@ -287,7 +287,7 @@ class SimulationIPCClient:
 
 class SimulationIPCServer:
     """
-    模拟IPC服务器（模拟脚本端使用）
+    SimulationIPC服务器（Simulation脚本端使用）
     
     轮询命令目录，执行命令并返回响应
     """
@@ -297,7 +297,7 @@ class SimulationIPCServer:
         初始化IPC服务器
         
         Args:
-            simulation_dir: 模拟数据目录
+            simulation_dir: Simulation数据目录
         """
         self.simulation_dir = simulation_dir
         self.commands_dir = os.path.join(simulation_dir, "ipc_commands")
@@ -321,7 +321,7 @@ class SimulationIPCServer:
         self._update_env_status("stopped")
     
     def _update_env_status(self, status: str):
-        """更新环境状态文件"""
+        """Update环境状态文件"""
         status_file = os.path.join(self.simulation_dir, "env_status.json")
         with open(status_file, 'w', encoding='utf-8') as f:
             json.dump({

@@ -1,268 +1,286 @@
 {
   "entity_types": [
     {
-      "name": "ResearchPaper",
-      "description": "A scholarly article published in a conference or journal.",
+      "name": "CrisisEvent",
+      "description": "Significant occurrences related to the oil crisis.",
       "attributes": [
         {
-          "name": "title",
+          "name": "date",
           "type": "text",
-          "description": "Title of the research paper"
+          "description": "The date of the event."
         },
-        {
-          "name": "publication_date",
-          "type": "text",
-          "description": "Date when the paper was published"
-        },
-        {
-          "name": "conference",
-          "type": "text",
-          "description": "Conference where the paper was published"
-        }
-      ],
-      "examples": [
-        "Advanced Neural Network Optimization"
-      ]
-    },
-    {
-      "name": "University",
-      "description": "An educational institution where the scandal takes place.",
-      "attributes": [
-        {
-          "name": "name",
-          "type": "text",
-          "description": "Name of the university"
-        },
-        {
-          "name": "location",
-          "type": "text",
-          "description": "Geographical location of the university"
-        }
-      ],
-      "examples": [
-        "Wuhan University"
-      ]
-    },
-    {
-      "name": "Department",
-      "description": "A specific academic division within a university.",
-      "attributes": [
-        {
-          "name": "name",
-          "type": "text",
-          "description": "Name of the department"
-        },
-        {
-          "name": "university",
-          "type": "text",
-          "description": "University to which the department belongs"
-        }
-      ],
-      "examples": [
-        "Computer Science Department"
-      ]
-    },
-    {
-      "name": "Scandal",
-      "description": "An event involving allegations of wrongdoing within an institution.",
-      "attributes": [
         {
           "name": "description",
           "type": "text",
-          "description": "Brief description of the scandal"
-        },
-        {
-          "name": "start_date",
-          "type": "text",
-          "description": "Date when the scandal started"
+          "description": "Detailed description of the event."
         }
       ],
       "examples": [
-        "University Plagiarism Scandal"
+        "US-Israel airstrikes launched on Iran",
+        "Oil prices begin rising"
       ]
     },
     {
-      "name": "MediaOutlet",
-      "description": "An organization that disseminates news to the public.",
+      "name": "GovernmentOfficial",
+      "description": "Individuals holding official government positions.",
       "attributes": [
         {
-          "name": "name",
+          "name": "position",
           "type": "text",
-          "description": "Name of the media outlet"
+          "description": "The official position held by the individual."
         },
         {
-          "name": "focus",
+          "name": "actions",
           "type": "text",
-          "description": "Primary focus or area of coverage"
+          "description": "Actions taken by the official during the crisis."
         }
       ],
       "examples": [
-        "Campus Times"
+        "Scott Bessent",
+        "President Donald Trump"
       ]
     },
     {
-      "name": "SocialMediaPlatform",
-      "description": "An online platform where users can share opinions and information.",
+      "name": "MilitaryOrganization",
+      "description": "Military entities involved in the crisis.",
       "attributes": [
         {
-          "name": "name",
+          "name": "country",
           "type": "text",
-          "description": "Name of the social media platform"
-        },
-        {
-          "name": "user_base",
-          "type": "text",
-          "description": "Description of the platform's user base"
-        }
-      ],
-      "examples": [
-        "WeChat"
-      ]
-    },
-    {
-      "name": "Investigation",
-      "description": "A formal inquiry into the allegations of the scandal.",
-      "attributes": [
-        {
-          "name": "start_date",
-          "type": "text",
-          "description": "Date when the investigation started"
-        },
-        {
-          "name": "status",
-          "type": "text",
-          "description": "Current status of the investigation"
-        }
-      ],
-      "examples": [
-        "Formal investigation into plagiarism allegations"
-      ]
-    },
-    {
-      "name": "StudentAssociation",
-      "description": "An organization representing the interests of students.",
-      "attributes": [
-        {
-          "name": "name",
-          "type": "text",
-          "description": "Name of the student association"
-        },
-        {
-          "name": "president",
-          "type": "text",
-          "description": "Name of the current president"
-        }
-      ],
-      "examples": [
-        "Student Association"
-      ]
-    },
-    {
-      "name": "Person",
-      "description": "An individual involved in the scandal.",
-      "attributes": [
-        {
-          "name": "name",
-          "type": "text",
-          "description": "Full name of the person"
+          "description": "The country the military organization belongs to."
         },
         {
           "name": "role",
           "type": "text",
-          "description": "Role or position of the person"
+          "description": "The role of the organization in the crisis."
         }
       ],
       "examples": [
-        "Professor Zhang Wei",
-        "Alice Chen"
+        "US Central Command",
+        "Israeli Military"
       ]
     },
     {
-      "name": "Organization",
-      "description": "A group or institution involved in the scandal.",
+      "name": "EconomicImpact",
+      "description": "Economic consequences resulting from the crisis.",
+      "attributes": [
+        {
+          "name": "effect",
+          "type": "text",
+          "description": "The specific economic effect observed."
+        },
+        {
+          "name": "date",
+          "type": "text",
+          "description": "The date when the impact was observed."
+        }
+      ],
+      "examples": [
+        "Oil prices above $100 per barrel",
+        "Economic impacts spreading to US consumers"
+      ]
+    },
+    {
+      "name": "MediaAppearance",
+      "description": "Instances of media coverage related to the crisis.",
+      "attributes": [
+        {
+          "name": "platform",
+          "type": "text",
+          "description": "The media platform where the appearance occurred."
+        },
+        {
+          "name": "content",
+          "type": "text",
+          "description": "Summary of the media content."
+        }
+      ],
+      "examples": [
+        "Bessent's interview on Sky News",
+        "Reports on economic impacts"
+      ]
+    },
+    {
+      "name": "Threat",
+      "description": "Statements or actions that imply potential danger or escalation.",
+      "attributes": [
+        {
+          "name": "source",
+          "type": "text",
+          "description": "The origin of the threat."
+        },
+        {
+          "name": "content",
+          "type": "text",
+          "description": "Details of the threat."
+        }
+      ],
+      "examples": [
+        "IRGC threatens $200 oil prices",
+        "Multiple ships struck in Persian Gulf"
+      ]
+    },
+    {
+      "name": "ResourceRelease",
+      "description": "Release of resources in response to the crisis.",
+      "attributes": [
+        {
+          "name": "resource_type",
+          "type": "text",
+          "description": "Type of resource released."
+        },
+        {
+          "name": "quantity",
+          "type": "text",
+          "description": "Amount of resource released."
+        }
+      ],
+      "examples": [
+        "IEA releases 400 million barrels from emergency reserves"
+      ]
+    },
+    {
+      "name": "HistoricalContext",
+      "description": "Background information relevant to the crisis.",
+      "attributes": [
+        {
+          "name": "context",
+          "type": "text",
+          "description": "Description of the historical context."
+        },
+        {
+          "name": "relevance",
+          "type": "text",
+          "description": "How the context is relevant to the crisis."
+        }
+      ],
+      "examples": [
+        "Biden Administration policies",
+        "Previous tensions with Iran"
+      ]
+    },
+    {
+      "name": "Person",
+      "description": "Generic person entity for unspecified roles.",
       "attributes": [
         {
           "name": "name",
           "type": "text",
-          "description": "Name of the organization"
+          "description": "The name of the person."
         },
         {
-          "name": "type",
+          "name": "role",
           "type": "text",
-          "description": "Type of organization"
+          "description": "The role or occupation of the person."
         }
       ],
       "examples": [
-        "Wuhan University",
-        "Campus Times"
+        "John Doe",
+        "Jane Smith"
+      ]
+    },
+    {
+      "name": "Organization",
+      "description": "Generic organization entity for unspecified roles.",
+      "attributes": [
+        {
+          "name": "name",
+          "type": "text",
+          "description": "The name of the organization."
+        },
+        {
+          "name": "purpose",
+          "type": "text",
+          "description": "The purpose or function of the organization."
+        }
+      ],
+      "examples": [
+        "Global Oil Corp",
+        "International Energy Agency"
       ]
     }
   ],
   "edge_types": [
     {
-      "name": "AUTHORED_BY",
-      "description": "Indicates the person who authored a research paper.",
+      "name": "INVOLVED_IN",
+      "description": "Indicates involvement of an entity in an event.",
       "source_targets": [
         {
-          "source": "ResearchPaper",
-          "target": "Person"
-        }
-      ]
-    },
-    {
-      "name": "PART_OF",
-      "description": "Indicates the department to which a person or event belongs.",
-      "source_targets": [
-        {
-          "source": "Person",
-          "target": "Department"
+          "source": "GovernmentOfficial",
+          "target": "CrisisEvent"
         },
         {
-          "source": "Scandal",
-          "target": "Department"
+          "source": "MilitaryOrganization",
+          "target": "CrisisEvent"
         }
       ]
     },
     {
       "name": "REPORTED_BY",
-      "description": "Indicates the media outlet that reported on the scandal.",
+      "description": "Indicates that a media appearance reported on an event or impact.",
       "source_targets": [
         {
-          "source": "Scandal",
-          "target": "MediaOutlet"
+          "source": "MediaAppearance",
+          "target": "CrisisEvent"
+        },
+        {
+          "source": "MediaAppearance",
+          "target": "EconomicImpact"
         }
       ]
     },
     {
-      "name": "DISCUSS_ON",
-      "description": "Indicates the social media platform where the scandal is discussed.",
+      "name": "RESPONDS_TO",
+      "description": "Indicates a response action to a threat or event.",
       "source_targets": [
         {
-          "source": "Scandal",
-          "target": "SocialMediaPlatform"
+          "source": "ResourceRelease",
+          "target": "Threat"
+        },
+        {
+          "source": "GovernmentOfficial",
+          "target": "Threat"
         }
       ]
     },
     {
-      "name": "INVESTIGATED_BY",
-      "description": "Indicates the organization responsible for investigating the scandal.",
+      "name": "CAUSES",
+      "description": "Indicates a causal relationship between events and impacts.",
       "source_targets": [
         {
-          "source": "Investigation",
-          "target": "Organization"
+          "source": "CrisisEvent",
+          "target": "EconomicImpact"
+        },
+        {
+          "source": "Threat",
+          "target": "EconomicImpact"
         }
       ]
     },
     {
-      "name": "SUPERVISED_BY",
-      "description": "Indicates the person who supervised another person's work.",
+      "name": "CONTEXT_FOR",
+      "description": "Provides historical context for current events.",
       "source_targets": [
         {
-          "source": "Person",
-          "target": "Person"
+          "source": "HistoricalContext",
+          "target": "CrisisEvent"
+        },
+        {
+          "source": "HistoricalContext",
+          "target": "Threat"
+        }
+      ]
+    },
+    {
+      "name": "SUMMONED_BY",
+      "description": "Indicates that a person was summoned by another.",
+      "source_targets": [
+        {
+          "source": "GovernmentOfficial",
+          "target": "GovernmentOfficial"
         }
       ]
     }
   ],
-  "analysis_summary": "The text describes a plagiarism scandal at Wuhan University involving a professor and a graduate student. Key figures include the accused professor, the student who raised the allegations, a journalist, and university officials. The scandal unfolds over several months, with significant media coverage and discussions on social media platforms. The ontology captures entities such as research papers, universities, departments, and social media platforms, as well as relationships like authorship, supervision, and media reporting."
+  "analysis_summary": "The text describes a major geopolitical and economic crisis triggered by US-Israel military actions against Iran, leading to significant disruptions in global oil supply through the Strait of Hormuz. Key figures include US government officials and military organizations, with economic impacts and media coverage playing crucial roles. The ontology captures these dynamics, focusing on crisis events, involved entities, and their interactions."
 }

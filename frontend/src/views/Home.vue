@@ -1,35 +1,35 @@
 <template>
   <div class="home-container">
-    <!-- 顶部导航栏 -->
+    <!-- Top Navigation Bar -->
     <nav class="navbar">
       <div class="nav-brand">MIROFISH</div>
       <div class="nav-links">
         <a href="https://github.com/666ghj/MiroFish" target="_blank" class="github-link">
-          访问我们的Github主页 <span class="arrow">↗</span>
+          Visit our GitHub Homepage <span class="arrow">↗</span>
         </a>
       </div>
     </nav>
 
     <div class="main-content">
-      <!-- 上半部分：Hero 区域 -->
-      <section class="hero-section">
-        <div class="hero-left">
-          <div class="tag-row">
-            <span class="orange-tag">简洁通用的群体智能引擎</span>
-            <span class="version-text">/ v0.1-预览版</span>
+      <!-- Upper Section: Hero Area -->
+      <section class=”hero-section”>
+        <div class=”hero-left”>
+          <div class=”tag-row”>
+            <span class=”orange-tag”>Swarm Intelligence Engine</span>
+            <span class=”version-text”>/ v0.1-Preview</span>
           </div>
-          
-          <h1 class="main-title">
-            上传任意报告<br>
-            <span class="gradient-text">即刻推演未来</span>
+
+          <h1 class=”main-title”>
+            Upload Any Report<br>
+            <span class=”gradient-text”>Extrapolate the Future Instantly</span>
           </h1>
-          
-          <div class="hero-desc">
+
+          <div class=”hero-desc”>
             <p>
-              即使只有一段文字，<span class="highlight-bold">MiroFish</span> 也能基于其中的现实种子，全自动生成与之对应的至多<span class="highlight-orange">百万级Agent</span>构成的平行世界。通过上帝视角注入变量，在复杂的群体交互中寻找动态环境下的<span class="highlight-code">“局部最优解”</span>
+              With just a piece of text, <span class=”highlight-bold”>MiroFish</span> can automatically generate a parallel world of up to <span class=”highlight-orange”>millions of AI agents</span> based on reality seeds. By injecting variables from a “god's perspective,” find the optimal solution in complex group interactions and dynamic environments using <span class=”highlight-code”>”local optimization”</span>
             </p>
-            <p class="slogan-text">
-              让未来在 Agent 群中预演，让决策在百战后胜出<span class="blinking-cursor">_</span>
+            <p class=”slogan-text”>
+              Rehearse the future in agent swarms, make decisions after countless simulations<span class=”blinking-cursor”>_</span>
             </p>
           </div>
            
@@ -48,87 +48,87 @@
         </div>
       </section>
 
-      <!-- 下半部分：双栏布局 -->
+      <!-- Lower Section: Two-Column Layout -->
       <section class="dashboard-section">
-        <!-- 左栏：状态与步骤 -->
+        <!-- Left Panel: Status & Steps -->
         <div class="left-panel">
           <div class="panel-header">
-            <span class="status-dot">■</span> 系统状态
+            <span class="status-dot">■</span> System Status
           </div>
-          
-          <h2 class="section-title">准备就绪</h2>
+
+          <h2 class="section-title">Ready to Start</h2>
           <p class="section-desc">
-            预测引擎待命中，可上传多份非结构化数据以初始化模拟序列
+            Prediction engine is standing by. Upload multiple unstructured data sources to initialize the simulation sequence.
           </p>
-          
-          <!-- 数据指标卡片 -->
+
+          <!-- Data Metrics Cards -->
           <div class="metrics-row">
             <div class="metric-card">
-              <div class="metric-value">低成本</div>
-              <div class="metric-label">常规模拟平均5$/次</div>
+              <div class="metric-value">Low Cost</div>
+              <div class="metric-label">Average $5 per standard simulation</div>
             </div>
             <div class="metric-card">
-              <div class="metric-value">高可用</div>
-              <div class="metric-label">最多百万级Agent模拟</div>
+              <div class="metric-value">High Availability</div>
+              <div class="metric-label">Supports up to millions of agents</div>
             </div>
           </div>
 
-          <!-- 项目模拟步骤介绍 (新增区域) -->
+          <!-- Simulation Steps Introduction -->
           <div class="steps-container">
             <div class="steps-header">
-               <span class="diamond-icon">◇</span> 工作流序列
+               <span class="diamond-icon">◇</span> Workflow Sequence
             </div>
             <div class="workflow-list">
               <div class="workflow-item">
                 <span class="step-num">01</span>
                 <div class="step-info">
-                  <div class="step-title">图谱构建</div>
-                  <div class="step-desc">现实种子提取 & 个体与群体记忆注入 & GraphRAG构建</div>
+                  <div class="step-title">Graph Building</div>
+                  <div class="step-desc">Extract reality seeds & inject individual/collective memory & build GraphRAG</div>
                 </div>
               </div>
               <div class="workflow-item">
                 <span class="step-num">02</span>
                 <div class="step-info">
-                  <div class="step-title">环境搭建</div>
-                  <div class="step-desc">实体关系抽取 & 人设生成 & 环境配置Agent注入仿真参数</div>
+                  <div class="step-title">Environment Setup</div>
+                  <div class="step-desc">Extract entity relationships & generate personas & configure simulation parameters</div>
                 </div>
               </div>
               <div class="workflow-item">
                 <span class="step-num">03</span>
                 <div class="step-info">
-                  <div class="step-title">开始模拟</div>
-                  <div class="step-desc">双平台并行模拟 & 自动解析预测需求 & 动态更新时序记忆</div>
+                  <div class="step-title">Start Simulation</div>
+                  <div class="step-desc">Parallel multi-platform simulation & auto-parse prediction requirements & dynamically update memory</div>
                 </div>
               </div>
               <div class="workflow-item">
                 <span class="step-num">04</span>
                 <div class="step-info">
-                  <div class="step-title">报告生成</div>
-                  <div class="step-desc">ReportAgent拥有丰富的工具集与模拟后环境进行深度交互</div>
+                  <div class="step-title">Report Generation</div>
+                  <div class="step-desc">ReportAgent has rich toolset for deep interaction with simulated environment</div>
                 </div>
               </div>
               <div class="workflow-item">
                 <span class="step-num">05</span>
                 <div class="step-info">
-                  <div class="step-title">深度互动</div>
-                  <div class="step-desc">与模拟世界中的任意一位进行对话 & 与ReportAgent进行对话</div>
+                  <div class="step-title">Deep Interaction</div>
+                  <div class="step-desc">Chat with any agent in the simulated world & interact with ReportAgent</div>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- 右栏：交互控制台 -->
+        <!-- Right Panel: Interactive Console -->
         <div class="right-panel">
           <div class="console-box">
-            <!-- 上传区域 -->
+            <!-- Upload Section -->
             <div class="console-section">
               <div class="console-header">
-                <span class="console-label">01 / 现实种子</span>
-                <span class="console-meta">支持格式: PDF, MD, TXT</span>
+                <span class="console-label">01 / Reality Seed</span>
+                <span class="console-meta">Supported formats: PDF, MD, TXT</span>
               </div>
-              
-              <div 
+
+              <div
                 class="upload-zone"
                 :class="{ 'drag-over': isDragOver, 'has-files': files.length > 0 }"
                 @dragover.prevent="handleDragOver"
@@ -145,13 +145,13 @@
                   style="display: none"
                   :disabled="loading"
                 />
-                
+
                 <div v-if="files.length === 0" class="upload-placeholder">
                   <div class="upload-icon">↑</div>
-                  <div class="upload-title">拖拽文件上传</div>
-                  <div class="upload-hint">或点击浏览文件系统</div>
+                  <div class="upload-title">Drag and drop files to upload</div>
+                  <div class="upload-hint">Or click to browse file system</div>
                 </div>
-                
+
                 <div v-else class="file-list">
                   <div v-for="(file, index) in files" :key="index" class="file-item">
                     <span class="file-icon">📄</span>
@@ -162,21 +162,21 @@
               </div>
             </div>
 
-            <!-- 分割线 -->
+            <!-- Divider -->
             <div class="console-divider">
-              <span>输入参数</span>
+              <span>Input Parameters</span>
             </div>
 
-            <!-- 输入区域 -->
+            <!-- Input Section -->
             <div class="console-section">
               <div class="console-header">
-                <span class="console-label">>_ 02 / 模拟提示词</span>
+                <span class="console-label">>_ 02 / Simulation Prompt</span>
               </div>
               <div class="input-wrapper">
                 <textarea
                   v-model="formData.simulationRequirement"
                   class="code-input"
-                  placeholder="// 用自然语言输入模拟或预测需求（例.武大若发布撤销肖某处分的公告，会引发什么舆情走向）"
+                  placeholder="// Enter simulation or prediction requirement in natural language (e.g., What would be the impact if the university announced withdrawal of the disciplinary action?)"
                   rows="6"
                   :disabled="loading"
                 ></textarea>

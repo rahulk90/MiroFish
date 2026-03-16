@@ -1,5 +1,5 @@
 """
-图谱构建服务
+Graph构建服务
 接口2：使用Zep API构建Standalone Graph
 """
 
@@ -21,7 +21,7 @@ from .text_processor import TextProcessor
 
 @dataclass
 class GraphInfo:
-    """图谱信息"""
+    """Graph信息"""
     graph_id: str
     node_count: int
     edge_count: int
@@ -38,8 +38,8 @@ class GraphInfo:
 
 class GraphBuilderService:
     """
-    图谱构建服务
-    负责调用Zep API构建知识图谱
+    Graph构建服务
+    负责调用Zep API构建知识Graph
     """
     
     def __init__(self, api_key: Optional[str] = None):
@@ -60,20 +60,20 @@ class GraphBuilderService:
         batch_size: int = 3
     ) -> str:
         """
-        异步构建图谱
+        异步构建Graph
         
         Args:
             text: 输入文本
-            ontology: 本体定义（来自接口1的输出）
-            graph_name: 图谱名称
+            ontology: Ontology定义（来自接口1的输出）
+            graph_name: Graph名称
             chunk_size: 文本块大小
             chunk_overlap: 块重叠大小
             batch_size: 每批发送的块数量
             
         Returns:
-            任务ID
+            TaskID
         """
-        # 创建任务
+        # 创建Task
         task_id = self.task_manager.create_task(
             task_type="graph_build",
             metadata={
@@ -103,29 +103,29 @@ class GraphBuilderService:
         chunk_overlap: int,
         batch_size: int
     ):
-        """图谱构建工作线程"""
+        """Graph构建工作线程"""
         try:
             self.task_manager.update_task(
                 task_id,
                 status=TaskStatus.PROCESSING,
                 progress=5,
-                message="开始构建图谱..."
+                message="开始构建Graph..."
             )
             
-            # 1. 创建图谱
+            # 1. 创建Graph
             graph_id = self.create_graph(graph_name)
             self.task_manager.update_task(
                 task_id,
                 progress=10,
-                message=f"图谱已创建: {graph_id}"
+                message=f"Graph已创建: {graph_id}"
             )
             
-            # 2. 设置本体
+            # 2. 设置Ontology
             self.set_ontology(graph_id, ontology)
             self.task_manager.update_task(
                 task_id,
                 progress=15,
-                message="本体已设置"
+                message="Ontology已设置"
             )
             
             # 3. 文本分块
@@ -163,11 +163,11 @@ class GraphBuilderService:
                 )
             )
             
-            # 6. 获取图谱信息
+            # 6. 获取Graph信息
             self.task_manager.update_task(
                 task_id,
                 progress=90,
-                message="获取图谱信息..."
+                message="获取Graph信息..."
             )
             
             graph_info = self._get_graph_info(graph_id)
@@ -185,7 +185,7 @@ class GraphBuilderService:
             self.task_manager.fail_task(task_id, error_msg)
     
     def create_graph(self, name: str) -> str:
-        """创建Zep图谱（公开方法）"""
+        """创建ZepGraph（公开方法）"""
         graph_id = f"mirofish_{uuid.uuid4().hex[:16]}"
         
         self.client.graph.create(
@@ -197,7 +197,7 @@ class GraphBuilderService:
         return graph_id
     
     def set_ontology(self, graph_id: str, ontology: Dict[str, Any]):
-        """设置图谱本体（公开方法）"""
+        """设置GraphOntology（公开方法）"""
         import warnings
         from typing import Optional
         from pydantic import Field
@@ -216,7 +216,7 @@ class GraphBuilderService:
                 return f"entity_{attr_name}"
             return attr_name
         
-        # 动态创建实体类型
+        # 动态创建Entity类型
         entity_types = {}
         for entity_def in ontology.get("entity_types", []):
             name = entity_def["name"]
@@ -240,7 +240,7 @@ class GraphBuilderService:
             entity_class.__doc__ = description
             entity_types[name] = entity_class
         
-        # 动态创建边类型
+        # 动态创建Edge类型
         edge_definitions = {}
         for edge_def in ontology.get("edge_types", []):
             name = edge_def["name"]
@@ -255,7 +255,7 @@ class GraphBuilderService:
                 attr_desc = attr_def.get("description", attr_name)
                 # Zep API 需要 Field 的 description，这是必需的
                 attrs[attr_name] = Field(description=attr_desc, default=None)
-                annotations[attr_name] = Optional[str]  # 边属性用str类型
+                annotations[attr_name] = Optional[str]  # Edge属性用str类型
             
             attrs["__annotations__"] = annotations
             
@@ -277,7 +277,7 @@ class GraphBuilderService:
             if source_targets:
                 edge_definitions[name] = (edge_class, source_targets)
         
-        # 调用Zep API设置本体
+        # 调用Zep API设置Ontology
         if entity_types or edge_definitions:
             self.client.graph.set_ontology(
                 graph_ids=[graph_id],
@@ -292,7 +292,7 @@ class GraphBuilderService:
         batch_size: int = 3,
         progress_callback: Optional[Callable] = None
     ) -> List[str]:
-        """分批添加文本到图谱，返回所有 episode 的 uuid 列表"""
+        """分批添加文本到Graph，返回所有 episode 的 uuid 列表"""
         episode_uuids = []
         total_chunks = len(chunks)
         
@@ -395,14 +395,14 @@ class GraphBuilderService:
             progress_callback(f"处理完成: {completed_count}/{total_episodes}", 1.0)
     
     def _get_graph_info(self, graph_id: str) -> GraphInfo:
-        """获取图谱信息"""
+        """获取Graph信息"""
         # 获取节点（分页）
         nodes = fetch_all_nodes(self.client, graph_id)
 
-        # 获取边（分页）
+        # 获取Edge（分页）
         edges = fetch_all_edges(self.client, graph_id)
 
-        # 统计实体类型
+        # 统计Entity类型
         entity_types = set()
         for node in nodes:
             if node.labels:
@@ -419,10 +419,10 @@ class GraphBuilderService:
     
     def get_graph_data(self, graph_id: str) -> Dict[str, Any]:
         """
-        获取完整图谱数据（包含详细信息）
+        获取完整Graph数据（包含详细信息）
         
         Args:
-            graph_id: 图谱ID
+            graph_id: GraphID
             
         Returns:
             包含nodes和edges的字典，包括时间信息、属性等详细数据
@@ -495,6 +495,6 @@ class GraphBuilderService:
         }
     
     def delete_graph(self, graph_id: str):
-        """删除图谱"""
+        """删除Graph"""
         self.client.graph.delete(graph_id=graph_id)
 

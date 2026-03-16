@@ -469,21 +469,21 @@ class ZepToolsService:
         scope: str = "edges"
     ) -> SearchResult:
         """
-        图谱语义搜索
+        Graph semantic search
         
-        使用混合搜索（语义+BM25）在图谱中搜索相关信息。
-        如果Zep Cloud的search API不可用，则降级为本地关键词匹配。
+        Use hybrid search (semantic + BM25) to search for related information in the graph.
+        If Zep Cloud search API is unavailable, degrade to local keyword matching.
         
         Args:
-            graph_id: 图谱ID (Standalone Graph)
-            query: 搜索查询
-            limit: 返回结果数量
-            scope: 搜索范围，"edges" 或 "nodes"
+            graph_id: Graph ID (Standalone Graph)
+            query: Search query
+            limit: Number of results to return
+            scope: Search scope, "edges" or "nodes"
             
         Returns:
-            SearchResult: 搜索结果
+            SearchResult: Search results
         """
-        logger.info(f"图谱搜索: graph_id={graph_id}, query={query[:50]}...")
+        logger.info(f"Graph search: graph_id={graph_id}, query={query[:50]}...")
         
         # 尝试使用Zep Cloud Search API
         try:
@@ -495,14 +495,14 @@ class ZepToolsService:
                     scope=scope,
                     reranker="cross_encoder"
                 ),
-                operation_name=f"图谱搜索(graph={graph_id})"
+                operation_name=f"Graph search (graph={graph_id})"
             )
             
             facts = []
             edges = []
             nodes = []
             
-            # 解析边搜索结果
+            # Parse edge search results
             if hasattr(search_results, 'edges') and search_results.edges:
                 for edge in search_results.edges:
                     if hasattr(edge, 'fact') and edge.fact:
@@ -515,7 +515,7 @@ class ZepToolsService:
                         "target_node_uuid": getattr(edge, 'target_node_uuid', ''),
                     })
             
-            # 解析节点搜索结果
+            # Parse node search results
             if hasattr(search_results, 'nodes') and search_results.nodes:
                 for node in search_results.nodes:
                     nodes.append({
@@ -524,11 +524,11 @@ class ZepToolsService:
                         "labels": getattr(node, 'labels', []),
                         "summary": getattr(node, 'summary', ''),
                     })
-                    # 节点摘要也算作事实
+                    # Node summaries also count as facts
                     if hasattr(node, 'summary') and node.summary:
                         facts.append(f"[{node.name}]: {node.summary}")
             
-            logger.info(f"搜索完成: Found {len(facts)} 条相关事实")
+            logger.info(f"Search complete: Found {len(facts)} related facts")
             
             return SearchResult(
                 facts=facts,
@@ -539,8 +539,8 @@ class ZepToolsService:
             )
             
         except Exception as e:
-            logger.warning(f"Zep Search API失败，降级为本地搜索: {str(e)}")
-            # 降级：使用本地关键词匹配搜索
+            logger.warning(f"Zep Search API failed, degrading to local search: {str(e)}")
+            # Degradation: Use local keyword matching search
             return self._local_search(graph_id, query, limit, scope)
     
     def _local_search(
@@ -551,38 +551,38 @@ class ZepToolsService:
         scope: str = "edges"
     ) -> SearchResult:
         """
-        本地关键词匹配搜索（作为Zep Search API的降级方案）
+        Local keyword matching search (as fallback for Zep Search API)
         
-        获取所有边/节点，然后在本地进行关键词匹配
+        Get all edges/nodes, then perform local keyword matching
         
         Args:
-            graph_id: 图谱ID
-            query: 搜索查询
-            limit: 返回结果数量
-            scope: 搜索范围
+            graph_id: Graph ID
+            query: Search query
+            limit: Number of results to return
+            scope: Search scope
             
         Returns:
-            SearchResult: 搜索结果
+            SearchResult: Search results
         """
-        logger.info(f"使用本地搜索: query={query[:30]}...")
+        logger.info(f"Using local search: query={query[:30]}...")
         
         facts = []
         edges_result = []
         nodes_result = []
         
-        # 提取查询关键词（简单分词）
+        # Extract query keywords (simple word segmentation)
         query_lower = query.lower()
         keywords = [w.strip() for w in query_lower.replace(',', ' ').replace('，', ' ').split() if len(w.strip()) > 1]
         
         def match_score(text: str) -> int:
-            """计算文本与查询的匹配分数"""
+            """Calculate match score between text and query"""
             if not text:
                 return 0
             text_lower = text.lower()
-            # 完全匹配查询
+            # Exact match query
             if query_lower in text_lower:
                 return 100
-            # 关键词匹配
+            # Keyword matching
             score = 0
             for keyword in keywords:
                 if keyword in text_lower:
@@ -591,7 +591,7 @@ class ZepToolsService:
         
         try:
             if scope in ["edges", "both"]:
-                # 获取所有边并匹配
+                # Get all edges and match
                 all_edges = self.get_all_edges(graph_id)
                 scored_edges = []
                 for edge in all_edges:
@@ -599,7 +599,7 @@ class ZepToolsService:
                     if score > 0:
                         scored_edges.append((score, edge))
                 
-                # 按分数排序
+                # Sort by score
                 scored_edges.sort(key=lambda x: x[0], reverse=True)
                 
                 for score, edge in scored_edges[:limit]:
@@ -614,7 +614,7 @@ class ZepToolsService:
                     })
             
             if scope in ["nodes", "both"]:
-                # 获取所有节点并匹配
+                # Get all nodes and match
                 all_nodes = self.get_all_nodes(graph_id)
                 scored_nodes = []
                 for node in all_nodes:
@@ -634,10 +634,10 @@ class ZepToolsService:
                     if node.summary:
                         facts.append(f"[{node.name}]: {node.summary}")
             
-            logger.info(f"本地搜索完成: Found {len(facts)} 条相关事实")
+            logger.info(f"Local search complete: Found {len(facts)} related facts")
             
         except Exception as e:
-            logger.error(f"本地搜索失败: {str(e)}")
+            logger.error(f"Local search failed: {str(e)}")
         
         return SearchResult(
             facts=facts,
@@ -657,7 +657,7 @@ class ZepToolsService:
         Returns:
             节点列表
         """
-        logger.info(f"获取图谱 {graph_id} 的所有节点...")
+        logger.info(f"Getting all nodes in graph {graph_id}...")
 
         nodes = fetch_all_nodes(self.client, graph_id)
 
@@ -672,7 +672,7 @@ class ZepToolsService:
                 attributes=node.attributes or {}
             ))
 
-        logger.info(f"获取到 {len(result)} 个节点")
+        logger.info(f"Retrieved {len(result)} nodes")
         return result
 
     def get_all_edges(self, graph_id: str, include_temporal: bool = True) -> List[EdgeInfo]:
@@ -686,7 +686,7 @@ class ZepToolsService:
         Returns:
             边列表（包含created_at, valid_at, invalid_at, expired_at）
         """
-        logger.info(f"获取图谱 {graph_id} 的所有边...")
+        logger.info(f"Getting all edges in graph {graph_id}...")
 
         edges = fetch_all_edges(self.client, graph_id)
 
@@ -701,7 +701,7 @@ class ZepToolsService:
                 target_node_uuid=edge.target_node_uuid or ""
             )
 
-            # 添加时间信息
+            # Add temporal information
             if include_temporal:
                 edge_info.created_at = getattr(edge, 'created_at', None)
                 edge_info.valid_at = getattr(edge, 'valid_at', None)
@@ -710,25 +710,25 @@ class ZepToolsService:
 
             result.append(edge_info)
 
-        logger.info(f"获取到 {len(result)} 条边")
+        logger.info(f"Retrieved {len(result)} edges")
         return result
     
     def get_node_detail(self, node_uuid: str) -> Optional[NodeInfo]:
         """
-        获取单个节点的详细信息
+        Get detailed information of single node
         
         Args:
-            node_uuid: 节点UUID
+            node_uuid: Node UUID
             
         Returns:
-            节点信息或None
+            Node information or None
         """
-        logger.info(f"获取节点详情: {node_uuid[:8]}...")
+        logger.info(f"Getting node details: {node_uuid[:8]}...")
         
         try:
             node = self._call_with_retry(
                 func=lambda: self.client.graph.node.get(uuid_=node_uuid),
-                operation_name=f"获取节点详情(uuid={node_uuid[:8]}...)"
+                operation_name=f"Get node details(uuid={node_uuid[:8]}...)"
             )
             
             if not node:
@@ -742,39 +742,39 @@ class ZepToolsService:
                 attributes=node.attributes or {}
             )
         except Exception as e:
-            logger.error(f"获取节点详情失败: {str(e)}")
+            logger.error(f"Failed to get node details: {str(e)}")
             return None
     
     def get_node_edges(self, graph_id: str, node_uuid: str) -> List[EdgeInfo]:
         """
-        获取节点相关的所有边
+        Get all edges related to node
         
-        通过获取图谱所有边，然后过滤出与指定节点相关的边
+        By getting all edges in graph, then filter out edges related to specified node
         
         Args:
-            graph_id: 图谱ID
-            node_uuid: 节点UUID
+            graph_id: Graph ID
+            node_uuid: Node UUID
             
         Returns:
-            边列表
+            List of edges
         """
-        logger.info(f"获取节点 {node_uuid[:8]}... 的相关边")
+        logger.info(f"Getting edges related to node {node_uuid[:8]}...")
         
         try:
-            # 获取图谱所有边，然后过滤
+            # Get all edges in graph, then filter
             all_edges = self.get_all_edges(graph_id)
             
             result = []
             for edge in all_edges:
-                # 检查边是否与指定节点相关（作为源或目标）
+                # Check if edge is related to specified node (as source or target)
                 if edge.source_node_uuid == node_uuid or edge.target_node_uuid == node_uuid:
                     result.append(edge)
             
-            logger.info(f"Found {len(result)} 条与节点相关的边")
+            logger.info(f"Found {len(result)} edges related to node")
             return result
             
         except Exception as e:
-            logger.warning(f"获取节点边失败: {str(e)}")
+            logger.warning(f"Failed to get node edges: {str(e)}")
             return []
     
     def get_entities_by_type(
@@ -783,26 +783,26 @@ class ZepToolsService:
         entity_type: str
     ) -> List[NodeInfo]:
         """
-        按类型获取实体
+        Get entities by type
         
         Args:
-            graph_id: 图谱ID
-            entity_type: 实体类型（如 Student, PublicFigure 等）
+            graph_id: Graph ID
+            entity_type: Entity type (e.g., Student, PublicFigure, etc.)
             
         Returns:
-            符合类型的实体列表
+            List of entities matching the type
         """
-        logger.info(f"获取类型为 {entity_type} 的实体...")
+        logger.info(f"Getting entities of type {entity_type}...")
         
         all_nodes = self.get_all_nodes(graph_id)
         
         filtered = []
         for node in all_nodes:
-            # 检查labels是否包含指定类型
+            # Check if labels contain specified type
             if entity_type in node.labels:
                 filtered.append(node)
         
-        logger.info(f"Found {len(filtered)} 个 {entity_type} 类型的实体")
+        logger.info(f"Found {len(filtered)} entities of type {entity_type}")
         return filtered
     
     def get_entity_summary(
@@ -811,27 +811,27 @@ class ZepToolsService:
         entity_name: str
     ) -> Dict[str, Any]:
         """
-        获取指定实体的关系摘要
+        Get relationship summary of specified entity
         
-        搜索与该实体相关的所有信息，并生成摘要
+        Search all information related to the entity and generate summary
         
         Args:
-            graph_id: 图谱ID
-            entity_name: 实体名称
+            graph_id: Graph ID
+            entity_name: Entity name
             
         Returns:
-            实体摘要信息
+            Entity summary information
         """
-        logger.info(f"获取实体 {entity_name} 的关系摘要...")
+        logger.info(f"Getting relationship summary for entity {entity_name}...")
         
-        # 先搜索该实体相关的信息
+        # First search for information related to the entity
         search_result = self.search_graph(
             graph_id=graph_id,
             query=entity_name,
             limit=20
         )
         
-        # 尝试在所有节点中Found该实体
+        # Try to find the entity in all nodes
         all_nodes = self.get_all_nodes(graph_id)
         entity_node = None
         for node in all_nodes:
@@ -841,7 +841,7 @@ class ZepToolsService:
         
         related_edges = []
         if entity_node:
-            # 传入graph_id参数
+            # Pass graph_id parameter
             related_edges = self.get_node_edges(graph_id, entity_node.uuid)
         
         return {
@@ -854,27 +854,27 @@ class ZepToolsService:
     
     def get_graph_statistics(self, graph_id: str) -> Dict[str, Any]:
         """
-        获取图谱的Statistics
+        Get graph statistics
         
         Args:
-            graph_id: 图谱ID
+            graph_id: Graph ID
             
         Returns:
             Statistics
         """
-        logger.info(f"获取图谱 {graph_id} 的Statistics...")
+        logger.info(f"Getting graph {graph_id} statistics...")
         
         nodes = self.get_all_nodes(graph_id)
         edges = self.get_all_edges(graph_id)
         
-        # 统计实体类型分布
+        # Count entity type distribution
         entity_types = {}
         for node in nodes:
             for label in node.labels:
                 if label not in ["Entity", "Node"]:
                     entity_types[label] = entity_types.get(label, 0) + 1
         
-        # 统计关系类型分布
+        # Count relationship type distribution
         relation_types = {}
         for edge in edges:
             relation_types[edge.name] = relation_types.get(edge.name, 0) + 1
@@ -894,34 +894,34 @@ class ZepToolsService:
         limit: int = 30
     ) -> Dict[str, Any]:
         """
-        获取模拟相关的上下文信息
+        Get context information related to simulation
         
-        综合搜索与模拟需求相关的所有信息
+        Comprehensively search all information related to simulation requirements
         
         Args:
-            graph_id: 图谱ID
-            simulation_requirement: 模拟需求描述
-            limit: 每类信息的数量限制
+            graph_id: Graph ID
+            simulation_requirement: Simulation requirement description
+            limit: Quantity limit for each type of information
             
         Returns:
-            模拟上下文信息
+            Simulation context information
         """
-        logger.info(f"获取模拟上下文: {simulation_requirement[:50]}...")
+        logger.info(f"Getting simulation context: {simulation_requirement[:50]}...")
         
-        # 搜索与模拟需求相关的信息
+        # Search for information related to simulation requirements
         search_result = self.search_graph(
             graph_id=graph_id,
             query=simulation_requirement,
             limit=limit
         )
         
-        # 获取图谱统计
+        # Get graph statistics
         stats = self.get_graph_statistics(graph_id)
         
-        # 获取所有实体节点
+        # Get all entity nodes
         all_nodes = self.get_all_nodes(graph_id)
         
-        # 筛选有实际类型的实体（非纯Entity节点）
+        # Filter entities with actual types (not pure Entity nodes)
         entities = []
         for node in all_nodes:
             custom_labels = [l for l in node.labels if l not in ["Entity", "Node"]]

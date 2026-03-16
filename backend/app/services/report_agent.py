@@ -609,7 +609,7 @@ Design the most appropriate report section structure based on prediction results
 
 【Reminder】Report section count: minimum 2, maximum 5, content should be concise and focus on core prediction findings."""
 
-# ── 章节生成 prompt ──
+# ── Section generation prompt ──
 
 SECTION_SYSTEM_PROMPT_TEMPLATE = """\
 You are an expert in writing \"Future Prediction Reports\" and are writing one section of the report.
@@ -857,7 +857,7 @@ CHAT_OBSERVATION_SUFFIX = "\n\nPlease answer the question concisely."
 
 
 # ═══════════════════════════════════════════════════════════════
-# ReportAgent 主类
+# ReportAgent Main Class
 # ═══════════════════════════════════════════════════════════════
 
 
@@ -892,11 +892,11 @@ class ReportAgent:
         Initialize Report Agent
         
         Args:
-            graph_id: 图谱ID
-            simulation_id: 模拟ID
-            simulation_requirement: 模拟需求描述
-            llm_client: LLM客户端（可选）
-            zep_tools: Zep工具服务（可选）
+            graph_id: Graph ID
+            simulation_id: Simulation ID
+            simulation_requirement: Simulation requirement description
+            llm_client: LLM client (optional)
+            zep_tools: Zep tools service (optional)
         """
         self.graph_id = graph_id
         self.simulation_id = simulation_id
@@ -905,66 +905,66 @@ class ReportAgent:
         self.llm = llm_client or LLMClient()
         self.zep_tools = zep_tools or ZepToolsService()
         
-        # 工具定义
+        # Tool definitions
         self.tools = self._define_tools()
         
-        # 日志记录器（在 generate_report 中初始化）
+        # Logger (initialized in generate_report method)
         self.report_logger: Optional[ReportLogger] = None
-        # 控制台日志记录器（在 generate_report 中初始化）
+        # Console logger (initialized in generate_report method)
         self.console_logger: Optional[ReportConsoleLogger] = None
         
-        logger.info(f"ReportAgent 初始化完成: graph_id={graph_id}, simulation_id={simulation_id}")
+        logger.info(f"ReportAgent initialization complete: graph_id={graph_id}, simulation_id={simulation_id}")
     
     def _define_tools(self) -> Dict[str, Dict[str, Any]]:
-        """定义可用工具"""
+        """Define available tools"""
         return {
             "insight_forge": {
                 "name": "insight_forge",
                 "description": TOOL_DESC_INSIGHT_FORGE,
                 "parameters": {
-                    "query": "你想深入分析的问题或话题",
-                    "report_context": "当前报告章节的上下文（可选，有助于生成更精准的子问题）"
+                    "query": "Question or topic you want to analyze in depth",
+                    "report_context": "Context of current report section (optional, helps generate more accurate sub-questions)"
                 }
             },
             "panorama_search": {
                 "name": "panorama_search",
                 "description": TOOL_DESC_PANORAMA_SEARCH,
                 "parameters": {
-                    "query": "搜索查询，用于相关性排序",
-                    "include_expired": "是否包含过期/历史内容（默认True）"
+                    "query": "Search query for relevance ranking",
+                    "include_expired": "Whether to include expired/historical content (default True)"
                 }
             },
             "quick_search": {
                 "name": "quick_search",
                 "description": TOOL_DESC_QUICK_SEARCH,
                 "parameters": {
-                    "query": "搜索查询字符串",
-                    "limit": "返回结果数量（可选，默认10）"
+                    "query": "Search query string",
+                    "limit": "Number of results to return (optional, default 10)"
                 }
             },
             "interview_agents": {
                 "name": "interview_agents",
                 "description": TOOL_DESC_INTERVIEW_AGENTS,
                 "parameters": {
-                    "interview_topic": "采访主题或需求描述（如：'了解学生对宿舍甲醛事件的看法'）",
-                    "max_agents": "最多采访的Agent数量（可选，默认5，最大10）"
+                    "interview_topic": "Interview topic or requirement description (e.g., understand students' views on dormitory formaldehyde incident)",
+                    "max_agents": "Maximum number of Agents to interview (optional, default 5, max 10)"
                 }
             }
         }
     
     def _execute_tool(self, tool_name: str, parameters: Dict[str, Any], report_context: str = "") -> str:
         """
-        执行工具调用
+        Execute tool call
         
         Args:
-            tool_name: 工具名称
-            parameters: 工具参数
-            report_context: 报告上下文（用于InsightForge）
+            tool_name: Tool name
+            parameters: Tool parameters
+            report_context: Report context (for InsightForge)
             
         Returns:
-            工具执行结果（文本格式）
+            Tool execution result (text format)
         """
-        logger.info(f"执行工具: {tool_name}, 参数: {parameters}")
+        logger.info(f"Executing tool: {tool_name}, parameters: {parameters}")
         
         try:
             if tool_name == "insight_forge":
@@ -979,7 +979,7 @@ class ReportAgent:
                 return result.to_text()
             
             elif tool_name == "panorama_search":
-                # 广度搜索 - 获取全貌
+                # Breadth search - Get overall view
                 query = parameters.get("query", "")
                 include_expired = parameters.get("include_expired", True)
                 if isinstance(include_expired, str):
@@ -1005,7 +1005,7 @@ class ReportAgent:
                 return result.to_text()
             
             elif tool_name == "interview_agents":
-                # 深度采访 - 调用真实的OASIS采访API获取模拟Agent的回答（双平台）
+                # Deep interview - Call real OASIS interview API to get simulated Agent answers (dual platform)
                 interview_topic = parameters.get("interview_topic", parameters.get("query", ""))
                 max_agents = parameters.get("max_agents", 5)
                 if isinstance(max_agents, str):
@@ -1019,11 +1019,11 @@ class ReportAgent:
                 )
                 return result.to_text()
             
-            # ========== 向后兼容的旧工具（内部重定向到新工具） ==========
+            # ========== Backward compatible old tools (internally redirected to new tools) ==========
             
             elif tool_name == "search_graph":
-                # 重定向到 quick_search
-                logger.info("search_graph 已重定向到 quick_search")
+                # Redirect to quick_search
+                logger.info("search_graph already redirected to quick_search")
                 return self._execute_tool("quick_search", parameters, report_context)
             
             elif tool_name == "get_graph_statistics":
@@ -1039,8 +1039,8 @@ class ReportAgent:
                 return json.dumps(result, ensure_ascii=False, indent=2)
             
             elif tool_name == "get_simulation_context":
-                # 重定向到 insight_forge，因为它更强大
-                logger.info("get_simulation_context 已重定向到 insight_forge")
+                # Redirect to insight_forge because it is more powerful
+                logger.info("get_simulation_context already redirected to insight_forge")
                 query = parameters.get("query", self.simulation_requirement)
                 return self._execute_tool("insight_forge", {"query": query}, report_context)
             
@@ -1054,26 +1054,26 @@ class ReportAgent:
                 return json.dumps(result, ensure_ascii=False, indent=2)
             
             else:
-                return f"未知工具: {tool_name}。请使用以下工具之一: insight_forge, panorama_search, quick_search"
+                return f"Unknown tool: {tool_name}. Please use one of the following tools: insight_forge, panorama_search, quick_search"
                 
         except Exception as e:
-            logger.error(f"工具执行失败: {tool_name}, 错误: {str(e)}")
-            return f"工具执行失败: {str(e)}"
+            logger.error(f"Tool execution failed: {tool_name}, error: {str(e)}")
+            return f"Tool execution failed: {str(e)}"
     
-    # 合法的工具名称集合，用于裸 JSON 兜底解析时校验
+    # Set of legal tool names, used for validation when parsing raw JSON fallback
     VALID_TOOL_NAMES = {"insight_forge", "panorama_search", "quick_search", "interview_agents"}
 
     def _parse_tool_calls(self, response: str) -> List[Dict[str, Any]]:
         """
-        从LLM响应中解析工具调用
+        Parse tool calls from LLM response
 
-        支持的格式（按优先级）：
+        Supported formats (by priority):
         1. <tool_call>{"name": "tool_name", "parameters": {...}}</tool_call>
-        2. 裸 JSON（响应整体或单行就是一个工具调用 JSON）
+        2. Raw JSON (entire response or single line is a tool call JSON)
         """
         tool_calls = []
 
-        # 格式1: XML风格（标准格式）
+        # Format 1: XML style (standard format)
         xml_pattern = r'<tool_call>\s*(\{.*?\})\s*</tool_call>'
         for match in re.finditer(xml_pattern, response, re.DOTALL):
             try:
@@ -1085,8 +1085,8 @@ class ReportAgent:
         if tool_calls:
             return tool_calls
 
-        # 格式2: 兜底 - LLM 直接输出裸 JSON（没包 <tool_call> 标签）
-        # 只在格式1未匹配时尝试，避免误匹配正文中的 JSON
+        # Format 2: Fallback - LLM directly outputs raw JSON (not wrapped in <tool_call> tags)
+        # Only try when format 1 is not matched, to avoid mistakenly matching JSON in body
         stripped = response.strip()
         if stripped.startswith('{') and stripped.endswith('}'):
             try:
@@ -1097,7 +1097,7 @@ class ReportAgent:
             except json.JSONDecodeError:
                 pass
 
-        # 响应可能包含思考文字 + 裸 JSON，尝试提取最后一个 JSON 对象
+        # Response may contain thought text + raw JSON, try to extract the last JSON object
         json_pattern = r'(\{"(?:name|tool)"\s*:.*?\})\s*$'
         match = re.search(json_pattern, stripped, re.DOTALL)
         if match:

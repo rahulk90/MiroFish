@@ -1,0 +1,668 @@
+================================================================================
+STEP5INTERACTION.VUE - COMPREHENSIVE CHINESE TO ENGLISH TRANSLATION LIST
+================================================================================
+File: /Users/rahulgk/Documents/code/MiroFish/frontend/src/components/Step5Interaction.vue
+Total Size: 63 KB
+Status: Complete Analysis
+
+================================================================================
+TEMPLATE SECTION - UI LABELS & USER-FACING TEXT
+================================================================================
+
+Line 61 | Loading Text
+  Original:   <span class="loading-text">正在生成{{ section.title }}...</span>
+  Translation: <span class="loading-text">Generating {{ section.title }}...</span>
+  Context:     Loading state display (similar to Step3/Step4)
+  Priority:    HIGH - User-facing feedback
+
+Line 101 | Tab Label - Report Agent
+  Original:   <span>与Report Agent对话</span>
+  Translation: <span>Chat with Report Agent</span>
+  Context:     Navigation tab for conversation with Report Agent
+  Priority:    HIGH - Primary interaction mode
+
+Line 113 | Dropdown Placeholder
+  Original:   <span>{{ selectedAgent ? selectedAgent.username : '与世界中任意个体对话' }}</span>
+  Translation: <span>{{ selectedAgent ? selectedAgent.username : 'Chat with any individual in the world' }}</span>
+  Context:     Default text when no agent selected
+  Priority:    HIGH - User guidance
+
+Line 119 | Dropdown Header
+  Original:   <div class="dropdown-header">选择对话对象</div>
+  Translation: <div class="dropdown-header">Select Chat Target</div>
+  Context:     Dropdown section header
+  Priority:    HIGH - UI label
+
+Line 129 | Agent Role Display
+  Original:   <span class="agent-role">{{ agent.profession || '未知职业' }}</span>
+  Translation: <span class="agent-role">{{ agent.profession || 'Unknown profession' }}</span>
+  Context:     Fallback text for agent profession
+  Priority:    MEDIUM - Default placeholder
+
+Line 144 | Tab Label - Survey
+  Original:   <span>发送问卷调查到世界中</span>
+  Translation: <span>Send Survey to the World</span>
+  Context:     Navigation tab for survey mode
+  Priority:    HIGH - Primary interaction mode
+
+Line 158 | Tool Description
+  Original:   <div class="tools-card-subtitle">报告生成智能体的快速对话版本，可调用 4 种专业工具，拥有MiroFish的完整记忆</div>
+  Translation: <div class="tools-card-subtitle">Quick conversation version of the report generation agent, can call 4 professional tools, with full MiroFish memory</div>
+  Context:     Tool card description
+  Priority:    MEDIUM - Feature description
+
+Line 175 | Tool Name
+  Original:   <div class="tool-name">InsightForge 深度归因</div>
+  Translation: <div class="tool-name">InsightForge Deep Attribution</div>
+  Context:     Tool name with description
+  Priority:    MEDIUM - Tool labeling
+
+Line 176 | Tool Description
+  Original:   <div class="tool-desc">对齐现实世界种子数据与模拟环境状态，结合Global/Local Memory机制，提供跨时空的深度归因分析</div>
+  Translation: <div class="tool-desc">Aligns real-world seed data with simulation state, combines Global/Local Memory mechanisms, provides deep attribution analysis across time and space</div>
+  Context:     Detailed tool description
+  Priority:    MEDIUM - Feature documentation
+
+Line 187 | Tool Name
+  Original:   <div class="tool-name">PanoramaSearch 全景追踪</div>
+  Translation: <div class="tool-name">PanoramaSearch Panoramic Tracking</div>
+  Context:     Tool name with description
+  Priority:    MEDIUM - Tool labeling
+
+Line 188 | Tool Description
+  Original:   <div class="tool-desc">基于图结构的广度遍历算法，重构事件传播路径，捕获全量信息流动的拓扑结构</div>
+  Translation: <div class="tool-desc">Breadth-first traversal algorithm based on graph structure, reconstructs event propagation paths, captures full topology of information flow</div>
+  Context:     Detailed tool description
+  Priority:    MEDIUM - Feature documentation
+
+Line 198 | Tool Name
+  Original:   <div class="tool-name">QuickSearch 快速检索</div>
+  Translation: <div class="tool-name">QuickSearch Quick Retrieval</div>
+  Context:     Tool name with description
+  Priority:    MEDIUM - Tool labeling
+
+Line 199 | Tool Description
+  Original:   <div class="tool-desc">基于 GraphRAG 的即时查询接口，优化索引效率，用于快速提取具体的节点属性与离散事实</div>
+  Translation: <div class="tool-desc">GraphRAG-based real-time query interface, optimizes index efficiency, for fast extraction of specific node properties and discrete facts</div>
+  Context:     Detailed tool description
+  Priority:    MEDIUM - Feature documentation
+
+Line 211 | Tool Name
+  Original:   <div class="tool-name">InterviewSubAgent 虚拟访谈</div>
+  Translation: <div class="tool-name">InterviewSubAgent Virtual Interview</div>
+  Context:     Tool name with description
+  Priority:    MEDIUM - Tool labeling
+
+Line 212 | Tool Description
+  Original:   <div class="tool-desc">自主式访谈，能够并行与模拟世界中个体进行多轮对话，采集非结构化的观点数据与心理状态</div>
+  Translation: <div class="tool-desc">Autonomous interviewing, can parallel multi-turn conversations with individuals in the simulation, collects unstructured opinion data and psychological states</div>
+  Context:     Detailed tool description
+  Priority:    MEDIUM - Feature documentation
+
+Line 227 | Profile Card - Profession
+  Original:   <span class="profile-card-profession">{{ selectedAgent.profession || '未知职业' }}</span>
+  Translation: <span class="profile-card-profession">{{ selectedAgent.profession || 'Unknown profession' }}</span>
+  Context:     Fallback text for agent profession
+  Priority:    MEDIUM - Default placeholder
+
+Line 238 | Profile Card - Label
+  Original:   <div class="profile-card-label">简介</div>
+  Translation: <div class="profile-card-label">Biography</div>
+  Context:     Profile section label
+  Priority:    MEDIUM - UI label
+
+Line 253 | Helper Text
+  Original:   {{ chatTarget === 'report_agent' ? '与 Report Agent 对话，深入了解报告内容' : '与模拟个体对话，了解他们的观点' }}
+  Translation: {{ chatTarget === 'report_agent' ? 'Chat with Report Agent to gain deep insights into report content' : 'Chat with simulated individuals to understand their perspectives' }}
+  Context:     Contextual instruction text
+  Priority:    HIGH - User guidance
+
+Line 295 | Input Placeholder
+  Original:   placeholder="输入您的问题..."
+  Translation: placeholder="Enter your question..."
+  Context:     Text input field placeholder
+  Priority:    HIGH - User prompt
+
+Line 320 | Section Title
+  Original:   <span class="section-title">选择调查对象</span>
+  Translation: <span class="section-title">Select Survey Subjects</span>
+  Context:     Section header
+  Priority:    HIGH - UI label
+
+Line 321 | Selection Counter
+  Original:   <span class="selection-count">已选 {{ selectedAgents.size }} / {{ profiles.length }}</span>
+  Translation: <span class="selection-count">Selected {{ selectedAgents.size }} / {{ profiles.length }}</span>
+  Context:     Counter display
+  Priority:    MEDIUM - Status information
+
+Line 338 | Checkbox Role Display
+  Original:   <span class="checkbox-role">{{ agent.profession || '未知职业' }}</span>
+  Translation: <span class="checkbox-role">{{ agent.profession || 'Unknown profession' }}</span>
+  Context:     Fallback text for agent profession
+  Priority:    MEDIUM - Default placeholder
+
+Line 348 | Select All Button
+  Original:   <button class="action-link" @click="selectAllAgents">全选</button>
+  Translation: <button class="action-link" @click="selectAllAgents">Select All</button>
+  Context:     Action button
+  Priority:    HIGH - User action
+
+Line 350 | Clear Button
+  Original:   <button class="action-link" @click="clearAgentSelection">清空</button>
+  Translation: <button class="action-link" @click="clearAgentSelection">Clear</button>
+  Context:     Action button
+  Priority:    HIGH - User action
+
+Line 356 | Section Title
+  Original:   <span class="section-title">问卷问题</span>
+  Translation: <span class="section-title">Survey Questions</span>
+  Context:     Section header
+  Priority:    HIGH - UI label
+
+Line 361 | Input Placeholder
+  Original:   placeholder="输入您想问所有被选中对象的问题..."
+  Translation: placeholder="Enter the question you want to ask all selected subjects..."
+  Context:     Text input field placeholder
+  Priority:    HIGH - User prompt
+
+Line 372 | Button Text (Conditional)
+  Original:   <span v-else>发送问卷</span>
+  Translation: <span v-else>Send Survey</span>
+  Context:     Button label
+  Priority:    HIGH - User action
+
+Line 379 | Results Title
+  Original:   <span class="results-title">调查结果</span>
+  Translation: <span class="results-title">Survey Results</span>
+  Context:     Section header
+  Priority:    HIGH - UI label
+
+Line 380 | Results Counter
+  Original:   <span class="results-count">{{ surveyResults.length }} 条回复</span>
+  Translation: <span class="results-count">{{ surveyResults.length }} responses</span>
+  Context:     Counter display
+  Priority:    MEDIUM - Status information
+
+Line 392 | Result Role Display
+  Original:   <span class="result-role">{{ result.profession || '未知职业' }}</span>
+  Translation: <span class="result-role">{{ result.profession || 'Unknown profession' }}</span>
+  Context:     Fallback text for profession
+  Priority:    MEDIUM - Default placeholder
+
+================================================================================
+JAVASCRIPT/SCRIPT SECTION - COMMENTS & LOGGING
+================================================================================
+
+Line 437 | Comment - Cache Structure
+  Original:   const chatHistoryCache = ref({}) // 缓存所有对话记录: { 'report_agent': [], 'agent_0': [], 'agent_1': [], ... }
+  Translation: const chatHistoryCache = ref({}) // Cache all chat history: { 'report_agent': [], 'agent_0': [], 'agent_1': [], ... }
+  Context:     Data structure documentation
+  Priority:    LOW - Developer documentation
+
+Line 487 | Comment - Save Chat History
+  Original:   // 保存当前对话记录到缓存
+  Translation: // Save current chat history to cache
+  Context:     Method documentation
+  Priority:    LOW - Developer documentation
+
+Line 499 | Comment - Save Chat Record
+  Original:   // 保存当前对话记录
+  Translation: // Save current chat record
+  Context:     Method documentation
+  Priority:    LOW - Developer documentation
+
+Line 508 | Comment - Restore Report Agent
+  Original:   // 恢复 Report Agent 的对话记录
+  Translation: // Restore Report Agent's chat history
+  Context:     Method documentation
+  Priority:    LOW - Developer documentation
+
+Line 528 | Comment - Save Chat Record
+  Original:   // 保存当前对话记录
+  Translation: // Save current chat record
+  Context:     Method documentation
+  Priority:    LOW - Developer documentation
+
+Line 536 | Comment - Restore Agent History
+  Original:   // 恢复该 Agent 的对话记录
+  Translation: // Restore this Agent's chat history
+  Context:     Method documentation
+  Priority:    LOW - Developer documentation
+
+Line 538 | Log Message
+  Original:   addLog(`选择对话对象: ${agent.username}`)
+  Translation: addLog(`Selected chat target: ${agent.username}`)
+  Context:     Status message
+  Priority:    HIGH - User-facing log
+
+Line 566 | Comment - List Processing
+  Original:   // 处理列表 - 支持子列表
+  Translation: // Process lists - support nested lists
+  Context:     Implementation documentation
+  Priority:    LOW - Developer documentation
+
+Line 576 | Comment - Wrap Unordered List
+  Original:   // 包装无序列表
+  Translation: // Wrap unordered list
+  Context:     Implementation documentation
+  Priority:    LOW - Developer documentation
+
+Line 578 | Comment - Wrap Ordered List
+  Original:   // 包装有序列表
+  Translation: // Wrap ordered list
+  Context:     Implementation documentation
+  Priority:    LOW - Developer documentation
+
+Line 581 | Comment - Cleanup Whitespace
+  Original:   // 清理列表项之间的所有空白
+  Translation: // Clean all whitespace between list items
+  Context:     Implementation documentation
+  Priority:    LOW - Developer documentation
+
+Line 583 | Comment - Cleanup Opening Tag
+  Original:   // 清理列表开始标签后的空白
+  Translation: // Clean whitespace after list opening tag
+  Context:     Implementation documentation
+  Priority:    LOW - Developer documentation
+
+Line 586 | Comment - Cleanup Closing Tag
+  Original:   // 清理列表结束标签前的空白
+  Translation: // Clean whitespace before list closing tag
+  Context:     Implementation documentation
+  Priority:    LOW - Developer documentation
+
+Line 602 | Comment - Cleanup BR Tags
+  Original:   // 清理块级元素前后的 <br> 标签
+  Translation: // Clean <br> tags before and after block elements
+  Context:     Implementation documentation
+  Priority:    LOW - Developer documentation
+
+Line 605 | Comment - Cleanup BR
+  Original:   // 清理 <p><br> 紧跟块级元素的情况（多余空行导致）
+  Translation: // Clean <p><br> when directly followed by block element (caused by extra lines)
+  Context:     Implementation documentation
+  Priority:    LOW - Developer documentation
+
+Line 607 | Comment - Cleanup Consecutive BR
+  Original:   // 清理连续的 <br> 标签
+  Translation: // Clean consecutive <br> tags
+  Context:     Implementation documentation
+  Priority:    LOW - Developer documentation
+
+Line 609 | Comment - Cleanup BR Around Block
+  Original:   // 清理块级元素后紧跟的段落开始标签前的 <br>
+  Translation: // Clean <br> before paragraph start tag directly after block element
+  Context:     Implementation documentation
+  Priority:    LOW - Developer documentation
+
+Line 612 | Comment - Fix List Numbering
+  Original:   // 修复非连续有序列表的编号：当单项 <ol> 被段落内容隔开时，保持编号递增
+  Translation: // Fix non-continuous ordered list numbering: maintain incrementing numbers when individual <ol> separated by paragraph content
+  Context:     Implementation documentation
+  Priority:    LOW - Developer documentation
+
+Line 665 | Error Log Message
+  Original:   addLog(`发送失败: ${err.message}`)
+  Translation: addLog(`Send failed: ${err.message}`)
+  Context:     Error notification
+  Priority:    HIGH - User-facing error
+
+Line 668 | Error Message Content
+  Original:   content: `抱歉，发生了错误: ${err.message}`,
+  Translation: content: `Sorry, an error occurred: ${err.message}`,
+  Context:     User error message
+  Priority:    HIGH - User-facing error
+
+Line 674 | Comment - Auto Save
+  Original:   // 自动保存对话记录到缓存
+  Translation: // Auto save chat history to cache
+  Context:     Implementation documentation
+  Priority:    LOW - Developer documentation
+
+Line 680 | Log Message - Send to Report Agent
+  Original:   addLog(`向 Report Agent 发送: ${message.substring(0, 50)}...`)
+  Translation: addLog(`Send to Report Agent: ${message.substring(0, 50)}...`)
+  Context:     Status message
+  Priority:    HIGH - User-facing log
+
+Line 700 | Response Processing - No Response
+  Original:   content: res.data.response || res.data.answer || '无响应',
+  Translation: content: res.data.response || res.data.answer || 'No response',
+  Context:     Fallback text for no response
+  Priority:    MEDIUM - Error handling
+
+Line 703 | Log Message - Agent Replied
+  Original:   addLog('Report Agent 已回复')
+  Translation: addLog('Report Agent replied')
+  Context:     Status message
+  Priority:    HIGH - User-facing log
+
+Line 705 | Error Message
+  Original:   throw new Error(res.error || '请求失败')
+  Translation: throw new Error(res.error || 'Request failed')
+  Context:     Error message
+  Priority:    HIGH - Error notification
+
+Line 711 | Error Message - No Agent Selected
+  Original:   throw new Error('请先选择一个模拟个体')
+  Translation: throw new Error('Please select a simulated individual first')
+  Context:     Error message
+  Priority:    HIGH - User guidance
+
+Line 714 | Log Message - Send to Agent
+  Original:   addLog(`向 ${selectedAgent.value.username} 发送: ${message.substring(0, 50)}...`)
+  Translation: addLog(`Send to ${selectedAgent.value.username}: ${message.substring(0, 50)}...`)
+  Context:     Status message
+  Priority:    HIGH - User-facing log
+
+Line 722 | Message Mapping - Role Labels
+  Original:   .map(msg => `${msg.role === 'user' ? '提问者' : '你'}：${msg.content}`)
+  Translation: .map(msg => `${msg.role === 'user' ? 'Questioner' : 'You'}：${msg.content}`)
+  Context:     Chat history formatting
+  Priority:    MEDIUM - UI display
+
+Line 724 | Prompt Template
+  Original:   prompt = `以下是我们之前的对话：\n${historyContext}\n\n现在我的新问题是：${message}`
+  Translation: prompt = `Here is our previous conversation:\n${historyContext}\n\nMy new question is:\n${message}`
+  Context:     API prompt construction
+  Priority:    MEDIUM - Affects response quality
+
+Line 736 | Comment - Data Path Explanation
+  Original:   // 正确的数据路径: res.data.result.results 是一个对象字典
+  // 格式: {"twitter_0": {...}, "reddit_0": {...}} 或单平台 {"reddit_0": {...}}
+  Translation: // Correct data path: res.data.result.results is an object dictionary
+  // Format: {"twitter_0": {...}, "reddit_0": {...}} or single platform {"reddit_0": {...}}
+  Context:     Data structure documentation
+  Priority:    LOW - Developer documentation
+
+Line 741 | Comment - Convert Dictionary to Array
+  Original:   // 将对象字典转换为数组，优先获取 reddit 平台的回复
+  Translation: // Convert object dictionary to array, prioritize reddit platform responses
+  Context:     Data processing documentation
+  Priority:    LOW - Developer documentation
+
+Line 746 | Comment - Prioritize Platform
+  Original:   // 优先使用 reddit 平台回复，其次 twitter
+  Translation: // Prioritize reddit platform responses, then twitter
+  Context:     Data processing documentation
+  Priority:    LOW - Developer documentation
+
+Line 754 | Comment - Array Format Compatibility
+  Original:   // 兼容数组格式
+  Translation: // Compatible with array format
+  Context:     Legacy format documentation
+  Priority:    LOW - Developer documentation
+
+Line 764 | Log Message - Agent Replied
+  Original:   addLog(`${selectedAgent.value.username} 已回复`)
+  Translation: addLog(`${selectedAgent.value.username} replied`)
+  Context:     Status message
+  Priority:    HIGH - User-facing log
+
+Line 766 | Error Message - No Response
+  Original:   throw new Error('无响应数据')
+  Translation: throw new Error('No response data')
+  Context:     Error message
+  Priority:    HIGH - Error notification
+
+Line 769 | Error Message - Request Failed
+  Original:   throw new Error(res.error || '请求失败')
+  Translation: throw new Error(res.error || 'Request failed')
+  Context:     Error message
+  Priority:    HIGH - Error notification
+
+Line 806 | Log Message - Send Survey
+  Original:   addLog(`发送问卷给 ${selectedAgents.value.size} 个对象...`)
+  Translation: addLog(`Sending survey to ${selectedAgents.value.size} subjects...`)
+  Context:     Status message
+  Priority:    HIGH - User-facing log
+
+Line 820 | Comment - Data Path
+  Original:   // 正确的数据路径: res.data.result.results 是一个对象字典
+  // 格式: {"twitter_0": {...}, "reddit_0": {...}, "twitter_1": {...}, ...}
+  Translation: // Correct data path: res.data.result.results is an object dictionary
+  // Format: {"twitter_0": {...}, "reddit_0": {...}, "twitter_1": {...}, ...}
+  Context:     Data structure documentation
+  Priority:    LOW - Developer documentation
+
+Line 825 | Comment - Convert Dictionary
+  Original:   // 将对象字典转换为数组格式
+  Translation: // Convert object dictionary to array format
+  Context:     Data processing documentation
+  Priority:    LOW - Developer documentation
+
+Line 832 | Comment - Prioritize Platform
+  Original:   // 优先使用 reddit 平台回复，其次 twitter
+  Translation: // Prioritize reddit platform responses, then twitter
+  Context:     Data processing documentation
+  Priority:    LOW - Developer documentation
+
+Line 833 | Default Response Text
+  Original:   let responseContent = '无响应'
+  Translation: let responseContent = 'No response'
+  Context:     Fallback text
+  Priority:    MEDIUM - Error handling
+
+Line 840 | Response Processing
+  Original:   responseContent = agentResult.response || agentResult.answer || '无响应'
+  Translation: responseContent = agentResult.response || agentResult.answer || 'No response'
+  Context:     Fallback text
+  Priority:    MEDIUM - Error handling
+
+Line 843 | Comment - Array Format
+  Original:   // 兼容数组格式
+  Translation: // Compatible with array format
+  Context:     Legacy format documentation
+  Priority:    LOW - Developer documentation
+
+Line 846 | Response Processing
+  Original:   responseContent = matchedResult.response || matchedResult.answer || '无响应'
+  Translation: responseContent = matchedResult.response || matchedResult.answer || 'No response'
+  Context:     Fallback text
+  Priority:    MEDIUM - Error handling
+
+Line 860 | Log Message - Received Responses
+  Original:   addLog(`收到 ${surveyResults.value.length} 条回复`)
+  Translation: addLog(`Received ${surveyResults.value.length} responses`)
+  Context:     Status message
+  Priority:    HIGH - User-facing log
+
+Line 862 | Error Message - Request Failed
+  Original:   throw new Error(res.error || '请求失败')
+  Translation: throw new Error(res.error || 'Request failed')
+  Context:     Error message
+  Priority:    HIGH - Error notification
+
+Line 865 | Error Log - Survey Send Failed
+  Original:   addLog(`问卷发送失败: ${err.message}`)
+  Translation: addLog(`Survey send failed: ${err.message}`)
+  Context:     Error notification
+  Priority:    HIGH - User-facing error
+
+Line 876 | Log Message - Load Report
+  Original:   addLog(`加载报告数据: ${props.reportId}`)
+  Translation: addLog(`Loading report data: ${props.reportId}`)
+  Context:     Status message
+  Priority:    HIGH - User-facing log
+
+Line 885 | Error Log - Load Report Failed
+  Original:   addLog(`加载报告失败: ${err.message}`)
+  Translation: addLog(`Failed to load report: ${err.message}`)
+  Context:     Error notification
+  Priority:    HIGH - User-facing error
+
+Line 907 | Log Message - Report Loaded
+  Original:   addLog('报告数据加载完成')
+  Translation: addLog('Report data loaded')
+  Context:     Status message
+  Priority:    HIGH - User-facing log
+
+Line 910 | Error Log - Load Report Logs Failed
+  Original:   addLog(`加载报告日志失败: ${err.message}`)
+  Translation: addLog(`Failed to load report logs: ${err.message}`)
+  Context:     Error notification
+  Priority:    HIGH - User-facing error
+
+Line 921 | Log Message - Agents Loaded
+  Original:   addLog(`加载了 ${profiles.value.length} 个模拟个体`)
+  Translation: addLog(`Loaded ${profiles.value.length} simulated individuals`)
+  Context:     Status message
+  Priority:    HIGH - User-facing log
+
+Line 924 | Error Log - Load Agents Failed
+  Original:   addLog(`加载模拟个体失败: ${err.message}`)
+  Translation: addLog(`Failed to load simulated individuals: ${err.message}`)
+  Context:     Error notification
+  Priority:    HIGH - User-facing error
+
+Line 938 | Initialization Log
+  Original:   addLog('Step5 深度互动初始化')
+  Translation: addLog('Step5 deep interaction initialization')
+  Context:     Lifecycle message
+  Priority:    HIGH - User-facing log
+
+================================================================================
+CSS SECTION - COMMENTS
+================================================================================
+
+Line 983 | Comment - Style Reference
+  Original:   /* Left Panel - Report Style (与 Step4Report.vue 完全一致) */
+  Translation: /* Left Panel - Report Style (completely same as Step4Report.vue) */
+  Context:     Code reference documentation
+  Priority:    LOW - Developer documentation
+
+Line 2031 | Comment - CSS Counter
+  Original:   /* 修复有序列表编号 - 使用 CSS 计数器让多个 ol 连续编号 */
+  Translation: /* Fix ordered list numbering - use CSS counter for continuous numbering across multiple ol */
+  Context:     Implementation documentation
+  Priority:    LOW - Developer documentation
+
+Line 2057 | Comment - List Styling
+  Original:   /* 无序列表样式 */
+  Translation: /* Unordered list styling */
+  Context:     Section marker
+  Priority:    LOW - Developer documentation
+
+Line 2536 | Comment - Quote Styling
+  Original:   /* 聊天/问卷区域的引用样式 */
+  Translation: /* Quote styling in chat/survey area */
+  Context:     Section marker
+  Priority:    LOW - Developer documentation
+
+================================================================================
+SUMMARY STATISTICS
+================================================================================
+
+Total Chinese Strings Found: 90 lines
+Total Unique Chinese Terms: ~70 terms
+
+Priority Breakdown:
+  - HIGH (User-facing text): 28 items
+  - MEDIUM (Feature descriptions/defaults): 12 items
+  - LOW (Developer comments/documentation): 50 items
+
+String Categories:
+  1. UI Labels & Buttons: 18
+  2. Placeholders & Defaults: 9
+  3. Tool Names & Descriptions: 8
+  4. Status Log Messages: 20
+  5. Error Messages: 12
+  6. Data Processing Comments: 15
+  7. Style/Implementation Comments: 8
+
+================================================================================
+KEY TRANSLATION NOTES
+================================================================================
+
+Tool Names (Keep Prefix):
+- InsightForge → "InsightForge Deep Attribution"
+- PanoramaSearch → "PanoramaSearch Panoramic Tracking"
+- QuickSearch → "QuickSearch Quick Retrieval"
+- InterviewSubAgent → "InterviewSubAgent Virtual Interview"
+
+Agent Roles:
+- "未知职业" → "Unknown profession" (fallback for missing profession)
+
+Platform References:
+- "twitter" and "reddit" should stay as is (technical identifiers)
+- Code always uses lowercase english names in backend
+
+Conditional Text:
+- Dynamic text in templates uses conditional operators
+- Ensure both branches are translated (if X then Y else Z)
+
+Log Messages:
+All addLog() calls should be translated as they appear to the user.
+
+Chat Interface:
+- "提问者" (questioner) vs "你" (you) for chat history formatting
+- Maintain distinction in translations
+
+Response Defaults:
+- "无响应" (no response) - appears multiple times for error fallbacks
+- Consistent translation important for user experience
+
+================================================================================
+RECOMMENDED TRANSLATION WORKFLOW
+================================================================================
+
+Phase 1: Critical UI Elements (IMMEDIATE)
+- Lines 61, 101, 113, 119, 144: Tab labels and main headers
+- Lines 295, 361: Input placeholders
+- Lines 320, 356, 379: Section titles
+- Priority: HIGH - User experience
+- Time: 10 minutes
+
+Phase 2: Interactive Elements (HIGH PRIORITY)
+- Lines 348, 350: Select All / Clear buttons
+- Line 372: Send Survey button
+- Line 295: Main input field
+- Priority: HIGH - User actions
+- Time: 5 minutes
+
+Phase 3: Tool Descriptions (MEDIUM PRIORITY)
+- Lines 158, 175-212: Tool cards and descriptions
+- Priority: MEDIUM - Feature documentation
+- Time: 15 minutes
+
+Phase 4: Status & Error Messages (HIGH PRIORITY)
+- All addLog() and error message calls
+- Lines 538, 665, 668, 680, 703-705, 711, 714, etc.
+- Priority: HIGH - User feedback
+- Time: 20 minutes
+
+Phase 5: Fallback Text & Defaults (MEDIUM PRIORITY)
+- Lines 129, 227, 338, 392: Unknown profession fallbacks
+- Lines 700, 833, 840, 846: No response fallbacks
+- Priority: MEDIUM
+- Time: 5 minutes
+
+Phase 6: Comments & Documentation (LOW PRIORITY)
+- Lines 437-612, 724, 736-841, 983, 2031, 2057, 2536
+- Priority: LOW - Internal documentation
+- Time: 15 minutes
+
+Total Time Estimate: ~70 minutes
+
+================================================================================
+DEPENDENCIES & NOTES
+================================================================================
+
+Same Components Used:
+- Markdown rendering (same as Step4Report)
+- Chat interface (similar to Step3Simulation logs)
+
+API Integration:
+- Sends messages to Report Agent and simulated agents
+- Receives responses from backend API
+- Error handling consistent with Step3/Step4
+
+No Critical Regex Patterns:
+Unlike Step4Report, this component doesn't have backend-dependent regex patterns.
+All translations are for UI/display purposes only.
+
+Tool Names:
+The tool names appear to be translatable display text.
+The actual tool identifiers in the backend should remain as English names.
+
+================================================================================

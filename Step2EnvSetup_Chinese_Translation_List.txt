@@ -1,0 +1,269 @@
+COMPREHENSIVE CHINESE-TO-ENGLISH TRANSLATION LIST FOR Step2EnvSetup.vue
+
+FILE PATH: /Users/rahulgk/Documents/code/MiroFish/frontend/src/components/Step2EnvSetup.vue
+FILE SIZE: 82 KB
+
+================================================================================
+ORGANIZED BY SECTION AND CONTEXT
+================================================================================
+
+TEMPLATE SECTION (UI Text - Visual Elements)
+================================================================================
+
+STEP TITLES & HEADERS:
+Line 4      | 模拟实例              | Simulation Instance                           | Comment before step 1
+Line 9      | 模拟实例初始化        | Simulation Instance Initialization             | Step 1 main title
+Line 44     | 生成 Agent 人设       | Generate Agent Personas                         | Comment before step 2
+Line 49     | 生成 Agent 人设       | Generate Agent Personas                         | Step 2 main title
+Line 116    | 生成双平台模拟配置    | Generate Dual-Platform Simulation Configuration | Comment before step 3
+Line 121    | 生成双平台模拟配置    | Generate Dual-Platform Simulation Configuration | Step 3 main title
+Line 349    | 初始激活编排          | Initial Activation Orchestration                | Comment before step 4
+Line 354    | 初始激活编排          | Initial Activation Orchestration                | Step 4 main title
+Line 426    | 准备完成              | Preparation Complete                            | Step 5 main title
+
+STATUS BADGES:
+Line 12     | 已完成                | Completed                                       | Success badge
+Line 13     | 初始化                | Initializing                                    | Processing badge
+Line 52     | 已完成                | Completed                                       | Success badge
+Line 54     | 等待                  | Pending                                         | Pending badge
+Line 125    | 生成中                | Generating                                      | Processing badge
+Line 358    | 编排中                | Orchestrating                                   | Processing badge
+
+DESCRIPTION & EXPLANATION TEXT:
+Line 20     | 新建simulation实例，拉取模拟世界参数模版 | Create new simulation instance, fetch simulated world parameter template | Step 1 description
+Line 61     | 结合上下文，自动调用工具从知识图谱梳理实体与关系，初始化模拟个体，并基于现实种子赋予他们独特的行为与记忆 | Integrate context, automatically invoke tools to extract entities and relationships from the knowledge graph, initialize simulated individuals, and endow them with unique behaviors and memories based on reality seeds | Step 2 description - complex technical text
+Line 133    | LLM 根据模拟需求与现实种子，智能设置世界时间流速、推荐算法、每个个体的活跃时间段、发言频率、事件触发等参数 | LLM intelligently configures world time flow speed, recommendation algorithms, each individual's active time periods, speaking frequency, event triggers, and other parameters based on simulation requirements and reality seeds | Step 3 description
+Line 366    | 基于叙事方向，自动生成初始激活事件与热点话题，引导模拟世界的初始状态 | Based on narrative direction, automatically generate initial activation events and trending topics to guide the initial state of the simulated world | Step 4 description
+Line 436    | 模拟环境已准备完成，可以开始运行模拟 | Simulation environment is ready; you can start running the simulation | Step 5 description
+
+STATISTICS & METRICS LABELS:
+Line 68     | 当前Agent数           | Current Agent Count                             | Stats card 1
+Line 72     | 预期Agent总数         | Expected Total Agent Count                      | Stats card 2
+Line 76     | 现实种子当前关联话题数 | Current Reality Seed Associated Topics Count    | Stats card 3
+
+PROFILES SECTION:
+Line 83     | 已生成的 Agent 人设   | Generated Agent Personas                        | Preview header title
+Line 97     | 未知职业              | Unknown Profession                              | Fallback for missing profession
+Line 99     | 暂无简介              | No Bio Available                                | Fallback for missing bio
+
+TIME CONFIGURATION SECTION:
+Line 138    | 时间配置              | Time Configuration                              | Config block header
+Line 142    | 模拟时长              | Simulation Duration                             | Config item label
+Line 143    | 小时                  | Hours                                           | Unit suffix
+Line 146    | 每轮时长              | Duration Per Round                              | Config item label
+Line 147    | 分钟                  | Minutes                                         | Unit suffix
+Line 150    | 总轮次                | Total Rounds                                    | Config item label
+Line 151    | 轮                    | Rounds                                          | Unit suffix
+Line 154    | 每小时活跃            | Active Per Hour                                 | Config item label
+
+TIME PERIOD LABELS:
+Line 160    | 高峰时段              | Peak Hours                                      | Period type
+Line 165    | 工作时段              | Work Hours                                      | Period type
+Line 170    | 早间时段              | Morning Hours                                   | Period type
+Line 175    | 低谷时段              | Off-Peak Hours                                  | Period type
+
+AGENT CONFIGURATION SECTION:
+Line 182    | Agent 配置            | Agent Configuration                             | Config block comment
+Line 185    | Agent 配置            | Agent Configuration                             | Config block header
+Line 194    | 卡片头部              | Card Header                                     | Code comment for structure
+Line 206    | 活跃时间轴            | Active Timeline                                 | Code comment for section
+Line 208    | 活跃时段              | Active Time Period                              | Timeline label
+
+BEHAVIORAL PARAMETERS SECTION:
+Line 227    | 行为参数              | Behavioral Parameters                           | Code comment for section
+Line 231    | 发帖/时               | Posts/Hour                                      | Parameter label
+Line 235    | 评论/时               | Comments/Hour                                   | Parameter label
+Line 239    | 响应延迟              | Response Delay                                  | Parameter label
+Line 245    | 活跃度                | Activity Level                                  | Parameter label
+Line 252    | 情感倾向              | Sentiment Bias                                  | Parameter label
+Line 258    | 影响力                | Influence Weight                                | Parameter label
+
+RECOMMENDATION ALGORITHM CONFIGURATION:
+Line 267    | 平台配置              | Platform Configuration                          | Config block comment
+Line 270    | 推荐算法配置          | Recommendation Algorithm Configuration          | Config block header
+Line 275    | 平台 1：广场 / 信息流 | Platform 1: Square / Information Feed           | Platform 1 name
+Line 279    | 时效权重              | Recency Weight                                  | Parameter label
+Line 283    | 热度权重              | Popularity Weight                               | Parameter label
+Line 287    | 相关性权重            | Relevance Weight                                | Parameter label
+Line 291    | 病毒阈值              | Viral Threshold                                 | Parameter label
+Line 295    | 回音室强度            | Echo Chamber Strength                           | Parameter label
+Line 302    | 平台 2：话题 / 社区   | Platform 2: Topics / Community                  | Platform 2 name
+(Repeat of above parameters for Platform 2)
+
+LLM CONFIGURATION:
+Line 333    | LLM 配置推理          | LLM Configuration Reasoning                     | Config block header
+
+ORCHESTRATION SECTION:
+Line 372    | 叙事引导方向          | Narrative Guidance Direction                    | Box label (with icon)
+Line 383    | 叙事引导方向          | Narrative Guidance Direction                    | Icon label
+Line 390    | 初始热点话题          | Initial Trending Topics                         | Section label
+Line 400    | 初始激活序列          | Initial Activation Sequence                     | Section label (with count)
+
+SIMULATION ROUNDS CONFIGURATION:
+Line 442    | 模拟轮数设定          | Simulation Rounds Setting                       | Section title
+Line 443    | MiroFish 自动规划推演现实 | MiroFish automatically plans to simulate reality | Description phrase
+Line 443    | 小时，每轮代表现实    | hours; each round represents reality in         | Description phrase
+Line 443    | 分钟时间流逝          | minutes of time flow                            | Description phrase
+Line 448    | 自定义                | Customize                                       | Switch toggle label
+Line 457    | 轮                    | Rounds                                          | Unit suffix
+Line 460    | 若Agent规模为100：预计耗时约 | If Agent scale is 100: estimated time is approximately | Meta info text
+Line 460    | 分钟                  | minutes                                         | Unit suffix
+Line 481    | 推荐                  | Recommended                                     | Mark label on slider
+Line 491    | 轮                    | Rounds                                          | Unit suffix
+Line 500    | 若Agent规模为100：预计耗时 | If Agent scale is 100: estimated time is | Duration badge text
+Line 500    | 分钟                  | minutes                                         | Unit suffix
+Line 504    | 若首次运行，强烈建议切换至'自定义模式'减少模拟轮数，以便快速预览效果并降低报错风险 ➝ | If running for the first time, we strongly recommend switching to 'Custom Mode' to reduce simulation rounds for quick effect preview and lower error risk | Highlight tip/suggestion text
+
+BUTTON TEXT:
+Line 517    | ← 返回图谱构建        | ← Return to Graph Construction                  | Secondary button text
+Line 524    | 开始双世界并行模拟 ➝  | Start Dual-World Parallel Simulation ➝          | Primary button text
+
+PROFILE MODAL SECTION:
+Line 550    | 事件外显年龄          | Event-Facing Age                                | Modal info label
+Line 551    | 岁                    | years old                                       | Unit suffix
+Line 554    | 事件外显性别          | Event-Facing Gender                             | Modal info label
+Line 555    | 男                    | Male                                            | Gender enum value
+Line 555    | 女                    | Female                                          | Gender enum value
+Line 555    | 其他                  | Other                                           | Gender enum value
+Line 558    | 国家/地区             | Country/Region                                  | Modal info label
+Line 562    | 事件外显MBTI          | Event-Facing MBTI                               | Modal info label
+Line 569    | 人设简介              | Persona Introduction                            | Section label
+Line 570    | 暂无简介              | No Introduction Available                       | Fallback text
+Line 575    | 现实种子关联话题      | Reality Seed Associated Topics                  | Section label
+Line 587    | 详细人设背景          | Detailed Persona Background                     | Section label
+
+PERSONA DIMENSIONS:
+Line 592    | 事件全景经历          | Comprehensive Event Experience                  | Dimension card 1 title
+Line 593    | 在此事件中的完整行为轨迹 | Complete behavioral trajectory in this event   | Dimension card 1 description
+Line 596    | 行为模式侧写          | Behavioral Pattern Profile                      | Dimension card 2 title
+Line 597    | 经验总结与行事风格偏好 | Experience summary and action style preferences | Dimension card 2 description
+Line 600    | 独特记忆印记          | Unique Memory Imprints                          | Dimension card 3 title
+Line 601    | 基于现实种子形成的记忆 | Memories formed based on reality seeds          | Dimension card 3 description
+Line 604    | 社会关系网络          | Social Relationship Network                     | Dimension card 4 title
+Line 605    | 个体链接与交互图谱    | Individual links and interaction graphs         | Dimension card 4 description
+
+SYSTEM LOG SECTION:
+Line 621    | SYSTEM DASHBOARD      | SYSTEM DASHBOARD                                | Log header title (already English - no change needed)
+
+================================================================================
+SCRIPT SECTION (Code Comments & Log Messages)
+================================================================================
+
+STATE & PHASE COMMENTS:
+Line 654    | 初始化                | Initialization                                  | Phase 0 description
+
+STAGE NAMES:
+Line 677    | 生成Agent人设         | Generating Agent Personas                       | Stage name
+Line 679    | 生成模拟配置          | Generating Simulation Config                    | Stage name
+
+INITIALIZATION & SETUP LOG MESSAGES:
+Line 683    | 开始生成双平台模拟配置... | Starting to generate dual-platform simulation config... | Log message
+Line 771    | 错误：缺少 simulationId | Error: Missing simulationId                     | Error message
+Line 778    | 模拟实例已创建: ${props.simulationId} | Simulation instance created: ${props.simulationId} | Log message
+Line 779    | 正在准备模拟环境...   | Preparing simulation environment...             | Log message
+Line 791    | 检测到已有完成的准备工作，直接使用 | Detected existing completed preparation; using directly | Log message
+Line 1071   | Step2 环境搭建初始化  | Step2 Environment setup initialization          | Initialization log
+
+TASK & PREPARATION LOG MESSAGES:
+Line 797    | 准备任务已启动        | Prepare task started                            | Log message
+Line 809    | 开始轮询准备进度...   | Starting to poll preparation progress...        | Log message
+Line 815    | 准备失败: ${res.error || '未知错误'} | Prepare failed: ${res.error || 'Unknown error'} | Error log
+Line 819    | 准备异常: ${err.message} | Prepare exception: ${err.message}               | Exception log
+Line 893    | ✓ 准备工作已完成      | ✓ Preparation complete                         | Success log
+Line 898    | ✗ 准备失败: ${data.error || '未知错误'} | ✗ Prepare failed: ${data.error || 'Unknown error'} | Failure log
+
+ENTITY & DATA MESSAGES:
+Line 798    | └─ Task ID: ${res.data.task_id} | └─ Task ID: ${res.data.task_id}            | Hierarchy log
+Line 803    | 从Zep图谱读取到 ${res.data.expected_entities_count} 个实体 | Read ${res.data.expected_entities_count} entities from Zep graph | Data fetch log
+Line 805    | └─ 实体类型: ${res.data.entity_types.join(', ')} | └─ Entity types: ${res.data.entity_types.join(', ')} | Entity type log
+Line 904    | 轮询状态失败:         | Poll status failed:                             | Console warn message
+
+AGENT PERSONA GENERATION MESSAGES:
+Line 937    | 开始生成Agent人设...  | Starting to generate Agent personas...          | Log message
+Line 939    | → Agent人设 ${currentCount}/${total}: ${profileName} (${latestProfile?.profession || '未知职业'}) | → Agent persona ${currentCount}/${total}: ${profileName} (${latestProfile?.profession || 'Unknown profession'}) | Progress log
+Line 943    | ✓ 全部 ${currentCount} 个Agent人设生成完成 | ✓ All ${currentCount} Agent personas generated | Completion log
+Line 948    | 获取 Profiles 失败:   | Failed to fetch Profiles:                       | Console warn message
+
+CONFIGURATION GENERATION MESSAGES:
+Line 977    | 正在生成Agent人设配置... | Generating Agent persona configuration...       | Log message
+Line 979    | 正在调用LLM生成模拟配置参数... | Calling LLM to generate simulation config parameters... | Log message
+Line 986    | ✓ 模拟配置生成完成    | ✓ Simulation config generated                  | Success log
+
+CONFIGURATION SUMMARY MESSAGES:
+Line 990    | ├─ Agent数量: ${data.summary.total_agents}个 | ├─ Agent count: ${data.summary.total_agents}  | Summary line
+Line 991    | ├─ 模拟时长: ${data.summary.simulation_hours}小时 | ├─ Simulation duration: ${data.summary.simulation_hours} hours | Summary line
+Line 992    | ├─ 初始帖子: ${data.summary.initial_posts_count}条 | ├─ Initial posts: ${data.summary.initial_posts_count}  | Summary line
+Line 993    | ├─ 热点话题: ${data.summary.hot_topics_count}个 | ├─ Trending topics: ${data.summary.hot_topics_count}  | Summary line
+Line 994    | └─ 平台配置: Twitter ${data.summary.has_twitter_config ? '✓' : '✗'}, Reddit ${data.summary.has_reddit_config ? '✓' : '✗'} | └─ Platform config: Twitter ${data.summary.has_twitter_config ? '✓' : '✗'}, Reddit ${data.summary.has_reddit_config ? '✓' : '✗'} | Summary line
+
+TIME CONFIGURATION LOG:
+Line 1000   | 时间配置: 每轮${tc.minutes_per_round}分钟, 共${Math.floor((tc.total_simulation_hours * 60) / tc.minutes_per_round)}轮 | Time config: ${tc.minutes_per_round} minutes per round, total ${Math.floor((tc.total_simulation_hours * 60) / tc.minutes_per_round)} rounds | Configuration log
+
+NARRATIVE DIRECTION LOG:
+Line 1006   | 叙事方向: ${narrative.length > 50 ? narrative.substring(0, 50) + '...' : narrative} | Narrative direction: ${narrative.length > 50 ? narrative.substring(0, 50) + '...' : narrative} | Event config log
+
+ENVIRONMENT SETUP COMPLETION:
+Line 1011   | ✓ 环境搭建完成，可以开始模拟 | ✓ Environment setup complete, ready to start simulation | Completion log
+Line 1043   | ✓ 环境搭建完成，可以开始模拟 | ✓ Environment setup complete, ready to start simulation | Completion log (duplicate)
+
+DATA LOADING MESSAGES:
+Line 1022   | 正在加载已有配置数据... | Loading existing config data...                 | Loading message
+Line 1026   | 已加载 ${profiles.value.length} 个Agent人设 | Loaded ${profiles.value.length} Agent personas  | Load result
+Line 1034   | ✓ 模拟配置加载成功    | ✓ Simulation config loaded successfully        | Success log
+Line 1038   | ├─ Agent数量: ${res.data.summary.total_agents}个 | ├─ Agent count: ${res.data.summary.total_agents}  | Summary line
+Line 1039   | ├─ 模拟时长: ${res.data.summary.simulation_hours}小时 | ├─ Simulation duration: ${res.data.summary.simulation_hours} hours | Summary line
+Line 1040   | └─ 初始帖子: ${res.data.summary.initial_posts_count}条 | └─ Initial posts: ${res.data.summary.initial_posts_count}  | Summary line
+
+CONFIG LOADING MESSAGES:
+Line 1048   | 配置生成中，开始轮询等待... | Config generating, starting to poll...         | Polling message
+Line 1053   | 加载配置失败: ${err.message} | Failed to load config: ${err.message}           | Error message
+
+SIMULATION START MESSAGES:
+Line 748    | 开始模拟，自定义轮数: ${customMaxRounds.value} 轮 | Starting simulation with custom rounds: ${customMaxRounds.value} rounds | Custom mode log
+Line 751    | 开始模拟，使用自动配置轮数: ${autoGeneratedRounds.value} 轮 | Starting simulation with auto-configured rounds: ${autoGeneratedRounds.value} rounds | Auto mode log
+
+================================================================================
+STYLE SECTION (CSS Comments)
+================================================================================
+
+Line 1905   | 基本信息网格          | Basic Information Grid                          | CSS comment for modal-info-grid
+Line 1941   | 模块区域              | Module Area                                     | CSS comment for modal-section
+Line 1967   | 话题标签              | Topic Tags                                      | CSS comment for topics-grid
+Line 1989   | 详细人设              | Detailed Persona                                | CSS comment for persona-dimensions
+Line 2275   | 模拟轮数配置样式      | Simulation Rounds Configuration Style           | CSS comment for rounds-config-section
+
+================================================================================
+SUMMARY & STATISTICS
+================================================================================
+
+Total Chinese text items identified: 106
+
+Breakdown by category:
+  - UI/Template text: 84 items
+  - Script/Code comments: 17 items
+  - Log messages: 26 items (subset of script)
+  - CSS comments: 5 items
+
+Breakdown by type:
+  - Step titles and headers: 5 items
+  - Status badges: 6 items
+  - Configuration labels: 25+ items
+  - Parameter labels: 15+ items
+  - Fallback/default texts: 4 items
+  - Button text: 2 items
+  - Modal labels and descriptions: 12 items
+  - Time period labels: 4 items
+  - Dimension/section labels: 12 items
+  - Log/console messages: 26 items
+  - CSS comments: 5 items
+  - Other UI text: 15+ items
+
+Translation notes:
+  - "Agent人设" appears frequently - translated as "Agent Personas" (refers to AI agent character profiles)
+  - "现实种子" = "Reality seed" (refers to real-world data/context used as input)
+  - "叙事方向" = "Narrative direction" (refers to story/event guidance)
+  - Complex technical descriptions use domain-specific terminology
+  - Log messages include template variables (${}) which should be preserved
+  - Unit suffixes like "小时" (hours), "分钟" (minutes), "轮" (rounds) are translated separately as they appear alone
+
+================================================================================

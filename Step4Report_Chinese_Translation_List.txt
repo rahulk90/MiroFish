@@ -1,0 +1,1181 @@
+================================================================================
+STEP4REPORT.VUE - COMPREHENSIVE CHINESE TO ENGLISH TRANSLATION LIST
+================================================================================
+File: /Users/rahulgk/Documents/code/MiroFish/frontend/src/components/Step4Report.vue
+Total Size: 145 KB (LARGEST FILE)
+Status: Complete Analysis
+
+================================================================================
+TEMPLATE SECTION - UI LABELS & USER-FACING TEXT
+================================================================================
+
+Line 61 | Loading Text
+  Original:   <span class="loading-text">正在生成{{ section.title }}...</span>
+  Translation: <span class="loading-text">Generating {{ section.title }}...</span>
+  Context:     Show loading state while report section is being generated
+  Priority:    HIGH - User-facing feedback
+
+Line 130 | Comment - Button Context
+  Original:   <!-- Next Step Button - 在完成后显示 -->
+  Translation: <!-- Next Step Button - Display after completion -->
+  Context:     Button visibility condition documentation
+
+Line 132 | Next Step Button Text
+  Original:   <span>进入深度互动</span>
+  Translation: <span>Enter Deep Interaction</span>
+  Context:     Navigation button for Step 5 (Interaction phase)
+  Priority:    HIGH - Primary action button
+
+Line 197 | Comment - Report Generation Status
+  Original:   <!-- Section Content Generated (内容生成完成，但整个章节可能还没完成) -->
+  Translation: <!-- Section Content Generated (content complete, but section may still be processing) -->
+  Context:     Status indicator comment for content state
+
+Line 208 | Comment - Report Completion Status
+  Original:   <!-- Section Complete (章节生成完成) -->
+  Translation: <!-- Section Complete (section generation complete) -->
+  Context:     Status indicator comment for completion state
+
+Line 318 | Comment - Final Answer Hint
+  Original:   <!-- 当是最终答案时，显示特殊提示 -->
+  Translation: <!-- Display special hint when it's the final answer -->
+  Context:     Conditional rendering logic comment
+
+================================================================================
+JAVASCRIPT/SCRIPT SECTION - COMMENTS & LOGGING
+================================================================================
+
+SECTION: UI INTERACTION METHODS
+================================================================================
+
+Line 434 | Comment - Save Button Position
+  Original:   // 保存按钮相对于视口的位置
+  Translation: // Save button position relative to viewport
+  Context:     Position tracking for scroll animation
+  Priority:    LOW - Developer documentation
+
+Line 439 | Comment - Toggle State
+  Original:   // 切换状态
+  Translation: // Toggle state
+  Context:     State management documentation
+
+Line 442 | Comment - Scroll Adjustment
+  Original:   // 等待 DOM 更新后，调整滚动位置以保持按钮在相同位置
+  Translation: // After DOM update, adjust scroll position to keep button at same position
+  Context:     UI/UX smooth scroll behavior
+
+Line 449 | Comment - Scroll Position
+  Original:   // 调整滚动位置
+  Translation: // Adjust scroll position
+  Context:     Implementation comment
+
+Line 467 | Comment - Collapse Restriction
+  Original:   // 只有已完成的章节才能折叠
+  Translation: // Only completed sections can be collapsed
+  Context:     Conditional logic comment
+
+================================================================================
+SECTION: ACTION TYPE MAPPING WITH COMMENTS
+================================================================================
+
+Line 500 | Icon Description - Lightbulb
+  Original:   icon: 'lightbulb' // 灯泡图标 - 代表洞察
+  Translation: icon: 'lightbulb' // Lightbulb icon - represents insight
+  Context:     Icon semantic mapping for action types
+  Priority:    LOW - Internal documentation
+
+Line 505 | Icon Description - Globe
+  Original:   icon: 'globe' // 地球图标 - 代表全景搜索
+  Translation: icon: 'globe' // Globe icon - represents panoramic search
+  Context:     Icon semantic mapping
+
+Line 510 | Icon Description - Users
+  Original:   icon: 'users' // 用户图标 - 代表对话
+  Translation: icon: 'users' // Users icon - represents dialogue
+  Context:     Icon semantic mapping
+
+Line 515 | Icon Description - Zap
+  Original:   icon: 'zap' // 闪电图标 - 代表快速
+  Translation: icon: 'zap' // Lightning icon - represents speed
+  Context:     Icon semantic mapping
+
+Line 520 | Icon Description - Chart
+  Original:   icon: 'chart' // 图表图标 - 代表统计
+  Translation: icon: 'chart' // Chart icon - represents statistics
+  Context:     Icon semantic mapping
+
+Line 525 | Icon Description - Database
+  Original:   icon: 'database' // 数据库图标 - 代表实体
+  Translation: icon: 'database' // Database icon - represents entities
+  Context:     Icon semantic mapping
+
+================================================================================
+SECTION: ANALYSIS SECTION PARSING FUNCTIONS
+================================================================================
+
+Line 554 | Comment - Extract Query
+  Original:   // 提取分析问题
+  Translation: // Extract analysis question
+  Context:     Data extraction from report content
+
+Line 555 | Regex Pattern - Chinese Label
+  Original:   const queryMatch = text.match(/分析问题:\s*(.+?)(?:\n|$)/)
+  Translation: const queryMatch = text.match(/Analysis Question:\s*(.+?)(?:\n|$)/)
+  Context:     Pattern matching for report content - AFFECTS REPORT PARSING!
+  Priority:    CRITICAL - Changes backend compatibility
+
+Line 558 | Comment - Extract Scenario
+  Original:   // 提取预测场景
+  Translation: // Extract prediction scenario
+  Context:     Data extraction documentation
+
+Line 559 | Regex Pattern - Chinese Label
+  Original:   const reqMatch = text.match(/预测场景:\s*(.+?)(?:\n|$)/)
+  Translation: const reqMatch = text.match(/Prediction Scenario:\s*(.+?)(?:\n|$)/)
+  Context:     Pattern matching - AFFECTS REPORT PARSING!
+  Priority:    CRITICAL
+
+Line 562 | Comment - Extract Statistics
+  Original:   // 提取统计数据 - 匹配"相关预测事实: X条"格式
+  Translation: // Extract statistics - matches "Related Prediction Facts: X items" format
+  Context:     Data extraction with specific format documentation
+
+Line 563 | Regex Pattern - Chinese Label
+  Original:   const factMatch = text.match(/相关预测事实:\s*(\d+)/)
+  Translation: const factMatch = text.match(/Related Prediction Facts:\s*(\d+)/)
+  Context:     Pattern matching - AFFECTS REPORT PARSING!
+  Priority:    CRITICAL
+
+Line 564 | Regex Pattern - Chinese Label
+  Original:   const entityMatch = text.match(/涉及实体:\s*(\d+)/)
+  Translation: const entityMatch = text.match(/Involved Entities:\s*(\d+)/)
+  Context:     Pattern matching - AFFECTS REPORT PARSING!
+  Priority:    CRITICAL
+
+Line 565 | Regex Pattern - Chinese Label
+  Original:   const relMatch = text.match(/关系链:\s*(\d+)/)
+  Translation: const relMatch = text.match(/Relationship Chain:\s*(\d+)/)
+  Context:     Pattern matching - AFFECTS REPORT PARSING!
+  Priority:    CRITICAL
+
+Line 570 | Comment - Extract Sub Questions
+  Original:   // 提取子问题 - 完整提取，不限制数量
+  Translation: // Extract sub-questions - complete extraction, no limit
+  Context:     Data extraction documentation
+
+Line 571 | Regex Pattern - Chinese Section Header
+  Original:   const subQSection = text.match(/### 分析的子问题\n([\s\S]*?)(?=\n###|$)/)
+  Translation: const subQSection = text.match(/### Analysis Sub-Questions\n([\s\S]*?)(?=\n###|$)/)
+  Context:     Section extraction - AFFECTS REPORT PARSING!
+  Priority:    CRITICAL
+
+Line 577 | Comment - Extract Key Facts
+  Original:   // 提取关键事实 - 完整提取，不限制数量
+  Translation: // Extract key facts - complete extraction, no limit
+  Context:     Data extraction documentation
+
+Line 578 | Regex Pattern - Chinese Section Header
+  Original:   const factsSection = text.match(/### 【关键事实】[\s\S]*?\n([\s\S]*?)(?=\n###|$)/)
+  Translation: const factsSection = text.match(/### 【Key Facts】[\s\S]*?\n([\s\S]*?)(?=\n###|$)/)
+  Context:     Section extraction - AFFECTS REPORT PARSING!
+  Priority:    CRITICAL
+
+Line 587 | Comment - Extract Core Entities
+  Original:   // 提取核心实体 - 完整提取，包含摘要和相关事实数
+  Translation: // Extract core entities - complete extraction, including summary and related fact count
+  Context:     Data extraction documentation
+
+Line 588 | Regex Pattern - Chinese Section Header
+  Original:   const entitySection = text.match(/### 【核心实体】\n([\s\S]*?)(?=\n###|$)/)
+  Translation: const entitySection = text.match(/### 【Core Entities】\n([\s\S]*?)(?=\n###|$)/)
+  Context:     Section extraction - AFFECTS REPORT PARSING!
+  Priority:    CRITICAL
+
+Line 591 | Comment - Split Entity Blocks
+  Original:   // 按 "- **" 分割实体块
+  Translation: // Split entity blocks by "- **"
+  Context:     Data parsing documentation
+
+Line 595 | Regex Pattern - Chinese Label
+  Original:   const summaryMatch = block.match(/摘要:\s*"?(.+?)"?(?:\n|$)/)
+  Translation: const summaryMatch = block.match(/Summary:\s*"?(.+?)"?(?:\n|$)/)
+  Context:     Pattern matching - AFFECTS REPORT PARSING!
+  Priority:    CRITICAL
+
+Line 596 | Regex Pattern - Chinese Label
+  Original:   const relatedMatch = block.match(/相关事实:\s*(\d+)/)
+  Translation: const relatedMatch = block.match(/Related Facts:\s*(\d+)/)
+  Context:     Pattern matching - AFFECTS REPORT PARSING!
+  Priority:    CRITICAL
+
+Line 606 | Comment - Extract Relationship Chain
+  Original:   // 提取关系链 - 完整提取，不限制数量
+  Translation: // Extract relationship chain - complete extraction, no limit
+  Context:     Data extraction documentation
+
+Line 607 | Regex Pattern - Chinese Section Header
+  Original:   const relSection = text.match(/### 【关系链】\n([\s\S]*?)(?=\n###|$)/)
+  Translation: const relSection = text.match(/### 【Relationship Chain】\n([\s\S]*?)(?=\n###|$)/)
+  Context:     Section extraction - AFFECTS REPORT PARSING!
+  Priority:    CRITICAL
+
+================================================================================
+SECTION: MEMORY SECTION PARSING FUNCTIONS
+================================================================================
+
+Line 635 | Comment - Extract Query
+  Original:   // 提取查询
+  Translation: // Extract query
+  Context:     Data extraction documentation
+
+Line 636 | Regex Pattern - Chinese Label
+  Original:   const queryMatch = text.match(/查询:\s*(.+?)(?:\n|$)/)
+  Translation: const queryMatch = text.match(/Query:\s*(.+?)(?:\n|$)/)
+  Context:     Pattern matching - AFFECTS REPORT PARSING!
+  Priority:    CRITICAL
+
+Line 639 | Comment - Extract Statistics
+  Original:   // 提取统计数据
+  Translation: // Extract statistics
+  Context:     Data extraction documentation
+
+Line 640 | Regex Pattern - Chinese Label
+  Original:   const nodesMatch = text.match(/总节点数:\s*(\d+)/)
+  Translation: const nodesMatch = text.match(/Total Nodes:\s*(\d+)/)
+  Context:     Pattern matching - AFFECTS REPORT PARSING!
+  Priority:    CRITICAL
+
+Line 641 | Regex Pattern - Chinese Label
+  Original:   const edgesMatch = text.match(/总边数:\s*(\d+)/)
+  Translation: const edgesMatch = text.match(/Total Edges:\s*(\d+)/)
+  Context:     Pattern matching - AFFECTS REPORT PARSING!
+  Priority:    CRITICAL
+
+Line 642 | Regex Pattern - Chinese Label
+  Original:   const activeMatch = text.match(/当前有效事实:\s*(\d+)/)
+  Translation: const activeMatch = text.match(/Current Valid Facts:\s*(\d+)/)
+  Context:     Pattern matching - AFFECTS REPORT PARSING!
+  Priority:    CRITICAL
+
+Line 643 | Regex Pattern - Chinese Label (Special)
+  Original:   const histMatch = text.match(/历史\/过期事实:\s*(\d+)/)
+  Translation: const histMatch = text.match(/Historical\/Expired Facts:\s*(\d+)/)
+  Context:     Pattern matching with slash - AFFECTS REPORT PARSING!
+  Priority:    CRITICAL
+
+Line 649 | Comment - Extract Active Facts
+  Original:   // 提取当前有效事实 - 完整提取，不限制数量
+  Translation: // Extract current valid facts - complete extraction, no limit
+  Context:     Data extraction documentation
+
+Line 650 | Regex Pattern - Chinese Section Header
+  Original:   const activeSection = text.match(/### 【当前有效事实】[\s\S]*?\n([\s\S]*?)(?=\n###|$)/)
+  Translation: const activeSection = text.match(/### 【Current Valid Facts】[\s\S]*?\n([\s\S]*?)(?=\n###|$)/)
+  Context:     Section extraction - AFFECTS REPORT PARSING!
+  Priority:    CRITICAL
+
+Line 654 | Comment - Remove Numbers and Quotes
+  Original:   // 移除编号和引号
+  Translation: // Remove numbering and quotation marks
+  Context:     Data cleaning documentation
+
+Line 660 | Comment - Extract Historical Facts
+  Original:   // 提取历史/过期事实 - 完整提取，不限制数量
+  Translation: // Extract historical/expired facts - complete extraction, no limit
+  Context:     Data extraction documentation
+
+Line 661 | Regex Pattern - Chinese Section Header (Special)
+  Original:   const histSection = text.match(/### 【历史\/过期事实】[\s\S]*?\n([\s\S]*?)(?=\n###|$)/)
+  Translation: const histSection = text.match(/### 【Historical\/Expired Facts】[\s\S]*?\n([\s\S]*?)(?=\n###|$)/)
+  Context:     Section extraction with slash - AFFECTS REPORT PARSING!
+  Priority:    CRITICAL
+
+Line 670 | Comment - Extract Involved Entities
+  Original:   // 提取涉及实体 - 完整提取，不限制数量
+  Translation: // Extract involved entities - complete extraction, no limit
+  Context:     Data extraction documentation
+
+Line 671 | Regex Pattern - Chinese Section Header
+  Original:   const entitySection = text.match(/### 【涉及实体】\n([\s\S]*?)(?=\n###|$)/)
+  Translation: const entitySection = text.match(/### 【Involved Entities】\n([\s\S]*?)(?=\n###|$)/)
+  Context:     Section extraction - AFFECTS REPORT PARSING!
+  Priority:    CRITICAL
+
+================================================================================
+SECTION: INTERVIEW SECTION PARSING FUNCTIONS
+================================================================================
+
+Line 699 | Comment - Extract Interview Topic
+  Original:   // 提取采访主题
+  Translation: // Extract interview topic
+  Context:     Data extraction documentation
+
+Line 700 | Regex Pattern - Chinese Label (Bold Markdown)
+  Original:   const topicMatch = text.match(/\*\*采访主题:\*\*\s*(.+?)(?:\n|$)/)
+  Translation: const topicMatch = text.match(/\*\*Interview Topic:\*\*\s*(.+?)(?:\n|$)/)
+  Context:     Pattern matching - AFFECTS REPORT PARSING!
+  Priority:    CRITICAL
+
+Line 703 | Comment - Extract Interview Count
+  Original:   // 提取采访人数（如 "5 / 9 位模拟Agent"）
+  Translation: // Extract interview count (e.g. "5 / 9 simulated Agents")
+  Context:     Data extraction with format example documentation
+
+Line 704 | Regex Pattern - Chinese Text
+  Original:   const countMatch = text.match(/\*\*采访人数:\*\*\s*(\d+)\s*\/\s*(\d+)/)
+  Translation: const countMatch = text.match(/\*\*Number of Interviewees:\*\*\s*(\d+)\s*\/\s*(\d+)/)
+  Context:     Pattern matching - AFFECTS REPORT PARSING!
+  Priority:    CRITICAL
+
+Line 711 | Comment - Extract Selection Reasons
+  Original:   // 提取采访对象选择理由
+  Translation: // Extract interview subject selection reasons
+  Context:     Data extraction documentation
+
+Line 712 | Regex Pattern - Chinese Section Header
+  Original:   const reasonMatch = text.match(/### 采访对象选择理由\n([\s\S]*?)(?=\n---\n|\n### 采访实录)/)
+  Translation: const reasonMatch = text.match(/### Interview Subject Selection Reasons\n([\s\S]*?)(?=\n---\n|\n### Interview Records)/)
+  Context:     Section extraction - AFFECTS REPORT PARSING!
+  Priority:    CRITICAL
+
+Line 717 | Comment - Parse Selection Reasons
+  Original:   // 解析每个人的选择理由
+  Translation: // Parse selection reason for each person
+  Context:     Data processing documentation
+
+Line 731 | Comment - Format 1 Comment
+  Original:   // 格式1: 数字. **名字（index=X）**：理由
+  // 例如: 1. **校友_345（index=1）**：作为武大校友...
+  Translation: // Format 1: number. **name (index=X)**: reason
+  // Example: 1. **Alum_345 (index=1)**: As a Wuhan University alumnus...
+  Context:     Format documentation with example
+
+Line 739 | Comment - Format 2 Comment
+  Original:   // 格式2: - 选择名字（index X）：理由
+  // 例如: - 选择家长_601（index 0）：作为家长群体代表...
+  Translation: // Format 2: - Select name (index X): reason
+  // Example: - Select Parent_601 (index 0): As parent group representative...
+  Context:     Format documentation with example
+
+Line 742 | Regex Pattern - Chinese Text (Format 2)
+  Original:   headerMatch = line.match(/^-\s*选择([^（(]+)(?:[（(]index\s*=?\s*\d+[)）])?[：:]\s*(.*)/)
+  Translation: headerMatch = line.match(/^-\s*Select([^（(]+)(?:[（(]index\s*=?\s*\d+[)）])?[：:]\s*(.*)/)
+  Context:     Pattern matching - AFFECTS REPORT PARSING!
+  Priority:    CRITICAL
+
+Line 749 | Comment - Format 3 Comment
+  Original:   // 格式3: - **名字（index X）**：理由
+  // 例如: - **家长_601（index 0）**：作为家长群体代表...
+  Translation: // Format 3: - **name (index X)**: reason
+  // Example: - **Parent_601 (index 0)**: As parent group representative...
+  Context:     Format documentation with example
+
+Line 767 | Regex Pattern - Chinese Text
+  Original:   } else if (currentName && line.trim() && !line.match(/^未选|^综上|^最终选择/)) {
+  Translation: } else if (currentName && line.trim() && !line.match(/^Not Selected|^Summary|^Final Selection/)) {
+  Context:     Pattern matching for continuation lines - AFFECTS REPORT PARSING!
+  Priority:    CRITICAL
+
+Line 783 | Comment - Extract Interview Records
+  Original:   // 提取每个采访记录
+  Translation: // Extract each interview record
+  Context:     Data extraction documentation
+
+Line 784 | Regex Pattern - Chinese Section Delimiter
+  Original:   const interviewBlocks = text.split(/#### 采访 #\d+:/).slice(1)
+  Translation: const interviewBlocks = text.split(/#### Interview #\d+:/).slice(1)
+  Context:     Section splitting - AFFECTS REPORT PARSING!
+  Priority:    CRITICAL
+
+Line 800 | Comment - Extract Title
+  Original:   // 提取标题（如 "学生"、"教育从业者" 等）
+  Translation: // Extract title (e.g. "Student", "Education Professional", etc.)
+  Context:     Data extraction with examples documentation
+
+Line 804 | Comment - Extract Name and Role
+  Original:   // 提取姓名和角色
+  Translation: // Extract name and role
+  Context:     Data extraction documentation
+
+Line 809 | Comment - Set Selection Reason
+  Original:   // 设置该人的选择理由
+  Translation: // Set selection reason for this person
+  Context:     Data processing documentation
+
+Line 813 | Comment - Extract Bio
+  Original:   // 提取简介
+  Translation: // Extract biography
+  Context:     Data extraction documentation
+
+Line 814 | Regex Pattern - Chinese Label (Underscore)
+  Original:   const bioMatch = block.match(/_简介:\s*([\s\S]*?)_\n/)
+  Translation: const bioMatch = block.match(/_Biography:\s*([\s\S]*?)_\n/)
+  Context:     Pattern matching - AFFECTS REPORT PARSING!
+  Priority:    CRITICAL
+
+Line 819 | Comment - Extract Questions List
+  Original:   // 提取问题列表
+  Translation: // Extract question list
+  Context:     Data extraction documentation
+
+Line 823 | Comment - Split Questions by Number
+  Original:   // 按数字编号分割问题
+  Translation: // Split questions by numbering
+  Context:     Data processing documentation
+
+Line 826 | Comment - Handle First Question
+  Original:   // 如果第一个问题前面有"1."，需要特殊处理
+  Translation: // If first question has "1." before it, needs special handling
+  Context:     Edge case documentation
+
+Line 836 | Comment - Extract Answers
+  Original:   // 提取回答 - 分Twitter和Reddit
+  Translation: // Extract answers - separated by Twitter and Reddit
+  Context:     Data extraction documentation
+
+Line 837 | Regex Pattern - Chinese Label (Bold)
+  Original:   const answerMatch = block.match(/\*\*A:\*\*\s*([\s\S]*?)(?=\*\*关键引言|$)/)
+  Translation: const answerMatch = block.match(/\*\*A:\*\*\s*([\s\S]*?)(?=\*\*Key Quotes|$)/)
+  Context:     Pattern matching - AFFECTS REPORT PARSING!
+  Priority:    CRITICAL
+
+Line 841 | Comment - Separate Platform Answers
+  Original:   // 分离Twitter和Reddit回答
+  Translation: // Separate Twitter and Reddit answers
+  Context:     Data processing documentation
+
+Line 842 | Regex Pattern - Chinese Platform Label with Brackets
+  Original:   const twitterMatch = answerText.match(/【Twitter平台回答】\n?([\s\S]*?)(?=【Reddit平台回答】|$)/)
+  Translation: const twitterMatch = answerText.match(/【Twitter Platform Answer】\n?([\s\S]*?)(?=【Reddit Platform Answer】|$)/)
+  Context:     Pattern matching - AFFECTS REPORT PARSING!
+  Priority:    CRITICAL
+
+Line 843 | Regex Pattern - Chinese Platform Label with Brackets
+  Original:   const redditMatch = answerText.match(/【Reddit平台回答】\n?([\s\S]*?)$/)
+  Translation: const redditMatch = answerText.match(/【Reddit Platform Answer】\n?([\s\S]*?)$/)
+  Context:     Pattern matching - AFFECTS REPORT PARSING!
+  Priority:    CRITICAL
+
+Line 852 | Comment - Platform Fallback Logic
+  Original:   // 平台回退逻辑（兼容旧格式：只有一个平台标记的情况）
+  Translation: // Platform fallback logic (compatible with old format: single platform marker)
+  Context:     Legacy compatibility documentation
+
+Line 854 | Comment - Reddit Fallback
+  Original:   // 只有 Reddit 回答，仅在非占位文本时复制为默认显示
+  Translation: // Only Reddit answer, copy as default display only if not placeholder text
+  Context:     Fallback logic documentation
+
+Line 855 | String Literal - Chinese Placeholder Text
+  Original:   if (interview.redditAnswer && interview.redditAnswer !== '（该平台未获得回复）') {
+  Translation: if (interview.redditAnswer && interview.redditAnswer !== '(No response from this platform)') {
+  Context:     Placeholder text - AFFECTS REPORT PARSING!
+  Priority:    CRITICAL
+
+Line 859 | String Literal - Chinese Placeholder Text
+  Original:   if (interview.twitterAnswer && interview.twitterAnswer !== '（该平台未获得回复）') {
+  Translation: if (interview.twitterAnswer && interview.twitterAnswer !== '(No response from this platform)') {
+  Context:     Placeholder text - AFFECTS REPORT PARSING!
+  Priority:    CRITICAL
+
+Line 863 | Comment - Old Format Fallback
+  Original:   // 没有分平台标记（极旧格式），整体作为回答
+  Translation: // No platform marker (very old format), use as whole answer
+  Context:     Legacy format documentation
+
+Line 868 | Comment - Extract Key Quotes
+  Original:   // 提取关键引言（兼容多种引号格式）
+  Translation: // Extract key quotes (compatible with multiple quote formats)
+  Context:     Data extraction documentation
+
+Line 869 | Regex Pattern - Chinese Label with Bold
+  Original:   const quotesMatch = block.match(/\*\*关键引言:\*\*\n([\s\S]*?)(?=\n---|\n####|$)/)
+  Translation: const quotesMatch = block.match(/\*\*Key Quotes:\*\*\n([\s\S]*?)(?=\n---|\n####|$)/)
+  Context:     Pattern matching - AFFECTS REPORT PARSING!
+  Priority:    CRITICAL
+
+Line 874 | Comment - Quote Format 1
+  Original:   // 优先匹配 > "text" 格式
+  Translation: // Prioritize matching > "text" format
+  Context:     Quote format documentation
+
+Line 890 | Comment - Extract Interview Summary
+  Original:   // 提取采访摘要
+  Translation: // Extract interview summary
+  Context:     Data extraction documentation
+
+Line 891 | Regex Pattern - Chinese Section Header
+  Original:   const summaryMatch = text.match(/### 采访摘要与核心观点\n([\s\S]*?)$/)
+  Translation: const summaryMatch = text.match(/### Interview Summary and Key Insights\n([\s\S]*?)$/)
+  Context:     Section extraction - AFFECTS REPORT PARSING!
+  Priority:    CRITICAL
+
+================================================================================
+SECTION: SEARCH SECTION PARSING FUNCTIONS
+================================================================================
+
+Line 912 | Comment - Extract Search Query
+  Original:   // 提取搜索查询
+  Translation: // Extract search query
+  Context:     Data extraction documentation
+
+Line 913 | Regex Pattern - Chinese Label
+  Original:   const queryMatch = text.match(/搜索查询:\s*(.+?)(?:\n|$)/)
+  Translation: const queryMatch = text.match(/Search Query:\s*(.+?)(?:\n|$)/)
+  Context:     Pattern matching - AFFECTS REPORT PARSING!
+  Priority:    CRITICAL
+
+Line 916 | Comment - Extract Result Count
+  Original:   // 提取结果数量
+  Translation: // Extract result count
+  Context:     Data extraction documentation
+
+Line 917 | Regex Pattern - Chinese Text
+  Original:   const countMatch = text.match(/找到\s*(\d+)\s*条/)
+  Translation: const countMatch = text.match(/Found\s*(\d+)\s*items/)
+  Context:     Pattern matching - AFFECTS REPORT PARSING!
+  Priority:    CRITICAL
+
+Line 920 | Comment - Extract Related Facts
+  Original:   // 提取相关事实 - 完整提取，不限制数量
+  Translation: // Extract related facts - complete extraction, no limit
+  Context:     Data extraction documentation
+
+Line 921 | Regex Pattern - Chinese Section Header
+  Original:   const factsSection = text.match(/### 相关事实:\n([\s\S]*)$/)
+  Translation: const factsSection = text.match(/### Related Facts:\n([\s\S]*)$/)
+  Context:     Section extraction - AFFECTS REPORT PARSING!
+  Priority:    CRITICAL
+
+Line 927 | Comment - Extract Edge Info
+  Original:   // 尝试提取边信息（如果有）
+  Translation: // Attempt to extract edge information (if present)
+  Context:     Optional data extraction documentation
+
+Line 928 | Regex Pattern - Chinese Section Header
+  Original:   const edgesSection = text.match(/### 相关边:\n([\s\S]*?)(?=\n###|$)/)
+  Translation: const edgesSection = text.match(/### Related Edges:\n([\s\S]*?)(?=\n###|$)/)
+  Context:     Section extraction - AFFECTS REPORT PARSING!
+  Priority:    CRITICAL
+
+Line 940 | Comment - Extract Node Info
+  Original:   // 尝试提取节点信息（如果有）
+  Translation: // Attempt to extract node information (if present)
+  Context:     Optional data extraction documentation
+
+Line 941 | Regex Pattern - Chinese Section Header
+  Original:   const nodesSection = text.match(/### 相关节点:\n([\s\S]*?)(?=\n###|$)/)
+  Translation: const nodesSection = text.match(/### Related Nodes:\n([\s\S]*?)(?=\n###|$)/)
+  Context:     Section extraction - AFFECTS REPORT PARSING!
+  Priority:    CRITICAL
+
+================================================================================
+SECTION: RENDER FUNCTION - UI LABELS IN JAVASCRIPT
+================================================================================
+
+Line 1006 | UI Label
+  Original:   h('span', { class: 'scenario-label' }, '预测场景: '),
+  Translation: h('span', { class: 'scenario-label' }, 'Prediction Scenario: '),
+  Context:     UI label in render function
+
+Line 1017 | Tab Label with Count
+  Original:   h('span', { class: 'tab-label' }, `当前关键记忆 (${props.result.facts.length})`)
+  Translation: h('span', { class: 'tab-label' }, `Current Key Memory (${props.result.facts.length})`)
+  Context:     Tab navigation label
+
+Line 1023 | Tab Label with Count
+  Original:   h('span', { class: 'tab-label' }, `核心实体 (${props.result.entities.length})`)
+  Translation: h('span', { class: 'tab-label' }, `Core Entities (${props.result.entities.length})`)
+  Context:     Tab navigation label
+
+Line 1029 | Tab Label with Count
+  Original:   h('span', { class: 'tab-label' }, `关系链 (${props.result.relations.length})`)
+  Translation: h('span', { class: 'tab-label' }, `Relationship Chain (${props.result.relations.length})`)
+  Context:     Tab navigation label
+
+Line 1035 | Tab Label with Count
+  Original:   h('span', { class: 'tab-label' }, `子问题 (${props.result.subQueries.length})`)
+  Translation: h('span', { class: 'tab-label' }, `Sub-Questions (${props.result.subQueries.length})`)
+  Context:     Tab navigation label
+
+Line 1044 | Panel Title
+  Original:   h('span', { class: 'panel-title' }, '时序记忆中所关联的最新关键事实'),
+  Translation: h('span', { class: 'panel-title' }, 'Latest Key Facts Associated in Temporal Memory'),
+  Context:     Section title label
+
+Line 1045 | Panel Count
+  Original:   h('span', { class: 'panel-count' }, `共 ${props.result.facts.length} 条`)
+  Translation: h('span', { class: 'panel-count' }, `Total ${props.result.facts.length} items`)
+  Context:     Count display
+
+Line 1058 | Expand/Collapse Button
+  Original:   }, expandedFacts.value ? `收起 ▲` : `展开全部 ${props.result.facts.length} 条 ▼`)
+  Translation: }, expandedFacts.value ? `Collapse ▲` : `Expand All ${props.result.facts.length} items ▼`)
+  Context:     Toggle button text
+
+Line 1064 | Panel Title
+  Original:   h('span', { class: 'panel-title' }, '核心实体'),
+  Translation: h('span', { class: 'panel-title' }, 'Core Entities'),
+  Context:     Section title label
+
+Line 1065 | Panel Count
+  Original:   h('span', { class: 'panel-count' }, `共 ${props.result.entities.length} 个`)
+  Translation: h('span', { class: 'panel-count' }, `Total ${props.result.entities.length} items`)
+  Context:     Count display
+
+Line 1072 | Related Facts Count Badge
+  Original:   entity.relatedFactsCount > 0 && h('span', { class: 'entity-fact-count' }, `${entity.relatedFactsCount}条`)
+  Translation: entity.relatedFactsCount > 0 && h('span', { class: 'entity-fact-count' }, `${entity.relatedFactsCount} items`)
+  Context:     Badge label
+
+Line 1079 | Expand/Collapse Button
+  Original:   }, expandedEntities.value ? `收起 ▲` : `展开全部 ${props.result.entities.length} 个 ▼`)
+  Translation: }, expandedEntities.value ? `Collapse ▲` : `Expand All ${props.result.entities.length} items ▼`)
+  Context:     Toggle button text
+
+Line 1085 | Panel Title
+  Original:   h('span', { class: 'panel-title' }, '关系链'),
+  Translation: h('span', { class: 'panel-title' }, 'Relationship Chain'),
+  Context:     Section title label
+
+Line 1086 | Panel Count
+  Original:   h('span', { class: 'panel-count' }, `共 ${props.result.relations.length} 条`)
+  Translation: h('span', { class: 'panel-count' }, `Total ${props.result.relations.length} items`)
+  Context:     Count display
+
+Line 1104 | Expand/Collapse Button
+  Original:   }, expandedRelations.value ? `收起 ▲` : `展开全部 ${props.result.relations.length} 条 ▼`)
+  Translation: }, expandedRelations.value ? `Collapse ▲` : `Expand All ${props.result.relations.length} items ▼`)
+  Context:     Toggle button text
+
+Line 1110 | Panel Title
+  Original:   h('span', { class: 'panel-title' }, '漂移查询生成分析子问题'),
+  Translation: h('span', { class: 'panel-title' }, 'Drift Query Generated Analysis Sub-Questions'),
+  Context:     Section title label
+
+Line 1111 | Panel Count
+  Original:   h('span', { class: 'panel-count' }, `共 ${props.result.subQueries.length} 个`)
+  Translation: h('span', { class: 'panel-count' }, `Total ${props.result.subQueries.length} items`)
+  Context:     Count display
+
+Line 1124 | Empty State Message
+  Original:   activeTab.value === 'facts' && props.result.facts.length === 0 && h('div', { class: 'empty-state' }, '暂无当前关键记忆'),
+  Translation: activeTab.value === 'facts' && props.result.facts.length === 0 && h('div', { class: 'empty-state' }, 'No current key memory'),
+  Context:     Empty state display
+
+Line 1125 | Empty State Message
+  Original:   activeTab.value === 'entities' && props.result.entities.length === 0 && h('div', { class: 'empty-state' }, '暂无核心实体'),
+  Translation: activeTab.value === 'entities' && props.result.entities.length === 0 && h('div', { class: 'empty-state' }, 'No core entities'),
+  Context:     Empty state display
+
+Line 1126 | Empty State Message
+  Original:   activeTab.value === 'relations' && props.result.relations.length === 0 && h('div', { class: 'empty-state' }, '暂无关系链')
+  Translation: activeTab.value === 'relations' && props.result.relations.length === 0 && h('div', { class: 'empty-state' }, 'No relationship chain')
+  Context:     Empty state display
+
+================================================================================
+SECTION: MEMORY SECTION RENDER LABELS
+================================================================================
+
+Line 1179 | Tab Label with Count
+  Original:   h('span', { class: 'tab-label' }, `当前有效记忆 (${props.result.activeFacts.length})`)
+  Translation: h('span', { class: 'tab-label' }, `Current Valid Memory (${props.result.activeFacts.length})`)
+  Context:     Tab navigation label
+
+Line 1185 | Tab Label with Count
+  Original:   h('span', { class: 'tab-label' }, `历史记忆 (${props.result.historicalFacts.length})`)
+  Translation: h('span', { class: 'tab-label' }, `Historical Memory (${props.result.historicalFacts.length})`)
+  Context:     Tab navigation label
+
+Line 1191 | Tab Label with Count
+  Original:   h('span', { class: 'tab-label' }, `涉及实体 (${props.result.entities.length})`)
+  Translation: h('span', { class: 'tab-label' }, `Involved Entities (${props.result.entities.length})`)
+  Context:     Tab navigation label
+
+Line 1200 | Panel Title
+  Original:   h('span', { class: 'panel-title' }, '当前有效记忆'),
+  Translation: h('span', { class: 'panel-title' }, 'Current Valid Memory'),
+  Context:     Section title label
+
+Line 1201 | Panel Count
+  Original:   h('span', { class: 'panel-count' }, `共 ${props.result.activeFacts.length} 条`)
+  Translation: h('span', { class: 'panel-count' }, `Total ${props.result.activeFacts.length} items`)
+  Context:     Count display
+
+Line 1210 | Empty State Message
+  Original:   ) : h('div', { class: 'empty-state' }, '暂无当前有效记忆'),
+  Translation: ) : h('div', { class: 'empty-state' }, 'No current valid memory'),
+  Context:     Empty state display
+
+Line 1214 | Expand/Collapse Button
+  Original:   }, expandedActive.value ? `收起 ▲` : `展开全部 ${props.result.activeFacts.length} 条 ▼`)
+  Translation: }, expandedActive.value ? `Collapse ▲` : `Expand All ${props.result.activeFacts.length} items ▼`)
+  Context:     Toggle button text
+
+Line 1220 | Panel Title
+  Original:   h('span', { class: 'panel-title' }, '历史记忆'),
+  Translation: h('span', { class: 'panel-title' }, 'Historical Memory'),
+  Context:     Section title label
+
+Line 1221 | Panel Count
+  Original:   h('span', { class: 'panel-count' }, `共 ${props.result.historicalFacts.length} 条`)
+  Translation: h('span', { class: 'panel-count' }, `Total ${props.result.historicalFacts.length} items`)
+  Context:     Count display
+
+Line 1228 | Comment - Extract Time Info
+  Original:   // 尝试提取时间信息 [time - time]
+  Translation: // Attempt to extract time information [time - time]
+  Context:     Data extraction documentation
+
+Line 1242 | Empty State Message
+  Original:   ) : h('div', { class: 'empty-state' }, '暂无历史记忆'),
+  Translation: ) : h('div', { class: 'empty-state' }, 'No historical memory'),
+  Context:     Empty state display
+
+Line 1246 | Expand/Collapse Button
+  Original:   }, expandedHistorical.value ? `收起 ▲` : `展开全部 ${props.result.historicalFacts.length} 条 ▼`)
+  Translation: }, expandedHistorical.value ? `Collapse ▲` : `Expand All ${props.result.historicalFacts.length} items ▼`)
+  Context:     Toggle button text
+
+Line 1252 | Panel Title
+  Original:   h('span', { class: 'panel-title' }, '涉及实体'),
+  Translation: h('span', { class: 'panel-title' }, 'Involved Entities'),
+  Context:     Section title label
+
+Line 1253 | Panel Count
+  Original:   h('span', { class: 'panel-count' }, `共 ${props.result.entities.length} 个`)
+  Translation: h('span', { class: 'panel-count' }, `Total ${props.result.entities.length} items`)
+  Context:     Count display
+
+Line 1262 | Empty State Message
+  Original:   ) : h('div', { class: 'empty-state' }, '暂无涉及实体'),
+  Translation: ) : h('div', { class: 'empty-state' }, 'No involved entities'),
+  Context:     Empty state display
+
+Line 1266 | Expand/Collapse Button
+  Original:   }, expandedEntities.value ? `收起 ▲` : `展开全部 ${props.result.entities.length} 个 ▼`)
+  Translation: }, expandedEntities.value ? `Collapse ▲` : `Expand All ${props.result.entities.length} items ▼`)
+  Context:     Toggle button text
+
+================================================================================
+SECTION: INTERVIEW RENDER LABELS
+================================================================================
+
+Line 1295 | Comment - Platform Selection State
+  Original:   // 为每个问题-回答对维护独立的平台选择状态
+  Translation: // Maintain independent platform selection state for each Q&A pair
+  Context:     State management documentation
+
+Line 1298 | Comment - Get Current Platform
+  Original:   // 获取某个问题的当前平台选择
+  Translation: // Get current platform selection for a question
+  Context:     Getter method documentation
+
+Line 1304 | Comment - Set Platform Choice
+  Original:   // 设置某个问题的平台选择
+  Translation: // Set platform selection for a question
+  Context:     Setter method documentation
+
+Line 1326 | Comment - Check Placeholder Text
+  Original:   // 检查是否为平台占位文本
+  Translation: // Check if it's platform placeholder text
+  Context:     Utility method documentation
+
+Line 1330 | String Literals - Placeholder Text (3 variations)
+  Original:   return t === '（该平台未获得回复）' || t === '(该平台未获得回复)' || t === '[无回复]'
+  Translation: return t === '(No response from this platform)' || t === '(No response from this platform)' || t === '[No response]'
+  Context:     Placeholder detection - AFFECTS REPORT PARSING!
+  Priority:    CRITICAL
+
+Line 1333 | Comment - Split Answer by Question
+  Original:   // 尝试按问题编号分割回答
+  Translation: // Attempt to split answer by question number
+  Context:     Data processing documentation
+
+Line 1338 | Comment - Format Support
+  Original:   // 支持两种编号格式：
+  // 1. "问题X：" 或 "问题X:" （中文格式，后端新格式）
+  // 2. "1. " 或 "\n1. " （数字+点，旧格式兼容）
+  Translation: // Support two numbering formats:
+  // 1. "Question X:" (Chinese format, new backend format)
+  // 2. "1. " or "\n1. " (digit+period, old format compatible)
+  Context:     Format documentation
+
+Line 1344 | Comment - Pattern Priority
+  Original:   // 优先尝试 "问题X：" 格式
+  Translation: // Prioritize trying "Question X:" format
+  Context:     Pattern matching priority documentation
+
+Line 1345 | Regex Pattern - Chinese Format
+  Original:   const cnPattern = /(?:^|[\r\n]+)问题(\d+)[：:]\s*/g
+  Translation: const cnPattern = /(?:^|[\r\n]+)Question(\d+)[：:]\s*/g
+  Context:     Pattern matching - AFFECTS REPORT PARSING!
+  Priority:    CRITICAL
+
+Line 1369 | String Method - Remove Prefix
+  Original:   .replace(/^问题\d+[：:]\s*/, '')
+  Translation: .replace(/^Question\d+[：:]\s*/, '')
+  Context:     String processing - AFFECTS REPORT PARSING!
+  Priority:    CRITICAL
+
+Line 1396 | Comment - Get Answer by Index
+  Original:   // 获取某个问题对应的回答
+  Translation: // Get answer for a specific question
+  Context:     Method documentation
+
+Line 1404 | Comment - Valid Index Check
+  Original:   // 分割成功且索引有效
+  Translation: // Split successful and index valid
+  Context:     Validation documentation
+
+Line 1409 | Comment - Fallback Logic
+  Original:   // 分割失败：第一个问题返回完整回答，其余返回空
+  Translation: // Split failed: first question returns complete answer, others return empty
+  Context:     Fallback logic documentation
+
+Line 1413 | Comment - Check Dual Platform
+  Original:   // 检查某个问题是否有双平台回答（过滤占位文本）
+  Translation: // Check if a question has dual platform answers (filter placeholder text)
+  Context:     Validation method documentation
+
+Line 1418 | Comment - Dual Platform Check
+  Original:   // 两个平台都有真实回答（非占位文本）且内容不同
+  Translation: // Both platforms have real answers (non-placeholder) and content differs
+  Context:     Condition documentation
+
+Line 1468 | Comment - Selection Reason Section
+  Original:   // Selection Reason - 选择理由
+  Translation: // Selection Reason
+  Context:     Section documentation
+
+Line 1470 | Label Text
+  Original:   h('div', { class: 'reason-label' }, '选择理由'),
+  Translation: h('div', { class: 'reason-label' }, 'Selection Reason'),
+  Context:     Section label
+
+Line 1474 | Comment - Q&A Conversation
+  Original:   // Q&A Conversation Thread - 一问一答样式
+  Translation: // Q&A Conversation Thread - Q&A style
+  Context:     Section documentation
+
+Line 1504 | Comment - Dual Platform Toggle
+  Original:   // 双平台切换按钮（仅在有真实双平台回答时显示）
+  Translation: // Dual platform toggle button (only shown when true dual platform answers exist)
+  Context:     Button condition documentation
+
+Line 1515 | Button Label - World 1
+  Original:   h('span', {}, '世界1')
+  Translation: h('span', {}, 'World 1')
+  Context:     Platform/world label
+
+Line 1524 | Button Label - World 2
+  Original:   h('span', {}, '世界2')
+  Translation: h('span', {}, 'World 2')
+  Context:     Platform/world label
+
+Line 1536 | Comment - Expand/Collapse
+  Original:   // Expand/Collapse Button（占位文本不显示）
+  Translation: // Expand/Collapse Button (placeholder text not shown)
+  Context:     Button condition documentation
+
+================================================================================
+SECTION: SEARCH SECTION RENDER LABELS
+================================================================================
+
+Line 1613 | Query Label
+  Original:   h('span', { class: 'query-label' }, '搜索: '),
+  Translation: h('span', { class: 'query-label' }, 'Search: '),
+  Context:     Section label
+
+Line 1624 | Tab Label with Count
+  Original:   h('span', { class: 'tab-label' }, `事实 (${props.result.facts.length})`)
+  Translation: h('span', { class: 'tab-label' }, `Facts (${props.result.facts.length})`)
+  Context:     Tab navigation label
+
+Line 1630 | Tab Label with Count
+  Original:   h('span', { class: 'tab-label' }, `关系 (${props.result.edges.length})`)
+  Translation: h('span', { class: 'tab-label' }, `Relationships (${props.result.edges.length})`)
+  Context:     Tab navigation label
+
+Line 1636 | Tab Label with Count
+  Original:   h('span', { class: 'tab-label' }, `节点 (${props.result.nodes.length})`)
+  Translation: h('span', { class: 'tab-label' }, `Nodes (${props.result.nodes.length})`)
+  Context:     Tab navigation label
+
+Line 1645 | Panel Title
+  Original:   h('span', { class: 'panel-title' }, '搜索结果'),
+  Translation: h('span', { class: 'panel-title' }, 'Search Results'),
+  Context:     Section title label
+
+Line 1646 | Panel Count
+  Original:   h('span', { class: 'panel-count' }, `共 ${props.result.facts.length} 条`)
+  Translation: h('span', { class: 'panel-count' }, `Total ${props.result.facts.length} items`)
+  Context:     Count display
+
+Line 1655 | Empty State Message
+  Original:   ) : h('div', { class: 'empty-state' }, '未找到相关结果'),
+  Translation: ) : h('div', { class: 'empty-state' }, 'No related results found'),
+  Context:     Empty state display
+
+Line 1659 | Expand/Collapse Button
+  Original:   }, expandedFacts.value ? `收起 ▲` : `展开全部 ${props.result.facts.length} 条 ▼`)
+  Translation: }, expandedFacts.value ? `Collapse ▲` : `Expand All ${props.result.facts.length} items ▼`)
+  Context:     Toggle button text
+
+Line 1665 | Panel Title
+  Original:   h('span', { class: 'panel-title' }, '相关关系'),
+  Translation: h('span', { class: 'panel-title' }, 'Related Relationships'),
+  Context:     Section title label
+
+Line 1666 | Panel Count
+  Original:   h('span', { class: 'panel-count' }, `共 ${props.result.edges.length} 条`)
+  Translation: h('span', { class: 'panel-count' }, `Total ${props.result.edges.length} items`)
+  Context:     Count display
+
+Line 1686 | Panel Title
+  Original:   h('span', { class: 'panel-title' }, '相关节点'),
+  Translation: h('span', { class: 'panel-title' }, 'Related Nodes'),
+  Context:     Section title label
+
+Line 1687 | Panel Count
+  Original:   h('span', { class: 'panel-count' }, `共 ${props.result.nodes.length} 个`)
+  Translation: h('span', { class: 'panel-count' }, `Total ${props.result.nodes.length} items`)
+  Context:     Count display
+
+================================================================================
+SECTION: LOG PROCESSING & DISPLAY
+================================================================================
+
+Line 1767 | Comment - Current Active Step
+  Original:   // 当前活跃的步骤（用于顶部显示）
+  Translation: // Current active step (for top display)
+  Context:     State documentation
+
+Line 1770 | Comment - Find Active Step
+  Original:   // 找到当前 active 的步骤
+  Translation: // Find current active step
+  Context:     Logic documentation
+
+Line 1774 | Comment - Fallback
+  Original:   // 如果没有 active，返回最后一个 done 的步骤
+  Translation: // If no active, return last completed step
+  Context:     Fallback logic
+
+Line 1778 | Comment - Default Step
+  Original:   // 否则返回第一个步骤
+  Translation: // Otherwise return first step
+  Context:     Default behavior documentation
+
+Line 1779 | Default Title
+  Original:   return steps[0] || { noLabel: '--', title: '等待开始', status: 'todo', meta: '' }
+  Translation: return steps[0] || { noLabel: '--', title: 'Waiting to start', status: 'todo', meta: '' }
+  Context:     Default step display text
+
+Line 2009 | Error Detection
+  Original:   if (log.includes('ERROR') || log.includes('错误')) return 'error'
+  Translation: if (log.includes('ERROR') || log.includes('Error')) return 'error'
+  Context:     Log level detection - AFFECTS REPORT DISPLAY!
+  Priority:    CRITICAL
+
+Line 2010 | Warning Detection
+  Original:   if (log.includes('WARNING') || log.includes('警告')) return 'warning'
+  Translation: if (log.includes('WARNING') || log.includes('Warning')) return 'warning'
+  Context:     Log level detection - AFFECTS REPORT DISPLAY!
+  Priority:    CRITICAL
+
+Line 2011 | Comment - Info Default
+  Original:   // INFO 使用默认颜色，不标记为 success
+  Translation: // INFO uses default color, not marked as success
+  Context:     Log level documentation
+
+Line 2040 | Comment - Section Complete
+  Original:   // section_complete - 章节生成完成
+  Translation: // section_complete - section generation complete
+  Context:     Log action documentation
+
+Line 2044 | Comment - Auto Expand
+  Original:   // 自动展开刚生成的章节
+  Translation: // Auto expand newly generated section
+  Context:     UI behavior documentation
+
+Line 2052 | Comment - Clear Loading State
+  Original:   currentSectionIndex.value = null  // 确保清除 loading 状态
+  Translation: currentSectionIndex.value = null  // Ensure loading state is cleared
+  Context:     State management documentation
+
+Line 2055 | Comment - Scroll Logic
+  Original:   // 滚动逻辑统一在循环结束后的 nextTick 中处理
+  Translation: // Scroll logic handled in nextTick after loop ends
+  Context:     Implementation documentation
+
+Line 2067 | Comment - Scroll Behavior
+  Original:   // 如果任务已完成，滚动到顶部；否则滚动到底部跟随最新日志
+  Translation: // If completed, scroll to top; otherwise scroll to bottom to follow latest logs
+  Context:     Conditional scroll behavior
+
+================================================================================
+SECTION: FINAL ANSWER EXTRACTION
+================================================================================
+
+Line 2082 | Comment - Extract Content
+  Original:   // 提取最终答案内容 - 从 LLM response 中提取章节内容
+  Translation: // Extract final answer content - extract section content from LLM response
+  Context:     Data extraction documentation
+
+Line 2086 | Comment - Final Answer Tags
+  Original:   // 尝试提取 <final_answer> 标签内的内容
+  Translation: // Attempt to extract content from <final_answer> tags
+  Context:     XML tag extraction documentation
+
+Line 2092 | Comment - Final Answer Format
+  Original:   // 尝试找 Final Answer: 后面的内容（支持多种格式）
+  // 格式1: Final Answer:\n\n内容
+  // 格式2: Final Answer: 内容
+  Translation: // Attempt to find content after "Final Answer:" (supports multiple formats)
+  // Format 1: Final Answer:\n\ncontent
+  // Format 2: Final Answer: content
+  Context:     Format documentation
+
+Line 2100 | Comment - Chinese Format
+  Original:   // 尝试找 最终答案: 后面的内容
+  Translation: // Attempt to find content after "Final Answer:"
+  Context:     Alternative format documentation
+
+Line 2101 | Regex Pattern - Chinese Label
+  Original:   const chineseFinalMatch = response.match(/最终答案[:：]\s*\n*([\s\S]*)$/i)
+  Translation: const chineseFinalMatch = response.match(/Final Answer[:：]\s*\n*([\s\S]*)$/i)
+  Context:     Pattern matching - AFFECTS REPORT PARSING!
+  Priority:    CRITICAL
+
+Line 2106 | Comment - Markdown Content
+  Original:   // 如果以 ## 或 # 或 > 开头，可能是直接的 markdown 内容
+  Translation: // If starts with ## or # or >, might be direct markdown content
+  Context:     Format detection documentation
+
+Line 2112 | Comment - Long Content
+  Original:   // 如果内容较长且包含markdown格式，尝试移除思考过程后返回
+  Translation: // If content is long and contains markdown format, try removing thought process then return
+  Context:     Content processing documentation
+
+Line 2114 | Comment - Remove Thought Process
+  Original:   // 移除 Thought: 开头的思考过程
+  Translation: // Remove thought process starting with "Thought:"
+  Context:     Content cleaning documentation
+
+================================================================================
+STYLE SECTION - CSS COMMENTS
+================================================================================
+
+Line 2459 | CSS Comment - Color Description
+  Original:   color: #9CA3AF; /* 深灰色，不随状态变化 */
+  Translation: color: #9CA3AF; /* Dark gray, doesn't change with state */
+  Context:     CSS documentation
+
+Line 3901 | CSS Comment - Section Label
+  Original:   /* Selection Reason - 选择理由 */
+  Translation: /* Selection Reason */
+  Context:     Section marker comment
+
+Line 5100 | CSS Comment - Consistency Note
+  Original:   /* Console Logs - 与 Step3Simulation.vue 保持一致 */
+  Translation: /* Console Logs - Keep consistent with Step3Simulation.vue */
+  Context:     Style consistency documentation
+
+================================================================================
+SUMMARY STATISTICS
+================================================================================
+
+Total Chinese Strings Found: 227 lines
+Total Unique Chinese Terms: ~120 terms
+
+Priority Breakdown:
+  - CRITICAL (Pattern Matching/Parsing): 42 items
+  - HIGH (User-facing text): 22 items
+  - MEDIUM (Developer documentation): ~40 items
+  - LOW (Code comments): ~123 items
+
+String Categories:
+  1. Regex Patterns (affects backend compatibility): 42
+  2. UI Labels & Buttons: 22
+  3. Empty State Messages: 12
+  4. Tab Labels: 15
+  5. Panel Titles: 15
+  6. Placeholder Text: 3
+  7. Comments & Documentation: ~123
+
+================================================================================
+CRITICAL TRANSLATION NOTES & DEPENDENCIES
+================================================================================
+
+CRITICAL: BACKEND COMPATIBILITY WARNING!
+
+This file contains MANY regex patterns that match Chinese labels in the report
+content. The backend/LLM must be updated to output English labels, or these
+patterns will FAIL to extract data.
+
+Files that MUST be updated in parallel:
+1. Backend report generation code (output format)
+2. LLM prompt templates (output format)
+3. This frontend parsing code (regex patterns)
+
+Patterns to Update (MUST match backend output):
+- "分析问题:" → "Analysis Question:"
+- "预测场景:" → "Prediction Scenario:"
+- "相关预测事实:" → "Related Prediction Facts:"
+- "涉及实体:" → "Involved Entities:"
+- "关系链:" → "Relationship Chain:"
+- "### 分析的子问题" → "### Analysis Sub-Questions"
+- "### 【关键事实】" → "### 【Key Facts】"
+- "### 【核心实体】" → "### 【Core Entities】"
+- "### 【关系链】" → "### 【Relationship Chain】"
+- "查询:" → "Query:"
+- "总节点数:" → "Total Nodes:"
+- "总边数:" → "Total Edges:"
+- "当前有效事实:" → "Current Valid Facts:"
+- "历史\/过期事实:" → "Historical\/Expired Facts:"
+- "#### 采访 #" → "#### Interview #"
+- "【Twitter平台回答】" → "【Twitter Platform Answer】"
+- "【Reddit平台回答】" → "【Reddit Platform Answer】"
+- Many more...
+
+Recommendation:
+1. Coordinate with backend team for simultaneous updates
+2. Test regex patterns after backend changes
+3. Consider adding fallback patterns for compatibility
+4. Document the expected report format clearly
+
+================================================================================
+RECOMMENDED TRANSLATION WORKFLOW
+================================================================================
+
+Phase 1: Template UI Text (IMMEDIATE)
+- Line 61: Loading text
+- Line 132: Button text
+- Priority: HIGH - User-facing
+- Time: 5 minutes
+
+Phase 2: Render Function Labels (HIGH PRIORITY)
+- Lines 1006-1687: All UI labels in render functions
+- Priority: HIGH - Directly impacts user experience
+- Time: 30 minutes
+
+Phase 3: Placeholder Text & Empty States (HIGH PRIORITY)
+- Lines 855, 859, 1124-1126, 1210, 1242, etc.
+- Priority: HIGH - User-facing feedback
+- Time: 10 minutes
+
+Phase 4: Regex Patterns (CRITICAL - COORDINATE WITH BACKEND)
+- Lines 555, 559, 563-565, 571, 578, 588, etc.
+- Priority: CRITICAL
+- Status: BLOCKED until backend translation is confirmed
+- Time: 30 minutes (after backend confirmation)
+
+Phase 5: Comments & Documentation (LOW PRIORITY)
+- Lines 434-467, 500-525, 554-891, etc.
+- Priority: LOW - Internal documentation
+- Time: 20 minutes
+- Can be deferred to later
+
+Total Time Estimate: ~95 minutes (excluding Phase 4 blocking wait)
+
+================================================================================

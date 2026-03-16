@@ -1,0 +1,410 @@
+================================================================================
+QUICK REFERENCE GUIDE - MIROFISH TRANSLATION PROJECT
+================================================================================
+
+Three components analyzed with comprehensive translation lists ready:
+1. Step3Simulation.vue - 41 Chinese strings (45 min to translate)
+2. Step4Report.vue - 227 Chinese strings (95 min + backend work)
+3. Step5Interaction.vue - 90 Chinese strings (70 min to translate)
+
+================================================================================
+STEP3SIMULATION.VUE - QUICK FACTS
+================================================================================
+
+File: /Users/rahulgk/Documents/code/MiroFish/frontend/src/components/Step3Simulation.vue
+Size: 38 KB
+Chinese Strings: 41 total
+  - HIGH priority (user-facing): 20
+  - MEDIUM priority (logs): 2
+  - LOW priority (comments): 19
+
+Translation Time Estimate: 45 minutes
+
+Key Sections to Translate:
+  Line 100: Button text "启动中..." → "Generating..."
+  Line 100: Button text "开始生成结果报告" → "Generate Results Report"
+  Line 382: Error message
+  Lines 391-522: Status and success messages (HIGH priority)
+  Lines 648-688: Report generation messages (HIGH priority)
+
+No Backend Dependencies: ✓ (Can translate immediately)
+
+Translation Notes:
+  - "Info Plaza" and "Topic Community" are platform names (keep as is)
+  - Log messages should be translated as they appear to users
+  - Error messages are user-facing and need natural English phrasing
+  - Comment-only translations are lower priority
+
+Critical Patterns: None (no regex matching)
+
+================================================================================
+STEP4REPORT.VUE - QUICK FACTS
+================================================================================
+
+File: /Users/rahulgk/Documents/code/MiroFish/frontend/src/components/Step4Report.vue
+Size: 145 KB (LARGEST FILE)
+Chinese Strings: 227 lines total
+  - CRITICAL (regex patterns): 42
+  - HIGH priority (user-facing): 22
+  - MEDIUM priority (descriptions): 36
+  - LOW priority (comments): 127
+
+Translation Time Estimate: 95 minutes (+ backend coordination)
+
+Key Sections to Translate:
+  Line 61: Loading text
+  Line 132: Button "进入深度互动" → "Enter Deep Interaction"
+  Lines 555-891: CRITICAL regex patterns (affects backend parsing)
+  Lines 1006-1687: UI labels in render functions (HIGH priority)
+  Lines 1779: Default text "等待开始" → "Waiting to start"
+  Lines 2009-2101: Log level detection and parsing
+
+BLOCKER: Backend Coordination Required ⚠️
+  This file contains 42 regex patterns that parse Chinese labels from
+  backend-generated reports. The backend MUST be updated to output
+  English labels, or the frontend parsing will fail.
+
+Patterns Requiring Backend Changes:
+  "分析问题:" → "Analysis Question:"
+  "预测场景:" → "Prediction Scenario:"
+  "相关预测事实:" → "Related Prediction Facts:"
+  "涉及实体:" → "Involved Entities:"
+  "关系链:" → "Relationship Chain:"
+  "### 分析的子问题" → "### Analysis Sub-Questions"
+  "### 【关键事实】" → "### 【Key Facts】"
+  "### 【核心实体】" → "### 【Core Entities】"
+  "【Twitter平台回答】" → "【Twitter Platform Answer】"
+  "【Reddit平台回答】" → "【Reddit Platform Answer】"
+  ... 20+ more patterns
+
+RECOMMENDATION: Do NOT translate this file until backend is updated.
+
+Translation Notes:
+  - Tool names keep English prefix: "InsightForge", "PanoramaSearch", etc.
+  - Empty state messages should be user-friendly
+  - Expand/collapse buttons use Chinese characters (可以keep or translate)
+  - Placeholder text like "无响应" appears in multiple places
+
+================================================================================
+STEP5INTERACTION.VUE - QUICK FACTS
+================================================================================
+
+File: /Users/rahulgk/Documents/code/MiroFish/frontend/src/components/Step5Interaction.vue
+Size: 63 KB
+Chinese Strings: 90 lines total
+  - HIGH priority (user-facing): 28
+  - MEDIUM priority (defaults): 12
+  - LOW priority (comments): 50
+
+Translation Time Estimate: 70 minutes
+
+Key Sections to Translate:
+  Line 61: Loading text (same pattern as Step3/Step4)
+  Line 101: Tab label "与Report Agent对话" → "Chat with Report Agent"
+  Line 113: Dropdown "与世界中任意个体对话" → "Chat with any individual in the world"
+  Lines 144-212: Tool names and descriptions (8 strings, MEDIUM priority)
+  Lines 175-212: Tool descriptions (feature documentation)
+  Line 238: Label "简介" → "Biography"
+  Line 348: Button "全选" → "Select All"
+  Line 350: Button "清空" → "Clear"
+  Lines 680-860: Status and error messages (HIGH priority, all user-facing logs)
+
+No Backend Dependencies: ✓ (Can translate immediately)
+
+Translation Notes:
+  - Similar markdown rendering as Step4, uses same helper functions
+  - Tool descriptions should be technically accurate
+  - "未知职业" (unknown profession) appears 3 times as fallback
+  - "无响应" (no response) appears multiple times for error handling
+  - Chat interface uses "提问者" (questioner) vs "你" (you)
+  - Status messages follow consistent pattern with Step3
+
+Critical Patterns: None (no regex matching)
+
+Dependencies: Uses same markdown rendering logic as Step4
+
+================================================================================
+TRANSLATION QUICK START
+================================================================================
+
+STEP 1: Immediate (No Dependencies Needed)
+  [ ] Start with Step3Simulation.vue (45 min)
+  [ ] Start with Step5Interaction.vue (70 min)
+  [ ] Maintain consistency between similar messages
+
+STEP 2: Backend Coordination (Before Step4)
+  [ ] Contact backend team
+  [ ] Share list of 42 regex patterns to update
+  [ ] Plan coordinated deployment timeline
+  [ ] Ensure backend tests are updated
+
+STEP 3: Wait for Backend
+  [ ] Backend team updates report generation code
+  [ ] LLM prompt templates updated for English output
+  [ ] All changes tested and ready to deploy
+
+STEP 4: Translate Step4Report
+  [ ] Begin after backend confirmation
+  [ ] Verify backend output matches expected patterns
+  [ ] Test regex pattern matches with sample data
+  [ ] Deploy with backend changes simultaneously
+
+================================================================================
+COMMON TRANSLATIONS FOR ALL FILES
+================================================================================
+
+Keep as-is (Don't Translate):
+  - "Info Plaza" (Twitter platform name)
+  - "Topic Community" (Reddit platform name)
+  - "InsightForge", "PanoramaSearch", "QuickSearch", "InterviewSubAgent"
+  - Variable names and function names
+  - API endpoint paths
+  - Technical identifiers (twitter, reddit, report_agent, etc.)
+
+Translate Every Time (Consistency):
+  "正在生成" → "Generating"
+  "已完成" → "Completed"
+  "失败" → "Failed"
+  "错误" → "Error"
+  "选择" → "Select"
+  "全选" → "Select All"
+  "清空" → "Clear"
+  "无响应" → "No response"
+  "未知职业" → "Unknown profession"
+
+Use Consistent Terminology:
+  模拟 → Simulation (not Simulate)
+  代理 → Agent (consistent across files)
+  世界 → World/Environment (context-dependent)
+  对话 → Chat/Conversation (context-dependent)
+  问卷 → Survey
+  报告 → Report
+  事实 → Facts
+  实体 → Entities
+  关系 → Relationships/Relationship Chain
+
+================================================================================
+VERIFICATION CHECKLIST (AFTER TRANSLATION)
+================================================================================
+
+Before Committing Changes:
+  [ ] No Chinese characters remain in the file
+      Command: grep -P '[\x{4E00}-\x{9FFF}]' filename.vue
+
+  [ ] File parses as valid Vue/JavaScript
+      Command: npm run build (or equivalent)
+
+  [ ] All translated strings are English
+      Manual review of translation list items
+
+  [ ] Code syntax is preserved
+      Check for broken quotes, brackets, parentheses
+
+  [ ] Special characters maintained
+      ✓ (checkmarks), × (X marks), → (arrows)
+
+  [ ] Markdown formatting preserved
+      **bold**, _italic_, `code`, [links]
+
+  [ ] Comments make sense in English
+      Read through all comments for clarity
+
+After Deployment:
+  [ ] Component renders without errors
+  [ ] No console errors or warnings
+  [ ] All interactive elements work
+  [ ] API calls return expected data
+  [ ] Log messages are readable
+  [ ] Error messages display properly
+  [ ] No missing translation keys
+
+================================================================================
+REGEX PATTERN MAPPING (For Step4Report Backend Update)
+================================================================================
+
+Analysis Question:
+  Old: /分析问题:\s*(.+?)(?:\n|$)/
+  New: /Analysis Question:\s*(.+?)(?:\n|$)/
+
+Prediction Scenario:
+  Old: /预测场景:\s*(.+?)(?:\n|$)/
+  New: /Prediction Scenario:\s*(.+?)(?:\n|$)/
+
+Related Prediction Facts:
+  Old: /相关预测事实:\s*(\d+)/
+  New: /Related Prediction Facts:\s*(\d+)/
+
+Involved Entities:
+  Old: /涉及实体:\s*(\d+)/
+  New: /Involved Entities:\s*(\d+)/
+
+Relationship Chain:
+  Old: /关系链:\s*(\d+)/
+  New: /Relationship Chain:\s*(\d+)/
+
+Analysis Sub-Questions Section:
+  Old: /### 分析的子问题\n/
+  New: /### Analysis Sub-Questions\n/
+
+Key Facts Section:
+  Old: /### 【关键事实】/
+  New: /### 【Key Facts】/
+
+Core Entities Section:
+  Old: /### 【核心实体】/
+  New: /### 【Core Entities】/
+
+Current Valid Facts Section:
+  Old: /### 【当前有效事实】/
+  New: /### 【Current Valid Facts】/
+
+Historical/Expired Facts Section:
+  Old: /### 【历史\/过期事实】/
+  New: /### 【Historical\/Expired Facts】/
+
+Involved Entities Section:
+  Old: /### 【涉及实体】/
+  New: /### 【Involved Entities】/
+
+Interview Topic:
+  Old: /\*\*采访主题:\*\*/
+  New: /\*\*Interview Topic:\*\*/
+
+Number of Interviewees:
+  Old: /\*\*采访人数:\*\*/
+  New: /\*\*Number of Interviewees:\*\*/
+
+Interview Subject Selection Reasons:
+  Old: /### 采访对象选择理由/
+  New: /### Interview Subject Selection Reasons/
+
+Interview Records:
+  Old: /#### 采访 #\d+:/
+  New: /#### Interview #\d+:/
+
+Biography:
+  Old: /_简介:/
+  New: /_Biography:/
+
+Twitter Platform Answer:
+  Old: /【Twitter平台回答】/
+  New: /【Twitter Platform Answer】/
+
+Reddit Platform Answer:
+  Old: /【Reddit平台回答】/
+  New: /【Reddit Platform Answer】/
+
+Key Quotes:
+  Old: /\*\*关键引言:\*\*/
+  New: /\*\*Key Quotes:\*\*/
+
+Interview Summary:
+  Old: /### 采访摘要与核心观点/
+  New: /### Interview Summary and Key Insights/
+
+Search Query:
+  Old: /搜索查询:\s*(.+?)(?:\n|$)/
+  New: /Search Query:\s*(.+?)(?:\n|$)/
+
+Found Items:
+  Old: /找到\s*(\d+)\s*条/
+  New: /Found\s*(\d+)\s*items/
+
+Total Nodes:
+  Old: /总节点数:\s*(\d+)/
+  New: /Total Nodes:\s*(\d+)/
+
+Total Edges:
+  Old: /总边数:\s*(\d+)/
+  New: /Total Edges:\s*(\d+)/
+
+Current Valid Facts:
+  Old: /当前有效事实:\s*(\d+)/
+  New: /Current Valid Facts:\s*(\d+)/
+
+Historical/Expired Facts:
+  Old: /历史\/过期事实:\s*(\d+)/
+  New: /Historical\/Expired Facts:\s*(\d+)/
+
+Related Facts Section:
+  Old: /### 相关事实:/
+  New: /### Related Facts:/
+
+Related Edges Section:
+  Old: /### 相关边:/
+  New: /### Related Edges:/
+
+Related Nodes Section:
+  Old: /### 相关节点:/
+  New: /### Related Nodes:/
+
+Interview Subject Selection:
+  Old: /^-\s*选择([^（(]+)/
+  New: /^-\s*Select([^（(]+)/
+
+Question Number Prefix (Chinese):
+  Old: /(?:^|[\r\n]+)问题(\d+)[：:]\s*/g
+  New: /(?:^|[\r\n]+)Question(\d+)[：:]\s*/g
+
+================================================================================
+FILE SIZE & COMPLEXITY COMPARISON
+================================================================================
+
+File                   Size    Strings   Backend Dep   Time      Complexity
+─────────────────────────────────────────────────────────────────────────────
+Step3Simulation.vue    38 KB   41        None          45 min    Low
+Step4Report.vue        145 KB  227       CRITICAL(42)  95 min    High
+Step5Interaction.vue   63 KB   90        None          70 min    Medium
+
+TOTAL (3 files)        246 KB  358       42 critical   210 min   Medium-High
+
+================================================================================
+SUCCESS CRITERIA
+================================================================================
+
+Translation is complete when:
+  ✓ All 358 Chinese strings translated to English
+  ✓ No Chinese characters remain (grep verification)
+  ✓ All 3 components render without errors
+  ✓ All interactive elements functional
+  ✓ API integration tests passing
+  ✓ Step4Report patterns match updated backend
+  ✓ User-facing messages are natural English phrasing
+  ✓ Terminology consistent across all files
+  ✓ Error messages are helpful and clear
+  ✓ Status logs are readable and informative
+
+================================================================================
+ADDITIONAL RESOURCES
+================================================================================
+
+Detailed Translation Lists:
+  1. Step3Simulation_Chinese_Translation_List.txt
+  2. Step4Report_Chinese_Translation_List.txt
+  3. Step5Interaction_Chinese_Translation_List.txt
+
+Project Overview:
+  - TRANSLATION_PROJECT_SUMMARY.txt
+
+Component Locations:
+  - Step3: /frontend/src/components/Step3Simulation.vue
+  - Step4: /frontend/src/components/Step4Report.vue
+  - Step5: /frontend/src/components/Step5Interaction.vue
+
+For Further Analysis:
+  - MainView.vue (next to analyze)
+  - Process.vue (next to analyze)
+  - GraphPanel.vue (medium priority)
+  - HistoryDatabase.vue (medium priority)
+  - API files (backend integration needed)
+
+================================================================================
+END OF QUICK REFERENCE
+================================================================================
+
+Use this guide to get a quick overview of each component's translation needs.
+For detailed information, refer to the individual translation list files.
+
+Questions? Check the detailed translation lists or project summary.
+
+================================================================================

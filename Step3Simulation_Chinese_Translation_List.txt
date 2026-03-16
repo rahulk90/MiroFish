@@ -1,0 +1,515 @@
+================================================================================
+STEP3SIMULATION.VUE - COMPREHENSIVE CHINESE TO ENGLISH TRANSLATION LIST
+================================================================================
+File: /Users/rahulgk/Documents/code/MiroFish/frontend/src/components/Step3Simulation.vue
+Total Size: 38 KB
+Status: Complete Analysis
+
+================================================================================
+TEMPLATE SECTION - UI LABELS & COMMENTS
+================================================================================
+
+Line 6 | Comment in Template
+  Original:   <!-- Twitter 平台进度 -->
+  Translation: <!-- Twitter Platform Progress -->
+  Context:     Marks the section for Twitter/Info Plaza platform status
+
+Line 12 | Platform Name Display
+  Original:   <span class="platform-name">Info Plaza</span>
+  Translation: Already translated (Information/Plaza platform name)
+  Notes:      Keep as "Info Plaza" - this is the localized platform name
+
+Line 25 | Stat Label
+  Original:   <span class="stat-label">Elapsed Time</span>
+  Translation: Already translated
+  Notes:      This is already in English
+
+Line 33 | Tooltip Comment
+  Original:   <!-- 可用动作提示 -->
+  Translation: <!-- Available Actions Tooltip -->
+  Context:     Tooltip showing available platform actions
+
+Line 35 | Tooltip Title
+  Original:   <div class="tooltip-title">Available Actions</div>
+  Translation: Already translated
+  Notes:      This is already in English
+
+Line 47 | Comment in Template
+  Original:   <!-- Reddit 平台进度 -->
+  Translation: <!-- Reddit Platform Progress -->
+  Context:     Marks the section for Reddit/Topic Community platform status
+
+Line 53 | Platform Name Display
+  Original:   <span class="platform-name">Topic Community</span>
+  Translation: Already translated (Information/Topic Community platform name)
+  Notes:      Keep as "Topic Community" - this is the localized platform name
+
+Line 74 | Tooltip Comment
+  Original:   <!-- 可用动作提示 -->
+  Translation: <!-- Available Actions Tooltip -->
+  Context:     Tooltip showing available Reddit platform actions
+
+Line 100 | Button Text (Dynamic)
+  Original:   {{ isGeneratingReport ? '启动中...' : '开始生成结果报告' }}
+  Translation: {{ isGeneratingReport ? 'Generating...' : 'Generate Results Report' }}
+  Context:     Primary action button - shows loading state or default text
+  Priority:    HIGH - User-facing action button
+
+Line 160 | Comment in Template
+  Original:   <!-- CREATE_POST: 发布帖子 -->
+  Translation: <!-- CREATE_POST: Publish Post -->
+  Context:     Action type comment for code clarity
+
+Line 165 | Comment in Template
+  Original:   <!-- QUOTE_POST: 引用帖子 -->
+  Translation: <!-- QUOTE_POST: Quote Post -->
+  Context:     Action type comment for code clarity
+
+Line 181 | Comment in Template
+  Original:   <!-- REPOST: 转发帖子 -->
+  Translation: <!-- REPOST: Repost Post -->
+  Context:     Action type comment for code clarity
+
+Line 192 | Comment in Template
+  Original:   <!-- LIKE_POST: 点赞帖子 -->
+  Translation: <!-- LIKE_POST: Like Post -->
+  Context:     Action type comment for code clarity
+
+Line 203 | Comment in Template
+  Original:   <!-- CREATE_COMMENT: 发表评论 -->
+  Translation: <!-- CREATE_COMMENT: Post Comment -->
+  Context:     Action type comment for code clarity
+
+Line 214 | Comment in Template
+  Original:   <!-- SEARCH_POSTS: 搜索帖子 -->
+  Translation: <!-- SEARCH_POSTS: Search Posts -->
+  Context:     Action type comment for code clarity
+
+Line 223 | Comment in Template
+  Original:   <!-- FOLLOW: 关注用户 -->
+  Translation: <!-- FOLLOW: Follow User -->
+  Context:     Action type comment for code clarity
+
+Line 243 | Comment in Template
+  Original:   <!-- DO_NOTHING: 无操作（静默） -->
+  Translation: <!-- DO_NOTHING: No Action (Idle) -->
+  Context:     Action type comment for code clarity
+
+Line 251 | Comment in Template
+  Original:   <!-- 通用回退：未知类型或有 content 但未被上述处理 -->
+  Translation: <!-- Fallback: Unknown type or content not handled above -->
+  Context:     Generic fallback case for unhandled action types
+
+Line 267 | Waiting State Message
+  Original:   <span>Waiting for agent actions...</span>
+  Translation: Already translated
+  Notes:      This is already in English
+
+Line 275 | Log Title
+  Original:   <span class="log-title">SIMULATION MONITOR</span>
+  Translation: Already translated
+  Notes:      This is already in English
+
+================================================================================
+SCRIPT SECTION - JAVASCRIPT CODE & LOGGING
+================================================================================
+
+Line 301 | Comment - Props Definition
+  Original:   maxRounds: Number, // 从Step2传入的最大轮数
+  Translation: maxRounds: Number, // Maximum rounds passed from Step2
+  Context:     Props documentation comment
+
+Line 304 | Comment - Props Definition
+  Original:   default: 30 // 默认每轮30分钟
+  Translation: default: 30 // Default 30 minutes per round
+  Context:     Props documentation comment
+
+Line 317 | Comment - State Definition
+  Original:   const phase = ref(0) // 0: 未开始, 1: 运行中, 2: 已完成
+  Translation: const phase = ref(0) // 0: Not started, 1: Running, 2: Completed
+  Context:     State machine phases
+
+Line 322 | Comment - State Definition
+  Original:   const allActions = ref([]) // 所有动作（增量累积）
+  Translation: const allActions = ref([]) // All actions (incremental accumulation)
+  Context:     Data structure documentation
+
+Line 323 | Comment - State Definition
+  Original:   const actionIds = ref(new Set()) // 用于去重的动作ID集合
+  Translation: const actionIds = ref(new Set()) // Action ID set for deduplication
+  Context:     Helper data structure documentation
+
+Line 327 | Comment - Computed Property
+  Original:   // 按时间顺序显示动作（最新的在最后面，即底部）
+  Translation: // Display actions in chronological order (newest at bottom)
+  Context:     Business logic documentation
+
+Line 341 | Comment - Computed Property
+  Original:   // 格式化模拟流逝时间（根据轮次和每轮分钟数计算）
+  Translation: // Format simulated elapsed time (calculated from rounds and minutes per round)
+  Context:     Time formatting logic documentation
+
+Line 365 | Comment - Method
+  Original:   // 重置所有状态（用于重新启动模拟）
+  Translation: // Reset all state (for restarting simulation)
+  Context:     Method documentation
+
+Line 376 | Method Call with Comment
+  Original:   stopPolling()  // 停止之前可能存在的轮询
+  Translation: stopPolling()  // Stop any existing polling
+  Context:     Inline documentation
+
+Line 379 | Comment - Method
+  Original:   // 启动模拟
+  Translation: // Start simulation
+  Context:     Method documentation
+
+Line 382 | Error Message in Log
+  Original:   addLog('错误：缺少 simulationId')
+  Translation: addLog('Error: Missing simulationId')
+  Context:     User-facing error message
+  Priority:    HIGH - Error notification
+
+Line 386 | Comment - Reset Context
+  Original:   // 先重置所有状态，确保不会受到上一次模拟的影响
+  Translation: // First reset all state to ensure no interference from previous simulation
+  Context:     Code documentation
+
+Line 391 | Log Message
+  Original:   addLog('正在启动双平台并行模拟...')
+  Translation: addLog('Starting dual-platform parallel simulation...')
+  Context:     Status message
+  Priority:    HIGH - Informational log
+
+Line 398 | Comment - API Parameter
+  Original:   force: true,  // 强制重新开始
+  Translation: force: true,  // Force restart
+  Context:     API documentation
+
+Line 399 | Comment - API Parameter
+  Original:   enable_graph_memory_update: true  // 开启动态图谱更新
+  Translation: enable_graph_memory_update: true  // Enable dynamic graph update
+  Context:     Feature flag documentation
+
+Line 404 | Log Message
+  Original:   addLog(`设置最大模拟轮数: ${props.maxRounds}`)
+  Translation: addLog(`Set maximum simulation rounds: ${props.maxRounds}`)
+  Context:     Status message
+  Priority:    HIGH - Configuration log
+
+Line 407 | Log Message
+  Original:   addLog('已开启动态图谱更新模式')
+  Translation: addLog('Dynamic graph update mode enabled')
+  Context:     Status message
+  Priority:    HIGH - Feature notification
+
+Line 413 | Log Message
+  Original:   addLog('✓ 已清理旧的模拟日志，重新开始模拟')
+  Translation: addLog('✓ Cleaned old simulation logs, restarting simulation')
+  Context:     Success message
+  Priority:    HIGH - Operation result
+
+Line 415 | Log Message
+  Original:   addLog('✓ 模拟引擎启动成功')
+  Translation: addLog('✓ Simulation engine started successfully')
+  Context:     Success message
+  Priority:    HIGH - Operation result
+
+Line 416 | Log Message
+  Original:   addLog(`  ├─ PID: ${res.data.process_pid || '-'}`)
+  Translation: addLog(`  ├─ PID: ${res.data.process_pid || '-'}`)
+  Context:     Technical information (keep as is - already in ASCII art)
+  Notes:      Tree structure formatting - keep PID identifier
+
+Line 424 | Log Message
+  Original:   addLog(`✗ 启动失败: ${res.error || '未知错误'}`)
+  Translation: addLog(`✗ Start failed: ${res.error || 'Unknown error'}`)
+  Context:     Error message
+  Priority:    HIGH - Error notification
+
+Line 425 | Log Message
+  Original:   addLog(`✗ 启动异常: ${res.message}`)
+  Translation: addLog(`✗ Start error: ${err.message}`)
+  Context:     Error message
+  Priority:    HIGH - Exception notification
+
+Line 437 | Comment - Method
+  Original:   // 停止模拟
+  Translation: // Stop simulation
+  Context:     Method documentation
+
+Line 442 | Log Message
+  Original:   addLog('正在停止模拟...')
+  Translation: addLog('Stopping simulation...')
+  Context:     Status message
+  Priority:    HIGH - Operation notification
+
+Line 448 | Log Message
+  Original:   addLog('✓ 模拟已停止')
+  Translation: addLog('✓ Simulation stopped')
+  Context:     Success message
+  Priority:    HIGH - Operation result
+
+Line 453 | Log Message
+  Original:   addLog(`停止失败: ${res.error || '未知错误'}`)
+  Translation: addLog(`Stop failed: ${res.error || 'Unknown error'}`)
+  Context:     Error message
+  Priority:    HIGH - Error notification
+
+Line 456 | Log Message
+  Original:   addLog(`停止异常: ${err.message}`)
+  Translation: addLog(`Stop error: ${err.message}`)
+  Context:     Error message
+  Priority:    HIGH - Exception notification
+
+Line 462 | Comment - Polling Section
+  Original:   // 轮询状态
+  Translation: // Polling status
+  Context:     Section documentation
+
+Line 474 | Comment - Method
+  Original:   // 停止轮询
+  Translation: // Stop polling
+  Context:     Method documentation
+
+Line 485 | Comment - State Tracking
+  Original:   // 追踪各平台的上一次轮次，用于检测变化并输出日志
+  Translation: // Track previous round for each platform to detect changes and output logs
+  Context:     State management documentation
+
+Line 500 | Comment - Platform Change Detection
+  Original:   // 分别检测各平台的轮次变化并输出日志
+  Translation: // Detect round changes for each platform separately and output logs
+  Context:     Business logic documentation
+
+Line 502 | Log Message - Twitter
+  Original:   addLog(`[Plaza] R${data.twitter_current_round}/${data.total_rounds} | T:${data.twitter_simulated_hours || 0}h | A:${data.twitter_actions_count}`)
+  Translation: addLog(`[Plaza] R${data.twitter_current_round}/${data.total_rounds} | T:${data.twitter_simulated_hours || 0}h | A:${data.twitter_actions_count}`)
+  Context:     Status log message - Platform code "Plaza" is English, keep as is
+  Notes:      Abbreviated format - R=Round, T=Time, A=Actions
+
+Line 507 | Log Message - Reddit
+  Original:   addLog(`[Community] R${data.reddit_current_round}/${data.total_rounds} | T:${data.reddit_simulated_hours || 0}h | A:${data.reddit_actions_count}`)
+  Translation: addLog(`[Community] R${data.reddit_current_round}/${data.total_rounds} | T:${data.reddit_simulated_hours || 0}h | A:${data.reddit_actions_count}`)
+  Context:     Status log message - Platform code "Community" is English, keep as is
+  Notes:      Abbreviated format - R=Round, T=Time, A=Actions
+
+Line 511 | Comment - Completion Detection
+  Original:   // 检测模拟是否已完成（通过 runner_status 或平台完成状态判断）
+  Translation: // Detect if simulation is completed (via runner_status or platform completion state)
+  Context:     Logic documentation
+
+Line 514 | Comment - Fallback Logic
+  Original:   // 额外检查：如果后端还没来得及更新 runner_status，但平台已经报告完成
+  // 通过检测 twitter_completed 和 reddit_completed 状态判断
+  Translation: // Extra check: if backend hasn't updated runner_status yet but platforms report completion
+  // detect via twitter_completed and reddit_completed states
+  Context:     Fallback logic documentation
+
+Line 520 | Log Message
+  Original:   addLog('✓ 检测到所有平台模拟已结束')
+  Translation: addLog('✓ Detected all platform simulations completed')
+  Context:     Success message
+  Priority:    HIGH - Operation result
+
+Line 522 | Log Message
+  Original:   addLog('✓ 模拟已完成')
+  Translation: addLog('✓ Simulation completed')
+  Context:     Success message
+  Priority:    HIGH - Operation result
+
+Line 529 | Console Warning
+  Original:   console.warn('获取运行状态失败:', err)
+  Translation: console.warn('Failed to fetch run status:', err)
+  Context:     Debug/warning message
+  Priority:    MEDIUM - Developer log
+
+Line 533 | Comment - Method
+  Original:   // 检查所有启用的平台是否已完成
+  Translation: // Check if all enabled platforms are completed
+  Context:     Method documentation
+
+Line 535 | Comment - Return Logic
+  Original:   // 如果没有任何平台数据，返回 false
+  Translation: // If no platform data, return false
+  Context:     Logic documentation
+
+Line 538 | Comment - State Checking
+  Original:   // 检查各平台的完成状态
+  Translation: // Check completion status for each platform
+  Context:     Logic documentation
+
+Line 542 | Comment - Platform Enable Detection
+  Original:   // 如果至少有一个平台完成了，检查是否所有启用的平台都完成了
+  // 通过 actions_count 判断平台是否被启用（如果 count > 0 或 running 曾为 true）
+  Translation: // If at least one platform completed, check if all enabled platforms completed
+  // Determine if platform is enabled via actions_count (if count > 0 or running was true)
+  Context:     Platform enable detection logic
+
+Line 547 | Comment - Return Logic
+  Original:   // 如果没有任何平台被启用，返回 false
+  Translation: // If no platform is enabled, return false
+  Context:     Logic documentation
+
+Line 550 | Comment - Return Logic
+  Original:   // 检查所有启用的平台是否都已完成
+  Translation: // Check if all enabled platforms are completed
+  Context:     Logic documentation
+
+Line 557 | Comment - Method
+  Original:   // 获取详细状态
+  Translation: // Fetch detailed status
+  Context:     Method documentation
+
+Line 564 | Comment - Data Source
+  Original:   // 使用 all_actions 获取完整的动作列表
+  Translation: // Use all_actions to get complete action list
+  Context:     Data structure documentation
+
+Line 567 | Comment - Deduplication
+  Original:   // 增量添加新动作（去重）
+  Translation: // Incrementally add new actions (deduplication)
+  Context:     Business logic documentation
+
+Line 570 | Comment - ID Generation
+  Original:   // 生成唯一ID
+  Translation: // Generate unique ID
+  Context:     Logic documentation
+
+Line 583 | Comment - Auto-Scroll Behavior
+  Original:   // 不自动滚动，让用户自由查看时间轴
+  // 新动作会在底部追加
+  Translation: // Don't auto-scroll, let user freely view timeline
+  // New actions appended at bottom
+  Context:     UI behavior documentation
+
+Line 587 | Console Warning
+  Original:   console.warn('获取详细状态失败:', err)
+  Translation: console.warn('Failed to fetch detailed status:', err)
+  Context:     Debug/warning message
+  Priority:    MEDIUM - Developer log
+
+Line 591 | Comment - Section
+  Original:   // Helpers
+  Translation: // Helpers
+  Context:     Section documentation (already in English)
+
+Line 643 | Error Message
+  Original:   addLog('错误：缺少 simulationId')
+  Translation: addLog('Error: Missing simulationId')
+  Context:     User-facing error message
+  Priority:    HIGH - Error notification (duplicate)
+
+Line 648 | Log Message
+  Original:   addLog('报告生成请求已发送，请稍候...')
+  Translation: addLog('Report generation request sent, please wait...')
+  Context:     Status message
+  Priority:    HIGH - User notification
+
+Line 653 | Log Message
+  Original:   addLog('正在启动报告生成...')
+  Translation: addLog('Starting report generation...')
+  Context:     Status message
+  Priority:    HIGH - Operation notification
+
+Line 663 | Log Message
+  Original:   addLog(`✓ 报告生成任务已启动: ${reportId}`)
+  Translation: addLog(`✓ Report generation task started: ${reportId}`)
+  Context:     Success message
+  Priority:    HIGH - Operation result
+
+Line 668 | Log Message
+  Original:   addLog(`✗ 启动报告生成失败: ${res.error || '未知错误'}`)
+  Translation: addLog(`✗ Failed to start report generation: ${res.error || 'Unknown error'}`)
+  Context:     Error message
+  Priority:    HIGH - Error notification
+
+Line 672 | Log Message
+  Original:   addLog(`✗ 启动报告生成异常: ${err.message}`)
+  Translation: addLog(`✗ Report generation error: ${err.message}`)
+  Context:     Error message
+  Priority:    HIGH - Exception notification
+
+Line 688 | Log Message
+  Original:   addLog('Step3 模拟运行初始化')
+  Translation: addLog('Step3 simulation initialization')
+  Context:     Status message
+  Priority:    HIGH - Lifecycle notification
+
+================================================================================
+STYLE SECTION - CSS COMMENTS
+================================================================================
+
+No Chinese content found in CSS section. All CSS comments are already in English.
+
+================================================================================
+SUMMARY STATISTICS
+================================================================================
+
+Total Chinese Strings Found: 41
+  - Template/UI Labels: 11
+  - JavaScript/Comments: 25
+  - Console Messages: 5
+  - CSS Comments: 0
+
+Priority Breakdown:
+  - HIGH (User-facing messages): 20
+  - MEDIUM (Developer logs): 2
+  - LOW (Code comments): 19
+
+Key Areas to Translate:
+1. Button text (line 100) - PRIMARY ACTION
+2. Error messages (lines 382, 643) - ERROR HANDLING
+3. Status logs (lines 391, 404, 407, 413, 415, 442, 448, 520, 522) - OPERATION FEEDBACK
+4. Report generation messages (lines 648, 653, 663, 668, 672) - USER WORKFLOW
+
+================================================================================
+TRANSLATION NOTES & CONTEXT
+================================================================================
+
+Platform Names (Keep Current):
+- "Info Plaza" = Twitter platform (already localized/translated)
+- "Topic Community" = Reddit platform (already localized/translated)
+
+Abbreviations in Logs:
+- R = Round (keep as single letter)
+- T = Time (keep as single letter)
+- A = Actions (keep as single letter)
+- PID = Process ID (keep as is - technical identifier)
+
+Action Type Comments:
+All action type labels like CREATE_POST, QUOTE_POST, REPOST, LIKE_POST, etc.
+should keep English descriptions in comments for consistency with code.
+
+Time Format:
+"h" (hours) and "m" (minutes) abbreviations should stay as is - universal symbols
+
+Logging Symbols:
+✓ (checkmark) and ✗ (X) symbols for success/failure - keep as is for consistency
+
+================================================================================
+RECOMMENDED TRANSLATION APPROACH
+================================================================================
+
+Phase 1: HIGH Priority (User-facing)
+- Update button text and all addLog() messages
+- These directly impact user experience
+- Total strings: 20
+
+Phase 2: MEDIUM/LOW Priority (Developer-facing)
+- Update console warnings and code comments
+- Internal documentation
+- Total strings: 21
+
+Estimated Time to Implement:
+- Phase 1: 15 minutes (high-impact changes)
+- Phase 2: 20 minutes (comments and logs)
+- Testing: 10 minutes
+- Total: ~45 minutes for complete translation
+
+File Dependencies:
+- This component uses api/simulation.js and api/report.js
+- Check those files for Chinese content as well
+- Parent component: Process.vue (may pass Chinese data)
+
+================================================================================

@@ -1,0 +1,436 @@
+================================================================================
+MIROFISH TRANSLATION PROJECT - FILES INDEX
+================================================================================
+
+This document provides an index of all translation-related files created as part
+of the Chinese-to-English translation project for the MiroFish application.
+
+Created: 2026-03-16
+Project Status: Phase 1 Complete (Analysis & Translation Lists)
+
+================================================================================
+TRANSLATION PROJECT DOCUMENTS (All in project root)
+================================================================================
+
+1. TRANSLATION_FILES_INDEX.txt (THIS FILE)
+   Purpose: Index and guide to all translation project files
+   Size: ~2 KB
+   Contains: Overview and file listing
+   Use When: You need to find translation-related documents
+
+2. TRANSLATION_PROJECT_SUMMARY.txt ★ START HERE
+   Purpose: Comprehensive project overview and status
+   Size: ~15 KB
+   Contains:
+     - Complete analysis of 3 components
+     - Critical findings and warnings
+     - Timeline and effort estimates
+     - Recommendations and risks
+     - Terminology glossary (draft)
+   Use When: You need project overview or planning information
+
+3. QUICK_REFERENCE_GUIDE.txt ★ FOR TRANSLATORS
+   Purpose: Quick facts about each component for translators
+   Size: ~12 KB
+   Contains:
+     - One-page summary of each component
+     - Translation time estimates
+     - Key sections to focus on
+     - Common translations glossary
+     - Verification checklist
+     - Regex pattern mapping for backend
+   Use When: You're about to start translating a component
+
+================================================================================
+COMPONENT TRANSLATION LISTS (Detailed - One per component)
+================================================================================
+
+1. Step3Simulation_Chinese_Translation_List.txt
+   Component File: /frontend/src/components/Step3Simulation.vue
+   Size: 38 KB component / ~8 KB translation list
+   Chinese Strings: 41 total
+   Priority Distribution:
+     - HIGH (20): User-facing messages and logs
+     - MEDIUM (2): Developer logs
+     - LOW (19): Code comments
+   Backend Dependencies: NONE ✓
+   Estimated Translation Time: 45 minutes
+   Status: Ready to translate immediately
+
+   Content Sections:
+     - Template UI labels and text
+     - JavaScript comments and logs
+     - Error messages
+     - Status notifications
+     - Script section documentation
+     - CSS comments
+
+2. Step4Report_Chinese_Translation_List.txt
+   Component File: /frontend/src/components/Step4Report.vue
+   Size: 145 KB component / ~35 KB translation list
+   Chinese Strings: 227 total (LARGEST)
+   Priority Distribution:
+     - CRITICAL (42): Regex patterns affecting backend parsing
+     - HIGH (22): User-facing text
+     - MEDIUM (36): Feature descriptions
+     - LOW (127): Code comments
+   Backend Dependencies: YES ⚠️ CRITICAL
+   Estimated Translation Time: 95 minutes + backend coordination
+   Status: BLOCKED until backend updated
+
+   Content Sections:
+     - Template loading and navigation text
+     - Regex patterns for report parsing
+     - Render function UI labels
+     - Memory section labels
+     - Interview section labels
+     - Search section labels
+     - Log processing comments
+     - Final answer extraction logic
+     - Style documentation
+
+3. Step5Interaction_Chinese_Translation_List.txt
+   Component File: /frontend/src/components/Step5Interaction.vue
+   Size: 63 KB component / ~12 KB translation list
+   Chinese Strings: 90 total
+   Priority Distribution:
+     - HIGH (28): User-facing text
+     - MEDIUM (12): Feature descriptions and defaults
+     - LOW (50): Code comments and documentation
+   Backend Dependencies: NONE ✓
+   Estimated Translation Time: 70 minutes
+   Status: Ready to translate immediately
+
+   Content Sections:
+     - Template UI labels and buttons
+     - Tool names and descriptions
+     - Form inputs and placeholders
+     - Section titles and headers
+     - Error messages and logs
+     - Status notifications
+     - JavaScript comments
+
+================================================================================
+DETAILED STRUCTURE OF EACH TRANSLATION LIST
+================================================================================
+
+Each component translation list follows this format:
+
+HEADER SECTION:
+  - File path and size
+  - Total Chinese strings found
+  - Analysis status
+
+TEMPLATE SECTION:
+  - UI labels, buttons, placeholders
+  - Line numbers with exact locations
+  - Original Chinese text
+  - English translation
+  - Context/notes
+  - Priority level
+
+SCRIPT SECTION:
+  - JavaScript comments
+  - Log messages (user-facing)
+  - Error messages
+  - API documentation
+  - Data processing notes
+  - Method documentation
+
+STYLE SECTION:
+  - CSS comments
+  - Design documentation
+
+SUMMARY STATISTICS:
+  - Total count by priority
+  - Category breakdown
+  - Dependencies noted
+
+NOTES SECTION:
+  - Translation-specific guidance
+  - Common patterns to watch for
+  - Special considerations
+  - Backend coordination needs
+
+WORKFLOW SECTION:
+  - Phase-by-phase translation plan
+  - Time estimates per phase
+  - Priority ordering
+  - Testing requirements
+
+================================================================================
+HOW TO USE THESE FILES
+================================================================================
+
+SCENARIO 1: I'm new to the project, where do I start?
+  1. Read: TRANSLATION_PROJECT_SUMMARY.txt (15 min)
+  2. Read: QUICK_REFERENCE_GUIDE.txt (10 min)
+  3. Choose a component (Step3 or Step5 - no backend dependencies)
+  4. Read: Component-specific translation list
+  5. Start translating!
+
+SCENARIO 2: I'm ready to translate Step3Simulation.vue
+  1. Open: Step3Simulation_Chinese_Translation_List.txt
+  2. Read: Summary statistics section
+  3. Review: Template section (UI elements first)
+  4. Review: Script section (messages and logs)
+  5. Use: QUICK_REFERENCE_GUIDE.txt for terminology
+  6. Translate using the line numbers as guides
+  7. Use: Verification checklist (in QUICK_REFERENCE_GUIDE.txt)
+
+SCENARIO 3: I'm translating Step4Report.vue
+  1. Stop! Read: CRITICAL WARNING section in summary
+  2. Contact: Backend team about regex patterns
+  3. Wait for: Backend update confirmation
+  4. Then: Open Step4Report_Chinese_Translation_List.txt
+  5. Focus on: CRITICAL regex patterns first
+  6. Then: HIGH priority UI text
+  7. Test: Regex patterns against updated backend output
+
+SCENARIO 4: I'm translating Step5Interaction.vue
+  1. Similar to Step3 workflow (no backend dependencies)
+  2. Open: Step5Interaction_Chinese_Translation_List.txt
+  3. Note: Tool descriptions are detailed (MEDIUM priority)
+  4. Translate: Following the line-by-line guide
+  5. Verify: Using QUICK_REFERENCE_GUIDE.txt checklist
+
+SCENARIO 5: I need a terminology glossary
+  1. Reference: TRANSLATION_PROJECT_SUMMARY.txt
+  2. Section: "APPENDIX: TRANSLATION GLOSSARY (DRAFT)"
+  3. Reference: QUICK_REFERENCE_GUIDE.txt
+  4. Section: "COMMON TRANSLATIONS FOR ALL FILES"
+
+SCENARIO 6: I need to understand backend dependencies
+  1. Read: TRANSLATION_PROJECT_SUMMARY.txt
+  2. Section: "CRITICAL FINDINGS & WARNINGS"
+  3. Reference: QUICK_REFERENCE_GUIDE.txt
+  4. Section: "REGEX PATTERN MAPPING (For Step4Report Backend Update)"
+  5. Action: Contact backend team with this information
+
+SCENARIO 7: I'm verifying translations are complete
+  1. Use: Verification checklist in QUICK_REFERENCE_GUIDE.txt
+  2. Run: grep command to find remaining Chinese characters
+  3. Compare: Against translation list items
+  4. Test: Component functionality
+  5. Review: Log messages appear in English
+
+================================================================================
+QUICK FACTS BY COMPONENT
+================================================================================
+
+STEP3SIMULATION.VUE:
+  ✓ No backend dependencies
+  ✓ Low complexity
+  ✓ 41 Chinese strings to translate
+  ✓ 45 minutes estimated time
+  ✓ Ready to start immediately
+  Keywords: Simulation, logging, status messages, agent actions
+
+STEP4REPORT.VUE:
+  ⚠️ CRITICAL backend dependencies
+  ⚠️ High complexity
+  ⚠️ 42 regex patterns need backend update
+  ⚠️ 227 Chinese strings to translate
+  ⚠️ 95 minutes estimated time
+  ⚠️ BLOCKED until backend updated
+  Keywords: Report parsing, regex patterns, agent interviews, graph data
+
+STEP5INTERACTION.VUE:
+  ✓ No backend dependencies
+  ✓ Medium complexity
+  ✓ 90 Chinese strings to translate
+  ✓ 70 minutes estimated time
+  ✓ Ready to start immediately
+  Keywords: Chat interface, surveys, tools, agent conversations
+
+================================================================================
+FILE LOCATIONS IN REPOSITORY
+================================================================================
+
+Translation Project Files (ROOT):
+  /Users/rahulgk/Documents/code/MiroFish/
+    ├── TRANSLATION_FILES_INDEX.txt ← This file
+    ├── TRANSLATION_PROJECT_SUMMARY.txt
+    ├── QUICK_REFERENCE_GUIDE.txt
+    ├── Step3Simulation_Chinese_Translation_List.txt
+    ├── Step4Report_Chinese_Translation_List.txt
+    ├── Step5Interaction_Chinese_Translation_List.txt
+    └── Step2EnvSetup_Chinese_Translation_List.txt (from previous work)
+
+Vue Components (FRONTEND):
+  /Users/rahulgk/Documents/code/MiroFish/frontend/src/
+    ├── components/
+    │   ├── Step1GraphBuild.vue (already translated ✓)
+    │   ├── Step2EnvSetup.vue (already translated ✓)
+    │   ├── Step3Simulation.vue (analyzed, ready to translate)
+    │   ├── Step4Report.vue (analyzed, blocked on backend)
+    │   ├── Step5Interaction.vue (analyzed, ready to translate)
+    │   ├── GraphPanel.vue (not yet analyzed)
+    │   └── HistoryDatabase.vue (not yet analyzed)
+    └── views/
+        ├── MainView.vue (not yet analyzed)
+        └── Process.vue (not yet analyzed)
+
+API Files (FRONTEND):
+  /Users/rahulgk/Documents/code/MiroFish/frontend/src/api/
+    ├── graph.js (not yet analyzed)
+    ├── simulation.js (not yet analyzed)
+    ├── report.js (not yet analyzed)
+    └── index.js (not yet analyzed)
+
+================================================================================
+NEXT STEPS & RECOMMENDATIONS
+================================================================================
+
+IMMEDIATE ACTIONS:
+  [ ] Read TRANSLATION_PROJECT_SUMMARY.txt for full context
+  [ ] Read QUICK_REFERENCE_GUIDE.txt for quick facts
+  [ ] Choose Step3 or Step5 to start (no backend waiting)
+  [ ] Gather team for terminology glossary review
+  [ ] Contact backend team regarding Step4 regex patterns
+
+WEEK 1 TARGETS:
+  [ ] Translate Step3Simulation.vue (45 min)
+  [ ] Translate Step5Interaction.vue (70 min)
+  [ ] Analyze and begin Step1/Process.vue
+  [ ] Establish terminology glossary
+
+WEEK 2 TARGETS:
+  [ ] Analyze remaining components (GraphPanel, HistoryDatabase)
+  [ ] Translate API files (graph.js, simulation.js, report.js)
+  [ ] Backend coordination on regex patterns
+
+WEEK 3 TARGETS:
+  [ ] Begin Step4Report.vue (after backend ready)
+  [ ] Test all translated components
+  [ ] Fix any issues from testing
+
+WEEK 4 TARGETS:
+  [ ] Final QA and refinement
+  [ ] Documentation updates
+  [ ] Deployment preparation
+
+================================================================================
+TERMINOLOGY & CONSISTENCY
+================================================================================
+
+Important: Consistency across all 3 components is critical!
+
+Platform Names (KEEP AS-IS):
+  - "Info Plaza" (Twitter)
+  - "Topic Community" (Reddit)
+
+Tool Names (KEEP AS-IS):
+  - InsightForge Deep Attribution
+  - PanoramaSearch Panoramic Tracking
+  - QuickSearch Quick Retrieval
+  - InterviewSubAgent Virtual Interview
+
+Standard Translations (MUST USE CONSISTENTLY):
+  - 正在生成 → "Generating"
+  - 已完成 → "Completed"
+  - 失败 → "Failed"
+  - 错误 → "Error"
+  - 无响应 → "No response"
+  - 未知职业 → "Unknown profession"
+
+Abbreviations to KEEP:
+  - R (Round)
+  - T (Time)
+  - A (Actions)
+  - h (hours)
+  - m (minutes)
+
+See QUICK_REFERENCE_GUIDE.txt for complete glossary
+
+================================================================================
+QUALITY ASSURANCE
+================================================================================
+
+Before Committing Translations:
+  [ ] No Chinese characters remain in file
+  [ ] Component parses as valid Vue/JavaScript
+  [ ] All strings translated to natural English
+  [ ] Terminology matches glossary
+  [ ] Code syntax preserved
+  [ ] Markdown formatting intact
+  [ ] Comments make sense in English
+
+After Deployment:
+  [ ] Component renders without errors
+  [ ] All interactive elements work
+  [ ] API integration functions correctly
+  [ ] Error messages display properly
+  [ ] Log messages are readable
+  [ ] No console errors or warnings
+
+See QUICK_REFERENCE_GUIDE.txt for detailed verification checklist
+
+================================================================================
+SUPPORT & QUESTIONS
+================================================================================
+
+Q: Where do I find the English translations to use?
+A: In the component-specific translation lists. Each file has the original
+   Chinese and suggested English translation.
+
+Q: What if I find a better translation?
+A: Great! Make a note and we can update the glossary for consistency.
+
+Q: Can I start with Step4Report.vue?
+A: NOT RECOMMENDED. It's blocked waiting for backend updates. Start with
+   Step3 or Step5 instead.
+
+Q: What if a translation seems wrong?
+A: Check the context section in the translation list. If still unclear,
+   review the code surrounding that string.
+
+Q: Should I translate comments?
+A: Yes, but they're lower priority (LOW). Focus on user-facing text first.
+
+Q: How do I know when I'm done translating?
+A: Use the grep command to verify no Chinese characters remain, then check
+   the verification checklist in QUICK_REFERENCE_GUIDE.txt.
+
+Q: What about technical terms I'm not sure about?
+A: Consult the glossary in QUICK_REFERENCE_GUIDE.txt or ask the team.
+
+================================================================================
+VERSION HISTORY
+================================================================================
+
+Created: 2026-03-16
+Version: 1.0 - Initial Analysis Complete
+
+Phase 1: Analysis & Documentation ✓
+  - Analyzed 3 major components
+  - Created detailed translation lists
+  - Identified backend dependencies
+  - Established project timeline
+  - Documented risks and mitigation
+
+Phase 2: Translation (In Progress)
+  - Waiting for translator to begin with Step3/Step5
+
+Phase 3: Backend Coordination (Pending)
+  - Waiting for Step4Report backend readiness
+
+Phase 4: Testing & Deployment (Future)
+  - After all translations complete
+
+================================================================================
+END OF INDEX
+================================================================================
+
+This comprehensive translation project involves 3 analyzed components with
+358+ Chinese strings to translate. All the necessary documentation, guides,
+and translation lists have been prepared.
+
+Start with TRANSLATION_PROJECT_SUMMARY.txt or QUICK_REFERENCE_GUIDE.txt
+depending on whether you need project overview or translation details.
+
+Questions? Check the relevant translation list file for that component.
+
+Good luck with the translation! 🎯
+
+================================================================================

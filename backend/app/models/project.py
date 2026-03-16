@@ -17,9 +17,9 @@ from ..config import Config
 class ProjectStatus(str, Enum):
     """项目状态"""
     CREATED = "created"              # 刚创建，文件已上传
-    ONTOLOGY_GENERATED = "ontology_generated"  # 本体已生成
-    GRAPH_BUILDING = "graph_building"    # 图谱构建中
-    GRAPH_COMPLETED = "graph_completed"  # 图谱构建完成
+    ONTOLOGY_GENERATED = "ontology_generated"  # Ontology已生成
+    GRAPH_BUILDING = "graph_building"    # Graph构建中
+    GRAPH_COMPLETED = "graph_completed"  # Graph构建完成
     FAILED = "failed"                # 失败
 
 
@@ -36,11 +36,11 @@ class Project:
     files: List[Dict[str, str]] = field(default_factory=list)  # [{filename, path, size}]
     total_text_length: int = 0
     
-    # 本体信息（接口1生成后填充）
+    # Ontology信息（接口1生成后填充）
     ontology: Optional[Dict[str, Any]] = None
     analysis_summary: Optional[str] = None
     
-    # 图谱信息（接口2完成后填充）
+    # Graph信息（接口2完成后填充）
     graph_id: Optional[str] = None
     graph_build_task_id: Optional[str] = None
     
@@ -197,7 +197,7 @@ class ProjectManager:
     @classmethod
     def list_projects(cls, limit: int = 50) -> List[Project]:
         """
-        列出所有项目
+        List all projects
         
         Args:
             limit: 返回数量限制
@@ -221,7 +221,7 @@ class ProjectManager:
     @classmethod
     def delete_project(cls, project_id: str) -> bool:
         """
-        删除项目及其所有文件
+        Delete project及其所有文件
         
         Args:
             project_id: 项目ID
